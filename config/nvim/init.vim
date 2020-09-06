@@ -6,28 +6,39 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
-
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+Plug 'kana/vim-textobj-user'
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Markdown Blog
 Plug 'junegunn/goyo.vim'
 Plug 'cespare/vim-toml'
 " For Rails
 Plug 'vim-ruby/vim-ruby'
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
 Plug 'thoughtbot/vim-rspec'
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" React
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+Plug 'HerringtonDarkholme/yats.vim'
+
 "UI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,11 +96,11 @@ let g:oceanic_material_allow_italic=1
 " Set background terminal and line number transparent
 highlight clear SignColumn
 hi Normal ctermbg=NONE guibg=NONE
-hi VertSplit guifg=NONE guibg=NONE gui=none 
+hi VertSplit guifg=grey guibg=grey gui=NONE cterm=NONE
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings                                                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map s <Nop>
 let mapleader=" "
 imap jk <Esc>
 map 0 ^
@@ -105,13 +116,17 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>"
 
-"Rename current file
-map <Leader>rnf :call RenameFile()<cr>
-
+"Copy to clipboard"
 vmap <C-C> "+y
 vmap <leader>y "+y
 nmap <leader>y "+y
 nmap <leader>p "+p
+
+"yank to end
+nnoremap Y y$
+
+" React
+" let g:vim_jsx_pretty_colorful_config = 1
 
 " Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
@@ -128,14 +143,17 @@ map <silent> <leader><cr> :noh<cr>
 " Split windows
 map <leader>sv <C-W>v
 map <leader>ss <C-W>s
-
-"Chadtree
-nnoremap <leader>v <cmd>CHADopen<cr>
+" Buffer tab
+map <leader>tc :tabnew<cr>
+map <leader>tx :tabclose<cr>
 
 " Run Rspec
 nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>ra :call RunAllSpecs()<CR>
 noremap <Leader>cs :call RunNearestSpec()<CR>
+
+" Enable matchit for ruby textobject
+runtime macros/matchit.vim
 
 " Fzf
 nnoremap <silent> <c-p> :Files<cr>
@@ -151,8 +169,18 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Font devicon
- set guifont=DroidSansMono\ Nerd\ Font\ 9
+"Go
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+
 
 " ALE
 map <leader>= :ALEFix<cr>
@@ -171,6 +199,55 @@ noremap <Leader><Leader>r :so ~/.config/nvim/init.vim<CR>
 
 " Indentline
 let g:indentLine_char = '¦'
+"Prevent hidden double quotes in json file and markdown
+let g:indentLine_setConceal = 2
+let g:indentLine_concealcursor = ""
+
+" Defx
+augroup vimrc_defx
+  autocmd!
+  autocmd FileType defx call s:defx_mappings()
+  autocmd VimEnter * call s:setup_defx()
+augroup END
+
+nnoremap <silent><Leader>n :call <sid>defx_open()<CR>
+nnoremap <silent><Leader>F :call <sid>defx_open({ 'find_current_file': v:true })<CR>
+let s:default_columns = 'mark:indent:icon:filename'
+
+
+function! s:defx_mappings() abort
+  nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
+  nnoremap <silent><buffer><expr> <CR> <sid>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> <2-LeftMouse> <sid>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : 'C'
+  nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright vsplit')
+  nnoremap <silent><buffer><expr> R defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> U defx#do_action('multi', [['cd', '..'], 'change_vim_cwd'])
+  nnoremap <silent><buffer><expr> H defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer> J :call search('[]')<CR>
+  nnoremap <silent><buffer> K :call search('[]', 'b')<CR>
+  nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> a defx#do_action('new_multiple_files')
+  nnoremap <silent><buffer><expr> r defx#do_action('rename')
+  nnoremap <nowait><silent><buffer><expr> c defx#do_action('copy')
+  nnoremap <silent><buffer><expr> x defx#do_action('move')
+  nnoremap <silent><buffer><expr> X defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> p defx#do_action('paste')
+  nnoremap <nowait><silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> q defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Leader>n defx#do_action('quit')
+  nnoremap <silent><buffer><expr> VS defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> P defx#do_action('preview')
+  nnoremap <silent><buffer><expr> v defx#do_action('toggle_select')
+  nnoremap <silent><buffer><expr> V defx#do_action('clear_select_all')
+  nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> ~ defx#do_action('cd', ['..'])
+  silent exe 'nnoremap <silent><buffer><expr> tt defx#do_action("toggle_columns", "'.s:default_columns.':size:time")'
+endfunction
 
 "Goyo markdown writing
 map <leader>Go :Goyo<CR>
@@ -214,9 +291,10 @@ map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 map <silent> <leader>l :bnext<cr>
 map <silent> <leader>h :bprevious<cr>
 
-" Easymotion
-let g:EasyMotion_smartcase = 1
-map s <Plug>(easymotion-prefix)
+" Sneak
+let g:sneak#label = 1
+" case insensitive sneak
+let g:sneak#use_ic_scs = 1  
 
 " Ale plugin
 let b:ale_linters = {
@@ -333,17 +411,6 @@ function! CloseAllBuffersExceptCurrent()
   if midBufferAfter < lastBuffer | silent! execute (midBufferAfter+1).",".lastBuffer."bd" | endif
 endfunction
 
-" Rename current file
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
-endfunction
-
 function! OpenFloatTerm()
   let height = float2nr((&lines - 2) / 1.7)
   let row = float2nr((&lines - height) / 2)
@@ -375,6 +442,93 @@ function! OpenFloatTerm()
   startinsert
   " Hook up TermClose event to close both terminal and border windows
   autocmd TermClose * ++once :bd! | call nvim_win_close(s:border_win, v:true)
+endfunction
+
+" Detect  Go HTML
+function DetectGoHtmlTmpl()
+    if expand('%:e') == "html" && search("{{") != 0
+        set filetype=gohtmltmpl 
+    endif
+endfunction
+
+augroup filetypedetect
+    au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+augroup END
+
+" Defx
+function! s:setup_defx() abort
+  silent! call defx#custom#option('_', {
+        \ 'columns': s:default_columns,
+        \ 'winwidth': 35,
+        \ 'direction': 'topleft',
+        \ 'split': 'vertical',
+        \ 'resume': v:false,
+        \ 'toggle': v:true
+        \ })
+
+  silent! call defx#custom#column('filename', {
+        \ 'min_width': 80,
+        \ 'max_width': 80,
+        \ })
+
+  silent! call defx#custom#column('icon', {
+      \ 'directory_icon': '▸',
+      \ 'opened_icon': '▾',
+      \ 'root_icon': '',
+      \ })
+
+  silent! call defx#custom#column('mark', {
+        \ 'readonly_icon': '✗',
+        \ 'selected_icon': '⚡',
+        \ })
+
+  call s:defx_open({ 'dir': expand('<afile>') })
+endfunction
+
+function s:get_project_root() abort
+  let l:git_root = ''
+  let l:path = expand('%:p:h')
+  let l:cmd = systemlist('cd '.l:path.' && git rev-parse --show-toplevel')
+  if !v:shell_error && !empty(l:cmd)
+    let l:git_root = fnamemodify(l:cmd[0], ':p:h')
+  endif
+
+  if !empty(l:git_root)
+    return l:git_root
+  endif
+
+  return getcwd()
+endfunction
+
+function! s:defx_open(...) abort
+  let l:opts = get(a:, 1, {})
+  let l:is_file = has_key(l:opts, 'dir') && !isdirectory(l:opts.dir)
+
+  if  &filetype ==? 'defx' || l:is_file
+    return
+  endif
+
+  let l:path = s:get_project_root()
+
+  if has_key(l:opts, 'dir') && isdirectory(l:opts.dir)
+    let l:path = l:opts.dir
+  endif
+
+  if has_key(l:opts, 'find_current_file')
+    call execute(printf('Defx -search=%s %s', expand('%:p'), l:path))
+  else
+    call execute(printf('Defx -toggle %s', l:path))
+    call execute('wincmd p')
+  endif
+
+  return execute("norm!\<C-w>=")
+endfunction
+
+function s:defx_toggle_tree() abort
+  if defx#is_directory()
+    return defx#do_action('open_or_close_tree')
+  endif
+  return defx#do_action('drop')
 endfunction
 
 """ PROJECTIONS
@@ -465,3 +619,4 @@ let g:rails_projections = {
 \ "config/*.rb": { "command": "config"  },
 \ "spec/support/*.rb": { "command": "support" },
 \ }
+
