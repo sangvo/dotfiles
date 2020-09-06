@@ -101,8 +101,8 @@ alias cls="clear"
 # alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Go
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GOROOT=/usr/local/go-1.13
+export PATH=$GOROOT/bin:$PATH
 
 # Rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -123,3 +123,6 @@ export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git"
 
 # direnv
 eval "$(direnv hook zsh)"
+
+[[ -s "/home/sangvo/.gvm/scripts/gvm" ]] && source "/home/sangvo/.gvm/scripts/gvm"
+
