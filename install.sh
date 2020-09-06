@@ -1,5 +1,5 @@
 ln -s -f ~/workspace/dotfiles/.zshrc ~/.zshrc
-ln -s -f ~/workspace/dotfiles/tmux.conf ~/.tmux.conf
+ln -s -f ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf
 
 rm -r -f ~/.config/nvim
 ln -s -f ~/workspace/dotfiles/config/nvim ~/.config/nvim
