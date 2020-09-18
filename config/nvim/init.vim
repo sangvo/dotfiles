@@ -6,7 +6,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
@@ -14,10 +14,15 @@ Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'majutsushi/tagbar'
 
 " Markdown Blog
 Plug 'junegunn/goyo.vim'
 Plug 'cespare/vim-toml'
+
+" Spell grammar
+Plug 'kamykn/spelunker.vim'
+
 " For Rails
 Plug 'vim-ruby/vim-ruby'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -25,6 +30,8 @@ Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
 Plug 'thoughtbot/vim-rspec'
+Plug 'ecomba/vim-ruby-refactoring', {'tag': 'main'}
+
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -34,7 +41,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim'
+
+"HTMl
+Plug 'othree/html5.vim'
 
 "UI
 Plug 'vim-airline/vim-airline'
@@ -56,7 +67,9 @@ set hid                       " A buffer becomes hidden when it is abandoned
 filetype indent on            " Enable filetype plugins
 filetype plugin on
 syntax enable
+set textwidth=120             " Text width maximum chars before wrapping
 set autoindent                " Auto-indent new lines
+set tabstop=4                 " The number of spaces a tab is
 set expandtab                 " Use spaces instead of tabs
 set shiftwidth=2              " Number of auto-indent spaces
 set smartindent               " Enable smart-indent
@@ -77,14 +90,14 @@ set so=7                      " Set 7 lines to the cursor
 set laststatus=2
 set ruler
 set wildmenu
+set nospell                   " turn off vim spell same work
 
-if has("termguicolors") && has("nvim")
-  set termguicolors
-endif
-
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
+" Editor UI
+set termguicolors
+set fillchars+=vert:\|        " add a bar for vertical splits
+set fcs=eob:\                 " hide ~ tila
+set list
+set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
 " Scheme
 set background=dark
@@ -96,7 +109,11 @@ let g:oceanic_material_allow_italic=1
 " Set background terminal and line number transparent
 highlight clear SignColumn
 hi Normal ctermbg=NONE guibg=NONE
-hi VertSplit guifg=grey guibg=grey gui=NONE cterm=NONE
+hi VertSplit guifg=grey guibg=NONE gui=NONE cterm=NONE
+
+" Override color spell hightlight
+highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
+highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings                                                                    "
@@ -127,6 +144,13 @@ nnoremap Y y$
 
 " React
 " let g:vim_jsx_pretty_colorful_config = 1
+let g:vim_jsx_pretty_highlight_close_tag = 1
+
+" HTML
+let g:html5_event_handler_attributes_complete = 0
+let g:html5_rdfa_attributes_complete = 0
+let g:html5_microdata_attributes_complete = 0
+let g:html5_aria_attributes_complete = 0
 
 " Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
@@ -162,6 +186,10 @@ nnoremap <silent> <leader>fr :Rg<cr>
 
 " Fugitive
 nnoremap <silent> <leader>gb :Git blame<cr>
+nnoremap <silent> <leader>gl :Glog<cr>
+
+" Vim easymotion
+map s <Plug>(easymotion-prefix)
 
 " Coc.nvim
 nmap <silent> gd <Plug>(coc-definition)
@@ -169,7 +197,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-"Go
+" Go (Google)
 let g:go_highlight_structs = 1 
 let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
@@ -181,6 +209,11 @@ let g:go_highlight_types = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_function_parameters = 1
 
+autocmd FileType go
+                   \  let b:coc_pairs_disabled = ['<']
+                   \ | let b:coc_root_patterns = ['.git', 'go.mod']
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ALE
 map <leader>= :ALEFix<cr>
@@ -202,6 +235,56 @@ let g:indentLine_char = '¦'
 "Prevent hidden double quotes in json file and markdown
 let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
+let g:indentLine_fileTypeExclude = ['defx', 'tagbar']
+
+" Ruby refactoring
+:nnoremap <leader>rap  :RAddParameter<cr>
+:nnoremap <leader>rcpc :RConvertPostConditional<cr>
+:vnoremap <leader>rec  :RExtractConstant<cr>
+:vnoremap <leader>relv :RExtractLocalVariable<cr>
+:vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+:vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+:vnoremap <leader>rem  :RExtractMethod<cr>
+
+" [rails.vim] custom commands
+command! Eroutes Einitializer
+command! Egemfile edit Gemfile
+command! Ereadme edit README.md
+
+" Tagbar ruby
+nmap <silent> <leader>ta :TagbarToggle<CR>
+let g:tagbar_width=30
+let g:tagbar_autofocus=1
+
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
+
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+\ }
 
 " Defx
 augroup vimrc_defx
@@ -239,13 +322,13 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> p defx#do_action('paste')
   nnoremap <nowait><silent><buffer><expr> d defx#do_action('remove')
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Leader>n defx#do_action('quit')
-  nnoremap <silent><buffer><expr> VS defx#do_action('open', 'vsplit')
   nnoremap <silent><buffer><expr> P defx#do_action('preview')
   nnoremap <silent><buffer><expr> v defx#do_action('toggle_select')
   nnoremap <silent><buffer><expr> V defx#do_action('clear_select_all')
   nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
   nnoremap <silent><buffer><expr> ~ defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> <Leader>n defx#do_action('quit')
   silent exe 'nnoremap <silent><buffer><expr> tt defx#do_action("toggle_columns", "'.s:default_columns.':size:time")'
 endfunction
 
@@ -292,6 +375,7 @@ map <silent> <leader>l :bnext<cr>
 map <silent> <leader>h :bprevious<cr>
 
 " Sneak
+let g:sneak#s_next = 1
 let g:sneak#label = 1
 " case insensitive sneak
 let g:sneak#use_ic_scs = 1  
@@ -479,7 +563,7 @@ function! s:setup_defx() abort
 
   silent! call defx#custom#column('mark', {
         \ 'readonly_icon': '✗',
-        \ 'selected_icon': '⚡',
+        \ 'selected_icon': '⚫',
         \ })
 
   call s:defx_open({ 'dir': expand('<afile>') })
@@ -530,93 +614,3 @@ function s:defx_toggle_tree() abort
   endif
   return defx#do_action('drop')
 endfunction
-
-""" PROJECTIONS
-let g:rails_projections = {
-\ "config/projections.json": {
-\   "command": "projections"
-\ },
-\ "app/serializers/*_serializer.rb": {
-\   "command": "serializer",
-\   "affinity": "model",
-\   "test": "spec/serializers/%s_spec.rb",
-\   "related": "app/models/%s.rb",
-\   "template": "class %SSerializer < ActiveModel::Serializer\nend"
-\ },
-\ "app/services/*.rb": {
-\   "command": "service",
-\   "affinity": "model",
-\   "alternate": ["spec/services/%s_spec.rb", "unit/services/%s_spec.rb"],
-\   "template": "class %S\n\n  def perform\n  end\nend"
-\ },
-\ "app/presenters/*_presenter.rb": {
-\   "command": "presenter",
-\   "affinity": "model",
-\   "alternate": ["spec/presenters/%s_presenter_spec.rb", "unit/presenters/%s_presenter_spec.rb"],
-\   "related": "app/models/%s.rb",
-\   "template": "class %SPresenter < SimpleDelegator\n  def self.wrap(collection)\n    collection.map{open} |object| new object {close}\n  end\n\nend"
-\ },
-\ "spec/presenters/*_presenter.rb": {
-\   "command": "specpresenter",
-\   "affinity": "presenter",
-\   "alternate": ["app/presenters/%s_presenter.rb"],
-\   "related": "app/models/%s.rb",
-\   "template": "require 'rails_helper'\n\nRSpec.describe %SPresenter, type: :presenter do\n\nend"
-\ },
-\ "features/cukes/*.feature": {
-\   "alternate": ["features/step_definitions/%s_steps.rb", "features/steps/%s_steps.rb"],
-\ },
-\ "spec/factories/*s.rb": {
-\   "command": "factory",
-\   "affinity": "model",
-\   "related": "app/models/%s.rb",
-\   "template": "FactoryGirl.define do\n  factory :%s do\n  end\nend"
-\ },
-\ "spec/controllers/*_controller_spec.rb": {
-\   "command": "speccontroller",
-\   "affinity": "controller",
-\   "related": "app/controllers/%s.rb",
-\   "template": "require 'rails_helper'\n\nRSpec.describe %SController, type: :controller do\n\nend"
-\ },
-\ "spec/serializers/*_serializer_spec.rb": {
-\   "command": "specserializer",
-\   "affinity": "serializer",
-\   "related": "app/serializers/%s.rb",
-\   "template": "require 'rails_helper'\n\nRSpec.describe %SSerializer, type: :serializer do\n\nend"
-\ },
-\ "spec/models/*_spec.rb": {
-\   "command": "spec",
-\   "affinity": "model",
-\   "related": "app/models/%s.rb",
-\   "template": "require 'rails_helper'\n\nRSpec.describe %S, type: :model do\n\nend"
-\ },
-\ "spec/services/*_spec.rb": {
-\   "command": "specservice",
-\   "affinity": "service",
-\   "related": "app/services/%s.rb",
-\   "template": "require 'rails_helper'\n\nRSpec.describe %S do\n\nend"
-\ },
-\ "spec/workers/*_spec.rb": {
-\   "command": "specworker",
-\   "affinity": "worker",
-\   "related": "app/workers/%s.rb",
-\   "template": "require 'rails_helper'\n\nRSpec.describe %S, type: :worker do\n\nend"
-\ },
-\ "spec/features/*_spec.rb": {
-\   "command": "specfeature",
-\   "template": "require 'rails_helper'\n\nRSpec.feature '%S', type: :feature do\n\nend"
-\ },
-\ "spec/helpers/*_helper_spec.rb": {
-\   "command": "spechelper",
-\   "related": "app/helpers/%_helper.rb",
-\   "affinity": "helper",
-\   "template": "require 'rails_helper'\n\nRSpec.describe ApplicationHelper, type: :helper do\n\nend"
-\ },
-\ "lib/tasks/*.rake": {
-\   "command": "rake",
-\   "template": ["namespace :%s do\n  desc '%s'\n  task %s: :environment do\n\n  end\nend"],
-\ },
-\ "config/*.rb": { "command": "config"  },
-\ "spec/support/*.rb": { "command": "support" },
-\ }
-
