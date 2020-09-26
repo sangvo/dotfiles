@@ -15,9 +15,13 @@ Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'majutsushi/tagbar'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Markdown Blog
+Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'cespare/vim-toml'
 
 " Spell grammar
@@ -30,7 +34,6 @@ Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
 Plug 'thoughtbot/vim-rspec'
-Plug 'ecomba/vim-ruby-refactoring', {'tag': 'main'}
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -122,7 +125,6 @@ let mapleader=" "
 imap jk <Esc>
 map 0 ^
 
-
 " Useful saving mapping
 noremap <leader>w :w!<cr>
 noremap <C-S> :update<CR>
@@ -167,6 +169,11 @@ map <silent> <leader><cr> :noh<cr>
 " Split windows
 map <leader>sv <C-W>v
 map <leader>ss <C-W>s
+
+"  Resize panel
+nmap <C-w>[ :vertical resize -3<CR>
+nmap <C-w>] :vertical resize +3<CR>
+
 " Buffer tab
 map <leader>tc :tabnew<cr>
 map <leader>tx :tabclose<cr>
@@ -185,8 +192,14 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
 
 " Fugitive
-nnoremap <silent> <leader>gb :Git blame<cr>
 nnoremap <silent> <leader>gl :Glog<cr>
+nnoremap <silent> <Leader>gad :Git add %:p<CR>
+nnoremap <silent> <Leader>gdf :Gdiffsplit<CR>
+nnoremap <silent> <Leader>gc :Git commit<CR>
+nnoremap <silent> <Leader>gb :Git blame<CR>
+nnoremap <silent> <Leader>gf :Gfetch<CR>
+nnoremap <silent> <Leader>gs :Git<CR>
+nnoremap <silent> <Leader>gp :Gpush<CR>
 
 " Vim easymotion
 map s <Plug>(easymotion-prefix)
@@ -195,6 +208,8 @@ map s <Plug>(easymotion-prefix)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
+nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Go (Google)
@@ -208,6 +223,8 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_function_parameters = 1
+let g:go_highlight_format_strings = 1
+let g:go_auto_type_info = 0
 
 autocmd FileType go
                    \  let b:coc_pairs_disabled = ['<']
@@ -237,19 +254,19 @@ let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
 let g:indentLine_fileTypeExclude = ['defx', 'tagbar']
 
-" Ruby refactoring
-:nnoremap <leader>rap  :RAddParameter<cr>
-:nnoremap <leader>rcpc :RConvertPostConditional<cr>
-:vnoremap <leader>rec  :RExtractConstant<cr>
-:vnoremap <leader>relv :RExtractLocalVariable<cr>
-:vnoremap <leader>rrlv :RRenameLocalVariable<cr>
-:vnoremap <leader>rriv :RRenameInstanceVariable<cr>
-:vnoremap <leader>rem  :RExtractMethod<cr>
-
 " [rails.vim] custom commands
 command! Eroutes Einitializer
 command! Egemfile edit Gemfile
 command! Ereadme edit README.md
+
+" Highlight hex color
+lua require'module-colorizer'
+
+" SplitJoin
+let g:splitjoin_join_mapping = ''
+let g:splitjoin_split_mapping = ''
+nmap <Leader>sj :SplitjoinJoin<CR>
+nmap <Leader>sk :SplitjoinSplit<CR>
 
 " Tagbar ruby
 nmap <silent> <leader>ta :TagbarToggle<CR>
@@ -293,8 +310,10 @@ augroup vimrc_defx
   autocmd VimEnter * call s:setup_defx()
 augroup END
 
-nnoremap <silent><Leader>n :call <sid>defx_open()<CR>
-nnoremap <silent><Leader>F :call <sid>defx_open({ 'find_current_file': v:true })<CR>
+nnoremap <silent> <Leader>e
+  \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+nnoremap <silent> <Leader>F
+  \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
 let s:default_columns = 'mark:indent:icon:filename'
 
 
@@ -311,8 +330,6 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
   nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
   nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer> J :call search('[]')<CR>
-  nnoremap <silent><buffer> K :call search('[]', 'b')<CR>
   nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
   nnoremap <silent><buffer><expr> a defx#do_action('new_multiple_files')
   nnoremap <silent><buffer><expr> r defx#do_action('rename')
@@ -333,7 +350,45 @@ function! s:defx_mappings() abort
 endfunction
 
 "Goyo markdown writing
-map <leader>Go :Goyo<CR>
+map <leader>G :Goyo<CR>
+
+" Goyo Commands {{{
+augroup user_plugin_goyo
+	autocmd!
+	autocmd! User GoyoEnter
+	autocmd! User GoyoLeave
+	autocmd  User GoyoEnter nested call <SID>goyo_enter()
+    autocmd User GoyoLeave nested source $MYVIMRC |
+	autocmd  User GoyoLeave nested call <SID>goyo_leave()
+augroup END
+
+" Limelight
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+let g:vim_markdown_folding_level = 1
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_auto_insert_bullets = 1
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_edit_url_in = 'vsplit'
+let g:markdown_fenced_languages = [
+      \'html', 
+      \'css', 
+      \'scss',
+      \'sql',
+      \'javascript',
+      \'go',
+      \'py=python',
+      \'bash=sh',
+      \'ruby',
+      \'js=javascript', 'json=javascript', 'jsx=javascriptreact', 'tsx=typescriptreact'
+      \'docker=Dockerfile']
 
 map <silent> s<cr> :call OpenFloatTerm()<cr>
 
@@ -373,12 +428,6 @@ map <leader>xx :Bclose<cr>
 map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 map <silent> <leader>l :bnext<cr>
 map <silent> <leader>h :bprevious<cr>
-
-" Sneak
-let g:sneak#s_next = 1
-let g:sneak#label = 1
-" case insensitive sneak
-let g:sneak#use_ic_scs = 1  
 
 " Ale plugin
 let b:ale_linters = {
@@ -476,23 +525,10 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 function! CloseAllBuffersExceptCurrent()
-  let currentBuffer = bufnr("%")
-  let lastBuffer = bufnr("$")
-  if g:NERDTree.IsOpen()
-    let nerdtreeBuffer = bufnr(t:NERDTreeBufName)
-    if currentBuffer < nerdtreeBuffer
-      let midBufferBefore = currentBuffer | let midBufferAfter = nerdtreeBuffer
-    else
-      let midBufferBefore = nerdtreeBuffer | let midBufferAfter = currentBuffer
-    end
-  else
-    let midBufferBefore = currentBuffer
-    let midBufferAfter = currentBuffer
-  end
-
-  if midBufferBefore > 1 | silent! execute "1,".(midBufferBefore-1)."bd" | endif
-  if (midBufferAfter - midBufferBefore) > 2 | silent! execute (midBufferBefore+1).",".(midBufferAfter-1)."bd" | endif
-  if midBufferAfter < lastBuffer | silent! execute (midBufferAfter+1).",".lastBuffer."bd" | endif
+  let curr = bufnr("%")
+  let last = bufnr("$")
+  if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
+  if curr < last | silent! execute (curr+1).",".last."bd" | endif
 endfunction
 
 function! OpenFloatTerm()
@@ -505,7 +541,7 @@ function! OpenFloatTerm()
     \ 'relative': 'editor',
     \ 'row': row - 1,
     \ 'col': col - 2,
-    \ 'width': width + 4,
+      \ 'width': width + 4,
     \ 'height': height + 2,
     \ 'style': 'minimal'
     \ }
@@ -614,3 +650,37 @@ function s:defx_toggle_tree() abort
   endif
   return defx#do_action('drop')
 endfunction
+
+function! s:goyo_enter()
+	if has('gui_running')
+		" Gui fullscreen
+		set fullscreen
+		set linespace=7
+	elseif exists('$TMUX')
+		" Hide tmux status
+		silent !tmux set status off
+	endif
+
+	" Activate Limelight
+	Limelight
+endfunction
+
+" }}}
+" s:goyo_leave() "{{{
+" Enable visuals when leaving Goyo mode
+function! s:goyo_leave()
+	if has('gui_running')
+		" Gui exit fullscreen
+		set nofullscreen
+		set background=dark
+		set linespace=0
+	elseif exists('$TMUX')
+		" Show tmux status
+		silent !tmux set status on
+	endif
+
+	" De-activate Limelight
+	Limelight!
+endfunction
+" }}}
+
