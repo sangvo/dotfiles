@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/sangvo/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby rake gnu-utils zsh-syntax-highlighting zsh-autosuggestions zsh-completions) 
+plugins=(git vi-mode rails ruby rake zsh-syntax-highlighting zsh-autosuggestions zsh-completions) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,7 +93,26 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
+#Key binding #################################################################
+stty -ixon
+
+# vi mode
+bindkey -v
+bindkey "^a" beginning-of-line
+bindkey "^e" end-of-line
+bindkey "^b" backward-char
+bindkey "^f" forward-char
+bindkey "^u" kill-whole-line
+bindkey "^w" backward-kill-word
+bindkey "^s" history-incremental-search-backward
+bindkey "^n" history-search-forward
+bindkey "^p" history-search-backward
+bindkey "^ " autosuggest-accept
+bindkey "jk" vi-cmd-mode
+
+export EDITOR="vim"
+
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ws="cd ~/workspace"
