@@ -17,6 +17,8 @@ Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'majutsushi/tagbar'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'kristijanhusak/defx-icons'
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -170,6 +172,8 @@ map <silent> <leader><cr> :noh<cr>
 map <leader>sv <C-W>v
 map <leader>ss <C-W>s
 
+map <Leader>cb O#<Esc>100A=<Esc>100\|D<CR>i#<CR><Esc>i#<Esc>100a=<Esc>100\|D<Esc>kA
+
 "  Resize panel
 nmap <C-w>[ :vertical resize -3<CR>
 nmap <C-w>] :vertical resize +3<CR>
@@ -177,6 +181,12 @@ nmap <C-w>] :vertical resize +3<CR>
 " Buffer tab
 map <leader>tc :tabnew<cr>
 map <leader>tx :tabclose<cr>
+
+"Tabular
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " Run Rspec
 nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
@@ -194,12 +204,15 @@ nnoremap <silent> <leader>fr :Rg<cr>
 " Fugitive
 nnoremap <silent> <leader>gl :Glog<cr>
 nnoremap <silent> <Leader>gad :Git add %:p<CR>
-nnoremap <silent> <Leader>gdf :Gdiffsplit<CR>
 nnoremap <silent> <Leader>gc :Git commit<CR>
 nnoremap <silent> <Leader>gb :Git blame<CR>
 nnoremap <silent> <Leader>gf :Gfetch<CR>
 nnoremap <silent> <Leader>gs :Git<CR>
 nnoremap <silent> <Leader>gp :Gpush<CR>
+" Fugitive Conflict Resolution
+nnoremap <silent> <Leader>gdf :Gvdiff!<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 " Vim easymotion
 map s <Plug>(easymotion-prefix)
@@ -313,8 +326,8 @@ augroup END
 nnoremap <silent> <Leader>e
   \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
 nnoremap <silent> <Leader>F
-  \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
-let s:default_columns = 'mark:indent:icon:filename'
+  \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -toggle=0 -search=`expand('%:p')`<CR>
+let s:default_columns = 'mark:indent:icons:filename'
 
 
 function! s:defx_mappings() abort

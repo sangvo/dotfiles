@@ -117,6 +117,7 @@ export EDITOR="vim"
 alias zshconfig="nvim ~/.zshrc"
 alias ws="cd ~/workspace"
 alias cls="clear"
+alias robomongo='/usr/local/bin/robomongo/bin/robo3t'
 # alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Go
