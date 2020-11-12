@@ -15,8 +15,10 @@ Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'majutsushi/tagbar'
-Plug 'norcalli/nvim-colorizer.lua'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'kristijanhusak/defx-icons'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -47,7 +49,7 @@ Plug 'jparise/vim-graphql'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim'
 
-"HTMl
+"HTML
 Plug 'othree/html5.vim'
 
 "UI
@@ -60,7 +62,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=UTF-8
 set history=500
-set mouse=a
+set mouse=a " enable mouse for all mode
 set noswapfile
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
@@ -102,6 +104,9 @@ set fcs=eob:\                 " hide ~ tila
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
+" Auto remove trailing spaces
+autocmd BufWritePre * %s/\s\+$//e
+
 " Scheme
 set background=dark
 colorscheme oceanic_material
@@ -124,6 +129,13 @@ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underl
 let mapleader=" "
 imap jk <Esc>
 map 0 ^
+" Dont use recording
+map q <Nop>
+
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 " Useful saving mapping
 noremap <leader>w :w!<cr>
@@ -178,6 +190,12 @@ nmap <C-w>] :vertical resize +3<CR>
 map <leader>tc :tabnew<cr>
 map <leader>tx :tabclose<cr>
 
+"Tabular
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
 " Run Rspec
 nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>ra :call RunAllSpecs()<CR>
@@ -194,12 +212,15 @@ nnoremap <silent> <leader>fr :Rg<cr>
 " Fugitive
 nnoremap <silent> <leader>gl :Glog<cr>
 nnoremap <silent> <Leader>gad :Git add %:p<CR>
-nnoremap <silent> <Leader>gdf :Gdiffsplit<CR>
-nnoremap <silent> <Leader>gc :Git commit<CR>
+"nnoremap <silent> <Leader>gc :Git commit<CR>
 nnoremap <silent> <Leader>gb :Git blame<CR>
 nnoremap <silent> <Leader>gf :Gfetch<CR>
 nnoremap <silent> <Leader>gs :Git<CR>
 nnoremap <silent> <Leader>gp :Gpush<CR>
+" Fugitive Conflict Resolution
+nnoremap <silent> <Leader>gdf :Gvdiff!<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 " Vim easymotion
 map s <Plug>(easymotion-prefix)
@@ -213,7 +234,7 @@ nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Go (Google)
-let g:go_highlight_structs = 1 
+let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
@@ -259,8 +280,21 @@ command! Eroutes Einitializer
 command! Egemfile edit Gemfile
 command! Ereadme edit README.md
 
-" Highlight hex color
-lua require'module-colorizer'
+" Vim color highlighting
+let g:Hexokinase_v2 = 0
+let g:Hexokinase_highlighters = ['virtual']
+let g:Hexokinase_virtualText = '▩'
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'triple_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla',
+\     'colour_names'
+\ ]
+" Maping
+nmap <Leader>co :HexokinaseToggle<CR>
 
 " SplitJoin
 let g:splitjoin_join_mapping = ''
@@ -274,6 +308,7 @@ let g:tagbar_width=30
 let g:tagbar_autofocus=1
 
 let g:tagbar_type_ruby = {
+    \ 'sort': 0,
     \ 'kinds' : [
         \ 'm:modules',
         \ 'c:classes',
@@ -313,8 +348,8 @@ augroup END
 nnoremap <silent> <Leader>e
   \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
 nnoremap <silent> <Leader>F
-  \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
-let s:default_columns = 'mark:indent:icon:filename'
+  \ :<C-u>Defx -resume -toggle=0 -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+let s:default_columns = 'mark:indent:icons:filename'
 
 
 function! s:defx_mappings() abort
@@ -378,8 +413,8 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_edit_url_in = 'vsplit'
 let g:markdown_fenced_languages = [
-      \'html', 
-      \'css', 
+      \'html',
+      \'css',
       \'scss',
       \'sql',
       \'javascript',
@@ -567,7 +602,7 @@ endfunction
 " Detect  Go HTML
 function DetectGoHtmlTmpl()
     if expand('%:e') == "html" && search("{{") != 0
-        set filetype=gohtmltmpl 
+        set filetype=gohtmltmpl
     endif
 endfunction
 
