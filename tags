@@ -1,0 +1,232 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/5d000b1/
+Bar	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^          module Bar$/;"	m	module:Foo
+Bar	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        module Foo::Bar$/;"	m	module:Foo
+Bar	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^  class Bar$/;"	c	module:Foo
+Bar	config/nvim/bundle/vim-textobj-rubyblock/t/samples/nested-blocks.rb	/^  class Bar$/;"	c	module:Foo
+Baz	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^            class Baz < Quux$/;"	c	module:Foo.Bar
+Baz	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        class Foo::Bar::Baz < Quux$/;"	c	module:Foo.Bar
+Baz	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^    def Baz$/;"	f	class:Foo.Bar
+Baz	config/nvim/bundle/vim-textobj-rubyblock/t/samples/nested-blocks.rb	/^    def Baz$/;"	f	class:Foo.Bar
+Buffer	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^class Buffer$/;"	c
+Differ	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^class Differ$/;"	c
+EexBuffer	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^module EexBuffer$/;"	m
+ExBuffer	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^module ExBuffer$/;"	m
+FOLD_PLACEHOLDER	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  FOLD_PLACEHOLDER = '<!-- FOLD -->'.freeze$/;"	C	class:Buffer
+Foo	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        module Foo$/;"	m
+Foo	config/nvim/bundle/vim-ruby/spec/indent/method_definitions_spec.rb	/^      class Foo$/;"	c
+Foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        class Foo < Bar$/;"	c
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^class Foo$/;"	c
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^class Foo$/;"	c	mixin:include:Bar
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^class Foo$/;"	c	mixin:include:Bendy,include:Girlfriend,include:Endothermic
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^module Foo$/;"	m
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/samples/class.rb	/^class Foo$/;"	c	mixin:include:Bar
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/samples/commented-end.rb	/^class Foo$/;"	c
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/samples/if-else.rb	/^class Foo$/;"	c
+Foo	config/nvim/bundle/vim-textobj-rubyblock/t/samples/nested-blocks.rb	/^module Foo$/;"	m
+InnerClass	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^        class InnerClass$/;"	c	class:OuterClass
+KEYWORDS	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/atom_spec.rb	/^  KEYWORDS = %w($/;"	C
+MyTest	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/exunit_spec.rb	/^    module MyTest do$/;"	m
+None	config/nvim/bundle/splitjoin.vim/spec/plugin/rust_spec.rb	/^              None => return None,$/;"	C
+OuterClass	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^      class OuterClass$/;"	c
+Qux	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^          class Baz::Qux$/;"	c	module:Bar.Baz
+Qux	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        class Foo::Bar::Baz::Qux$/;"	c	module:Foo.Bar.Baz
+Rumbl	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/binary_operator_spec.rb	/^  alias Rumbl.Category$/;"	a	method:hello.hello
+Rumbl	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/binary_operator_spec.rb	/^  alias Rumbl.Repo$/;"	a	method:hello.hello
+Support	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^module Support$/;"	m
+VIM	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^    VIM = Vimrunner.start_gvim$/;"	C
+Vim	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^  module Vim$/;"	m	module:Support
+X	config/nvim/bundle/vim-ruby/spec/indent/blocks_spec.rb	/^      module X$/;"	m
+adjust_format_for_istar	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^def adjust_format_for_istar$/;"	f
+adjust_format_for_istar	config/nvim/bundle/vim-textobj-rubyblock/t/samples/oneline-conditionals.rb	/^def adjust_format_for_istar$/;"	f
+alphabetical	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/ecto_queries_spec.rb	/^  def alphabetical(query) do$/;"	f	method:smth.do_query
+assert_correct_highlighting	config/nvim/bundle/vim-ruby/spec/spec_helper.rb	/^  def assert_correct_highlighting(extension='rb', string, patterns, group)$/;"	f
+assert_correct_indenting	config/nvim/bundle/vim-ruby/spec/spec_helper.rb	/^  def assert_correct_indenting(extension='rb', string)$/;"	f
+assert_file_contents	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^    def assert_file_contents(string)$/;"	f	module:Support.Vim
+assert_split_join	config/nvim/bundle/splitjoin.vim/spec/plugin/go_spec.rb	/^    def assert_split_join(initial, split_expected, join_expected)$/;"	f
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar do$/;"	f	method:bar
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar do$/;"	f	method:bar.bar
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar() do$/;"	f
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar() do$/;"	f	method:bar
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar(), do: :bar$/;"	f
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar(foo) do$/;"	f	method:bar.bar
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar(foo) do$/;"	f	method:bar.bar.bar
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar(foo), do: :bar$/;"	f	method:bar.bar
+bar	config/nvim/bundle/splitjoin.vim/spec/plugin/elixir_spec.rb	/^          def bar, do: :bar$/;"	f	method:bar
+bar	config/nvim/bundle/vim-ruby/spec/indent/continuations_spec.rb	/^      def bar($/;"	f
+bm	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/bin/test_indent	/^def bm$/;"	f
+build_command	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^    def build_command(input, output) do$/;"	f	method:test.test.build_command.build_command.build_command
+build_command	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def build_command(input, output) do$/;"	f	method:test.test
+build_command	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def build_command(input, output) do$/;"	f	method:test.test.build_command
+build_command	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def build_command(input, output) do$/;"	f	method:test.test.build_command.build_command
+call	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/variable_spec.rb	/^      def call(:pop, _, [h|stack]) do$/;"	f
+config	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def config do$/;"	f	method:example.project
+create	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def create(conn, %{$/;"	f	method:example.project.config.test.test.test.project.test
+create_user	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/with_spec.rb	/^  def create_user(params) do$/;"	f	method:resend_confirmation
+deindent_everything	config/nvim/bundle/splitjoin.vim/spec/plugin/go_spec.rb	/^  def deindent_everything$/;"	f
+detect_change	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/bin/test_indent	/^def detect_change(f)$/;"	f
+diff	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def diff(result, expected)$/;"	f	class:Differ
+diff	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def self.diff(result, expected)$/;"	S	class:Differ
+do	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/anonymous_functions_spec.rb	/^  def do$/;"	f
+do_query	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/ecto_queries_spec.rb	/^    def do_query do$/;"	f
+do_query	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/ecto_queries_spec.rb	/^  def do_query do$/;"	f	method:smth
+do_stuff	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^    def do_stuff do$/;"	f	method:test.test.build_command.build_command.hello
+double	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def double(x) do$/;"	f	method:example.project.config.test.test.test.project.test.create
+double	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def double(x) do$/;"	f	method:example.project.config.test.test.test.project.test.create.double
+double	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def double(x) do$/;"	f	method:example.project.config.test.test.test.project.test.create.double.double
+edit_file	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def edit_file(content)$/;"	f	class:Buffer
+end	config/nvim/bundle/vim-ruby/spec/syntax/methods_spec.rb	/^      def end end$/;"	f
+example	config/nvim/bundle/splitjoin.vim/spec/plugin/python_spec.rb	/^      def example():$/;"	f	method:example.example
+example	config/nvim/bundle/splitjoin.vim/spec/plugin/python_spec.rb	/^      def example():$/;"	f	method:example.example.example
+example	config/nvim/bundle/splitjoin.vim/spec/plugin/python_spec.rb	/^      def example():$/;"	f	method:example.example.example.example
+example	config/nvim/bundle/splitjoin.vim/spec/plugin/python_spec.rb	/^      def example(self):$/;"	f
+example	config/nvim/bundle/splitjoin.vim/spec/plugin/python_spec.rb	/^      def example(self):$/;"	f	method:example
+example	config/nvim/bundle/splitjoin.vim/spec/plugin/python_spec.rb	/^      def example(self):$/;"	f	method:example.example
+example	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def example do$/;"	f
+exec	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/if_spec.rb	/^  def exec(command, progress_func \\\\ fn(_, state) -> state end, key \\\\ nil, output \\\\ nil)/;"	f	method:test
+exec	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/anonymous_function_spec.rb	/^        def exec(func \\\\ fn(_, state) -> state end) do$/;"	f
+exec	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/anonymous_function_spec.rb	/^      def exec(func \\\\ fn(_, state) -> state end) do$/;"	f
+export_info	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^    def export_info(users) do$/;"	f	method:test.test.test
+f	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^  def f do$/;"	f	method:name.name
+f	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^  def f do$/;"	f	method:name.name.f
+fold	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/folding/basic_spec.rb	/^  def self.fold(content)$/;"	S
+fold_and_replace	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def fold_and_replace(content, fold_on_line)$/;"	f	class:Buffer
+foo	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/comments_spec.rb	/^    def foo(<<$/;"	f
+foo	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/operator_spec.rb	/^      def foo(bar \/\/ :baz)$/;"	f	method:foo
+foo	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/operator_spec.rb	/^      def foo(bar \\\\ :baz)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/indent/basic_spec.rb	/^      def foo$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/indent/blocks_spec.rb	/^      def foo$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/indent/blocks_spec.rb	/^      def foo(job)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/indent/continuations_spec.rb	/^      def foo$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/methods_spec.rb	/^      def foo bar$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/methods_spec.rb	/^      def foo bar:; end$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/methods_spec.rb	/^      def foo bar=:baz$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^          def foo &bar$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo **bar$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo *bar$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo(&bar)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo(*)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo(**)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo(**bar)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo(*bar)$/;"	f
+foo	config/nvim/bundle/vim-ruby/spec/syntax/operators_spec.rb	/^        def foo(bar,$/;"	f
+fun	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^    def fun do$/;"	f	method:example.project.config.test.test.test.project.test.create.double.double.double.test_another_feature
+function	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/strings_spec.rb	/^      def function do$/;"	f
+gen_tests	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def gen_tests(method, str)$/;"	f
+get_regex	config/nvim/bundle/vim-ruby/spec/syntax/statement_modifiers_spec.rb	/^      def get_regex$/;"	f
+handle_call	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/def_spec.rb	/^    def handle_call({:release_lock, key}, _from, state) do$/;"	f
+handle_call	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/keyword_spec.rb	/^  def handle_call({:get_in_line_for_lock, key}, from, state) do$/;"	f
+handle_call	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/variable_spec.rb	/^      def handle_call(:pop, _from, [h|stack]) do$/;"	f
+handle_call	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/variable_spec.rb	/^      def handle_call(:pop,$/;"	f
+handle_call	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/variable_spec.rb	/^    def handle_call(:pop)$/;"	f
+handle_info	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^  def handle_info(:tick, state = %{policy_iteration: []}) do$/;"	f	method:name.name.f.f.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^      def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello.hello.hello.hello.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello.hello.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello.hello.hello.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hello do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello.hello.hello.hello.hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/binary_operator_spec.rb	/^  def hello do$/;"	f
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/binary_operator_spec.rb	/^  def hello do$/;"	f	method:hello
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def hello do$/;"	f	method:name.name.f.f
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/def_spec.rb	/^  def hello do$/;"	f	method:handle_call
+hello	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def hello do$/;"	f	method:test.test.build_command.build_command
+hello	config/nvim/bundle/vim-ruby/spec/syntax/symbols_spec.rb	/^      def hello$/;"	f
+hello	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^def hello$/;"	f
+hi	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def hi do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func.hello.hello.hello.hello.hello.hello
+how_are_you	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def how_are_you do$/;"	f	method:name.name.f.f
+i	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def i(str)$/;"	f
+init	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def init(_) do$/;"	f	method:example.project.config.test.test.test.project.test.create.double.double.double.test_another_feature
+init	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/atom_spec.rb	/^          def init(args) do$/;"	f
+initialize	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^              def initialize$/;"	f	class:Foo.Bar.Baz
+initialize	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^          def initialize$/;"	f	class:Baz
+initialize	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def initialize$/;"	f	class:Differ
+initialize	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def initialize(vim, type)$/;"	f	class:Buffer
+instance	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def self.instance$/;"	S	class:Differ
+ip	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def ip(str)$/;"	f
+join	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^    def join$/;"	f	module:Support.Vim
+lol	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/anonymous_functions_spec.rb	/^    def lol do$/;"	f
+lol	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def lol do$/;"	f
+method	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/tuples_spec.rb	/^  def method do$/;"	f	method:xpto
+method	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^            def method; end$/;"	f	class:OuterClass.InnerClass
+method	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^          def method; end$/;"	f	class:OuterClass
+method	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^          def method; end$/;"	f	class:OuterClass.InnerClass
+method	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^        def method; end$/;"	f	class:OuterClass
+my_function	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/with_spec.rb	/^  def my_function do$/;"	f	method:resend_confirmation.create_user
+name	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def name(param) do$/;"	f	method:name
+name	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def name(param) do$/;"	f	method:name.name
+name	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def name, do: IO.puts "bobmarley"$/;"	f
+name	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def name, do: IO.puts "bobmarley"$/;"	f	method:name
+new	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def self.new$/;"	S	module:EexBuffer
+new	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def self.new$/;"	S	module:ExBuffer
+obtain_lock	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/receive_spec.rb	/^  def obtain_lock(pid, key, timeout \\\\ 60_000) do$/;"	f
+one	config/nvim/bundle/vim-ruby/spec/indent/basic_spec.rb	/^      def one$/;"	f
+one	config/nvim/bundle/vim-ruby/spec/indent/method_definitions_spec.rb	/^        def one(x)$/;"	f
+one	config/nvim/bundle/vim-ruby/spec/indent/method_definitions_spec.rb	/^        public def one(x)$/;"	f	class:Foo
+project	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def project do$/;"	f	method:example
+project	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def project do$/;"	f	method:example.project.config.test.test.test
+project	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/atom_spec.rb	/^    def project do$/;"	f
+reindent	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def reindent(content)$/;"	f	class:Buffer
+remove_indentation	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^    def remove_indentation$/;"	f	module:Support.Vim
+resend_confirmation	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/with_spec.rb	/^  def resend_confirmation(username) when is_binary(username) do$/;"	f
+run	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/comment_spec.rb	/^    def run do$/;"	f
+run	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/comment_spec.rb	/^    def run(task) when task in [:t1, :t2] do$/;"	f
+set_file_contents	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^    def set_file_contents(string)$/;"	f	module:Support.Vim
+setup_coffee_filetype	config/nvim/bundle/splitjoin.vim/spec/plugin/coffee_spec.rb	/^  def setup_coffee_filetype$/;"	f
+setup_filetype	config/nvim/bundle/splitjoin.vim/spec/plugin/jsx_spec.rb	/^  def setup_filetype$/;"	f
+setup_go_filetype	config/nvim/bundle/splitjoin.vim/spec/plugin/go_spec.rb	/^  def setup_go_filetype$/;"	f
+setup_haml_filetype	config/nvim/bundle/splitjoin.vim/spec/plugin/haml_spec.rb	/^  def setup_haml_filetype$/;"	f
+setup_handlebars_filetype	config/nvim/bundle/splitjoin.vim/spec/plugin/handlebars_spec.rb	/^  def setup_handlebars_filetype$/;"	f
+sign_in	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/variable_spec.rb	/^    def sign_in(conn, %{$/;"	f
+simple_test	config/nvim/bundle/splitjoin.vim/spec/plugin/html_spec.rb	/^  def simple_test(joined_html, split_html)$/;"	f
+smth	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/ecto_queries_spec.rb	/^  def smth do$/;"	f
+some_fun	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/doc_spec.rb	/^        def some_fun(x), do: x$/;"	f
+some_fun	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/doc_spec.rb	/^        def some_fun(x), do: x$/;"	f	method:some_fun
+some_fun	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/doc_spec.rb	/^        def some_fun(x), do: x$/;"	f	method:some_fun.some_fun
+some_fun	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/doc_spec.rb	/^        def some_fun(x), do: x$/;"	f	method:some_fun.some_fun.some_fun
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/folding/basic_spec.rb	/^    def some_func do # fold$/;"	f
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func.some_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func.some_func.some_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func
+some_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func.some_other_func
+some_other_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_other_func do$/;"	f	method:some_func.some_func.some_func
+some_other_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_other_func do$/;"	f	method:some_func.some_func.some_func.some_func
+some_other_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_other_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func
+some_other_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_other_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func
+some_other_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_other_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func
+some_other_func	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/basic_spec.rb	/^    def some_other_func do$/;"	f	method:some_func.some_func.some_func.some_func.some_func.some_func.some_other_func.some_func.some_other_func.some_func
+split	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^    def split$/;"	f	module:Support.Vim
+strip_doc_blocks	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/bin/test_indent	/^def strip_doc_blocks(body)$/;"	f
+syntax	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def syntax(content, pattern)$/;"	f	class:Buffer
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/anonymous_functions_spec.rb	/^  def test do$/;"	f
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/blocks_spec.rb	/^    def test do$/;"	f	method:name.name.f.f
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/if_spec.rb	/^  def test do$/;"	f
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^    def test do$/;"	f	method:example.project.config.test.test.test.project.test.create.double.double.double.test_another_feature
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def test do$/;"	f	method:example.project.config
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def test do$/;"	f	method:example.project.config.test
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def test do$/;"	f	method:example.project.config.test.test
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def test do$/;"	f	method:example.project.config.test.test.test.project
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def test do$/;"	f
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def test do$/;"	f	method:test
+test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def test do$/;"	f	method:test.test
+test_another_feature	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def test_another_feature do$/;"	f	method:example.project.config.test.test.test.project.test.create.double.double.double
+two	config/nvim/bundle/vim-ruby/spec/indent/method_definitions_spec.rb	/^        private def two(y)$/;"	f	class:Foo
+type	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def type(content)$/;"	f	class:Buffer
+with_file	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def with_file(content = nil)$/;"	f	class:Buffer
+world	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/def_spec.rb	/^  def world do$/;"	f	method:handle_call.hello
+xpto	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/tuples_spec.rb	/^  def xpto do$/;"	f
+youtube_video	config/nvim/bundle/vim-ruby/spec/syntax/strings/heredoc_spec.rb	/^        def youtube_video(token, width = 360, height = 215)$/;"	f

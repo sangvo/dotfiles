@@ -5,6 +5,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine'
@@ -14,11 +15,11 @@ Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'majutsushi/tagbar'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'godlygeek/tabular'
 Plug 'kristijanhusak/defx-icons'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'ludovicchabant/vim-gutentags'
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -36,6 +37,7 @@ Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
 Plug 'thoughtbot/vim-rspec'
+Plug 'dyng/ctrlsf.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -208,6 +210,18 @@ runtime macros/matchit.vim
 nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
+nnoremap <Leader>t :BTags<CR>
+
+" Ack
+nnoremap <leader>a :Ack!<Space>
+vnoremap <leader>a :call VisualSelection('gv', '')<CR>
+
+let g:ackprg = "rg --vimgrep --type-not sql --smart-case"
+let g:ack_mappings = {
+  \ 'h': '<C-W>k<C-W>l<C-W>l<C-W>s<C-W>j<CR>',
+  \ 'v': '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
+  \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J',
+  \ 'q': '<C-W>p' }
 
 " Fugitive
 nnoremap <silent> <leader>gl :Glog<cr>
@@ -226,12 +240,26 @@ nnoremap gdl :diffget //3<CR>
 map s <Plug>(easymotion-prefix)
 
 " Coc.nvim
-nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :call <SID>GoToDefinition()<CR>
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
+nnoremap <silent>K :call <SID>show_documentation()<CR>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Search word
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+" vim-gutentags {{ "
+let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'node_modules', 'dist', 'vendor']
+" }}
 
 " Go (Google)
 let g:go_highlight_structs = 1
@@ -273,7 +301,7 @@ let g:indentLine_char = '¦'
 "Prevent hidden double quotes in json file and markdown
 let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
-let g:indentLine_fileTypeExclude = ['defx', 'tagbar']
+let g:indentLine_fileTypeExclude = ['defx']
 
 " [rails.vim] custom commands
 command! Eroutes Einitializer
@@ -301,42 +329,6 @@ let g:splitjoin_join_mapping = ''
 let g:splitjoin_split_mapping = ''
 nmap <Leader>sj :SplitjoinJoin<CR>
 nmap <Leader>sk :SplitjoinSplit<CR>
-
-" Tagbar ruby
-nmap <silent> <leader>ta :TagbarToggle<CR>
-let g:tagbar_width=30
-let g:tagbar_autofocus=1
-
-let g:tagbar_type_ruby = {
-    \ 'sort': 0,
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
-
-let g:tagbar_type_typescript = {
-  \ 'ctagsbin' : 'tstags',
-  \ 'ctagsargs' : '-f-',
-  \ 'kinds': [
-    \ 'e:enums:0:1',
-    \ 'f:function:0:1',
-    \ 't:typealias:0:1',
-    \ 'M:Module:0:1',
-    \ 'I:import:0:1',
-    \ 'i:interface:0:1',
-    \ 'C:class:0:1',
-    \ 'm:method:0:1',
-    \ 'p:property:0:1',
-    \ 'v:variable:0:1',
-    \ 'c:const:0:1',
-  \ ],
-  \ 'sort' : 0
-\ }
 
 " Defx
 augroup vimrc_defx
@@ -719,3 +711,32 @@ function! s:goyo_leave()
 endfunction
 " }}}
 
+function! s:GoToDefinition()
+  if CocAction('jumpDefinition')
+    return v:true
+  endif
+
+  let ret = execute("silent! normal \<C-]>")
+  if ret[:5] =~ "Error"
+    call searchdecl(expand('<cword>'))
+  endif
+endfunction
+
+function! CmdLine(str)
+  call feedkeys(":" . a:str)
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", "\\/.*'$^~[]")
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'gv'
+    call CmdLine("Ack '" . l:pattern . "' " )
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
