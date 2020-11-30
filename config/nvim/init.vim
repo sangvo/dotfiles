@@ -20,6 +20,7 @@ Plug 'godlygeek/tabular'
 Plug 'kristijanhusak/defx-icons'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-test/vim-test'
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -36,7 +37,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
-Plug 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
 Plug 'dyng/ctrlsf.vim'
 
 " Go
@@ -198,10 +199,17 @@ vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
-" Run Rspec
-nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>ra :call RunAllSpecs()<CR>
-noremap <Leader>cs :call RunNearestSpec()<CR>
+" Vim test
+nmap <silent> <Leader>cs :TestNearest<CR>
+nmap <silent> <Leader>rs :TestFile<CR>
+nmap <silent> <Leader>ra :TestSuite<CR>
+nmap <silent> <Leader>rl :TestLast<CR>
+
+let test#ruby#rspec#options = {
+  \ 'nearest': '--backtrace',
+  \ 'file':    '--format documentation',
+  \ 'suite':   '--tag ~slow',
+\}
 
 " Enable matchit for ruby textobject
 runtime macros/matchit.vim

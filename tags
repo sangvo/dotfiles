@@ -33,14 +33,23 @@ Foo	config/nvim/bundle/vim-textobj-rubyblock/t/samples/if-else.rb	/^class Foo$/;
 Foo	config/nvim/bundle/vim-textobj-rubyblock/t/samples/nested-blocks.rb	/^module Foo$/;"	m
 InnerClass	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^        class InnerClass$/;"	c	class:OuterClass
 KEYWORDS	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/atom_spec.rb	/^  KEYWORDS = %w($/;"	C
+Math	config/nvim/bundle/vim-test/spec/fixtures/minitest/classic_spec_test.rb	/^module Math$/;"	m
+Math	config/nvim/bundle/vim-test/spec/fixtures/minitest/classic_unit_test.rb	/^module Math$/;"	m
+Math	config/nvim/bundle/vim-test/spec/fixtures/minitest/test_classic.rb	/^module Math$/;"	m
+MathSpec	config/nvim/bundle/vim-test/spec/fixtures/minitest/explicit_spec_test.rb	/^class MathSpec < Minitest::Spec$/;"	c
+MathTest	config/nvim/bundle/vim-test/spec/fixtures/minitest/rails_unit_test.rb	/^class MathTest < Minitest::Test$/;"	c
 MyTest	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/syntax/exunit_spec.rb	/^    module MyTest do$/;"	m
 None	config/nvim/bundle/splitjoin.vim/spec/plugin/rust_spec.rb	/^              None => return None,$/;"	C
+Numbers	config/nvim/bundle/vim-test/spec/fixtures/minitest/classic_spec_test.rb	/^  Numbers = Class.new$/;"	C	module:Math
 OuterClass	config/nvim/bundle/vim-ruby/spec/indent/indent_access_modifier_spec.rb	/^      class OuterClass$/;"	c
 Qux	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^          class Baz::Qux$/;"	c	module:Bar.Baz
 Qux	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        class Foo::Bar::Baz::Qux$/;"	c	module:Foo.Bar.Baz
 Rumbl	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/binary_operator_spec.rb	/^  alias Rumbl.Category$/;"	a	method:hello.hello
 Rumbl	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/binary_operator_spec.rb	/^  alias Rumbl.Repo$/;"	a	method:hello.hello
 Support	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^module Support$/;"	m
+TestNumbers	config/nvim/bundle/vim-test/spec/fixtures/minitest/classic_spec_test.rb	/^TestNumbers = Class.new$/;"	C
+TestNumbers	config/nvim/bundle/vim-test/spec/fixtures/minitest/classic_unit_test.rb	/^  class TestNumbers < Minitest::Test$/;"	c	module:Math
+TestOperators	config/nvim/bundle/vim-test/spec/fixtures/minitest/test_classic.rb	/^  class TestOperators < Minitest::Test$/;"	c	module:Math
 VIM	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^    VIM = Vimrunner.start_gvim$/;"	C
 Vim	config/nvim/bundle/splitjoin.vim/spec/support/vim.rb	/^  module Vim$/;"	m	module:Support
 X	config/nvim/bundle/vim-ruby/spec/indent/blocks_spec.rb	/^      module X$/;"	m
@@ -223,7 +232,10 @@ test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_
 test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def test do$/;"	f
 test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def test do$/;"	f	method:test
 test	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/pipeline_spec.rb	/^  def test do$/;"	f	method:test.test
+test	config/nvim/bundle/vim-test/spec/fixtures/minitest/rails_unit_test.rb	/^  def self.test(name, &block)$/;"	S	class:MathTest
+test_addition	config/nvim/bundle/vim-test/spec/fixtures/minitest/test_classic.rb	/^    def test_addition$/;"	f	class:Math.TestOperators
 test_another_feature	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/indent/lists_spec.rb	/^  def test_another_feature do$/;"	f	method:example.project.config.test.test.test.project.test.create.double.double.double
+test_method	config/nvim/bundle/vim-test/spec/fixtures/minitest/classic_unit_test.rb	/^    def test_method$/;"	f	class:Math.TestNumbers
 two	config/nvim/bundle/vim-ruby/spec/indent/method_definitions_spec.rb	/^        private def two(y)$/;"	f	class:Foo
 type	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def type(content)$/;"	f	class:Buffer
 with_file	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^  def with_file(content = nil)$/;"	f	class:Buffer
