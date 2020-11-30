@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode rails ruby rake zsh-syntax-highlighting zsh-autosuggestions zsh-completions) 
+plugins=(git vi-mode rails ruby rake zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,8 +120,10 @@ alias cls="clear"
 # alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Go
-export GOROOT=/usr/local/go-1.13
-export PATH=$GOROOT/bin:$PATH
+export GOROOT_BOOTSTRAP=$GOROOT
+export GOPATH=$HOME/go
+export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin
 
 # Rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -136,6 +138,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git"

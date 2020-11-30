@@ -371,11 +371,10 @@ live_config_reload: true
 #   - (Windows) powershell
 shell:
   program: /bin/zsh
-  args:
-    - --login
-    - -c
-    - 'tmux attach -t TMUX || tmux new -s TMUX'
-
+#   args:
+#     - --login
+#     - -c
+#     - 'tmux attach -t TMUX || tmux new -s TMUX'
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working

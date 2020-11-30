@@ -5,6 +5,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine'
@@ -14,9 +15,12 @@ Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'majutsushi/tagbar'
-Plug 'norcalli/nvim-colorizer.lua'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'kristijanhusak/defx-icons'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-test/vim-test'
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -33,7 +37,8 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
-Plug 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
+Plug 'dyng/ctrlsf.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -47,7 +52,7 @@ Plug 'jparise/vim-graphql'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim'
 
-"HTMl
+"HTML
 Plug 'othree/html5.vim'
 
 "UI
@@ -60,7 +65,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=UTF-8
 set history=500
-set mouse=a
+set mouse=a " enable mouse for all mode
 set noswapfile
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
@@ -102,6 +107,9 @@ set fcs=eob:\                 " hide ~ tila
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
+" Auto remove trailing spaces
+autocmd BufWritePre * %s/\s\+$//e
+
 " Scheme
 set background=dark
 colorscheme oceanic_material
@@ -124,6 +132,13 @@ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underl
 let mapleader=" "
 imap jk <Esc>
 map 0 ^
+" Dont use recording
+map q <Nop>
+
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 " Useful saving mapping
 noremap <leader>w :w!<cr>
@@ -178,10 +193,23 @@ nmap <C-w>] :vertical resize +3<CR>
 map <leader>tc :tabnew<cr>
 map <leader>tx :tabclose<cr>
 
-" Run Rspec
-nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>ra :call RunAllSpecs()<CR>
-noremap <Leader>cs :call RunNearestSpec()<CR>
+"Tabular
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" Vim test
+nmap <silent> <Leader>cs :TestNearest<CR>
+nmap <silent> <Leader>rs :TestFile<CR>
+nmap <silent> <Leader>ra :TestSuite<CR>
+nmap <silent> <Leader>rl :TestLast<CR>
+
+let test#ruby#rspec#options = {
+  \ 'nearest': '--backtrace',
+  \ 'file':    '--format documentation',
+  \ 'suite':   '--tag ~slow',
+\}
 
 " Enable matchit for ruby textobject
 runtime macros/matchit.vim
@@ -190,30 +218,59 @@ runtime macros/matchit.vim
 nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
+nnoremap <Leader>t :BTags<CR>
+
+" Ack
+nnoremap <leader>a :Ack!<Space>
+vnoremap <leader>a :call VisualSelection('gv', '')<CR>
+
+let g:ackprg = "rg --vimgrep --type-not sql --smart-case"
+let g:ack_mappings = {
+  \ 'h': '<C-W>k<C-W>l<C-W>l<C-W>s<C-W>j<CR>',
+  \ 'v': '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
+  \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J',
+  \ 'q': '<C-W>p' }
 
 " Fugitive
 nnoremap <silent> <leader>gl :Glog<cr>
 nnoremap <silent> <Leader>gad :Git add %:p<CR>
-nnoremap <silent> <Leader>gdf :Gdiffsplit<CR>
-nnoremap <silent> <Leader>gc :Git commit<CR>
+"nnoremap <silent> <Leader>gc :Git commit<CR>
 nnoremap <silent> <Leader>gb :Git blame<CR>
 nnoremap <silent> <Leader>gf :Gfetch<CR>
 nnoremap <silent> <Leader>gs :Git<CR>
 nnoremap <silent> <Leader>gp :Gpush<CR>
+" Fugitive Conflict Resolution
+nnoremap <silent> <Leader>gdf :Gvdiff!<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 " Vim easymotion
 map s <Plug>(easymotion-prefix)
 
 " Coc.nvim
-nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :call <SID>GoToDefinition()<CR>
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
+nnoremap <silent>K :call <SID>show_documentation()<CR>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Search word
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+" vim-gutentags {{ "
+let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'node_modules', 'dist', 'vendor']
+" }}
 
 " Go (Google)
-let g:go_highlight_structs = 1 
+let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
@@ -252,56 +309,34 @@ let g:indentLine_char = '¦'
 "Prevent hidden double quotes in json file and markdown
 let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
-let g:indentLine_fileTypeExclude = ['defx', 'tagbar']
+let g:indentLine_fileTypeExclude = ['defx']
 
 " [rails.vim] custom commands
 command! Eroutes Einitializer
 command! Egemfile edit Gemfile
 command! Ereadme edit README.md
 
-" Highlight hex color
-lua require'module-colorizer'
+" Vim color highlighting
+let g:Hexokinase_v2 = 0
+let g:Hexokinase_highlighters = ['virtual']
+let g:Hexokinase_virtualText = '▩'
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'triple_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla',
+\     'colour_names'
+\ ]
+" Maping
+nmap <Leader>co :HexokinaseToggle<CR>
 
 " SplitJoin
 let g:splitjoin_join_mapping = ''
 let g:splitjoin_split_mapping = ''
 nmap <Leader>sj :SplitjoinJoin<CR>
 nmap <Leader>sk :SplitjoinSplit<CR>
-
-" Tagbar ruby
-nmap <silent> <leader>ta :TagbarToggle<CR>
-let g:tagbar_width=30
-let g:tagbar_autofocus=1
-
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
-
-let g:tagbar_type_typescript = {
-  \ 'ctagsbin' : 'tstags',
-  \ 'ctagsargs' : '-f-',
-  \ 'kinds': [
-    \ 'e:enums:0:1',
-    \ 'f:function:0:1',
-    \ 't:typealias:0:1',
-    \ 'M:Module:0:1',
-    \ 'I:import:0:1',
-    \ 'i:interface:0:1',
-    \ 'C:class:0:1',
-    \ 'm:method:0:1',
-    \ 'p:property:0:1',
-    \ 'v:variable:0:1',
-    \ 'c:const:0:1',
-  \ ],
-  \ 'sort' : 0
-\ }
 
 " Defx
 augroup vimrc_defx
@@ -313,8 +348,8 @@ augroup END
 nnoremap <silent> <Leader>e
   \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
 nnoremap <silent> <Leader>F
-  \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
-let s:default_columns = 'mark:indent:icon:filename'
+  \ :<C-u>Defx -resume -toggle=0 -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+let s:default_columns = 'mark:indent:icons:filename'
 
 
 function! s:defx_mappings() abort
@@ -378,8 +413,8 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_edit_url_in = 'vsplit'
 let g:markdown_fenced_languages = [
-      \'html', 
-      \'css', 
+      \'html',
+      \'css',
       \'scss',
       \'sql',
       \'javascript',
@@ -567,7 +602,7 @@ endfunction
 " Detect  Go HTML
 function DetectGoHtmlTmpl()
     if expand('%:e') == "html" && search("{{") != 0
-        set filetype=gohtmltmpl 
+        set filetype=gohtmltmpl
     endif
 endfunction
 
@@ -684,3 +719,32 @@ function! s:goyo_leave()
 endfunction
 " }}}
 
+function! s:GoToDefinition()
+  if CocAction('jumpDefinition')
+    return v:true
+  endif
+
+  let ret = execute("silent! normal \<C-]>")
+  if ret[:5] =~ "Error"
+    call searchdecl(expand('<cword>'))
+  endif
+endfunction
+
+function! CmdLine(str)
+  call feedkeys(":" . a:str)
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", "\\/.*'$^~[]")
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'gv'
+    call CmdLine("Ack '" . l:pattern . "' " )
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
