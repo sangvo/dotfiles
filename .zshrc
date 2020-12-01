@@ -94,6 +94,9 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+# By default, emoji-cli just prints the name of emojis, and not the actual emoji:
+export EMOJI_CLI_USE_EMOJI=🐼
+
 #Key binding #################################################################
 stty -ixon
 
@@ -117,6 +120,7 @@ export EDITOR="vim"
 alias zshconfig="nvim ~/.zshrc"
 alias ws="cd ~/workspace"
 alias cls="clear"
+
 # alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Go
