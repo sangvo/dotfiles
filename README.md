@@ -1,0 +1,21 @@
+# dotfiles
+
+My config for Vim(Neovim) Zsh Alacritty Tmux
+
+## usage
+
+- Create workspace folder
+```sh
+  mkdir ~/workspace
+```
+
+- Clone this repo
+```sh
+git clone git@github.com:sangvo/dotfiles.git ~/workspace/dotfiles
+```
+
+- Run script
+```sh
+cd ~/workspace/dotfiles
+./install.sh
+```

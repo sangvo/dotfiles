@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/local/SUN-ASTERISK/vo.van.sang/workspace/dotfiles/config/nvim/bundle/vim-snippets'
 let g:netrw_dirhist_6='/home/local/SUN-ASTERISK/vo.van.sang'
 let g:netrw_dirhist_5='/home/local/SUN-ASTERISK/vo.van.sang/workspace/discourse/public'
 let g:netrw_dirhist_4='/home/local/SUN-ASTERISK/vo.van.sang/.tmux'

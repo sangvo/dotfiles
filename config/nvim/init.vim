@@ -7,7 +7,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
@@ -21,6 +20,7 @@ Plug 'kristijanhusak/defx-icons'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
+Plug 'justinmk/vim-sneak'
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -37,7 +37,6 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
-" Plug 'thoughtbot/vim-rspec'
 Plug 'dyng/ctrlsf.vim'
 
 " Go
@@ -244,8 +243,14 @@ nnoremap <silent> <Leader>gdf :Gvdiff!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
-" Vim easymotion
-map s <Plug>(easymotion-prefix)
+" Vim sneak
+let g:sneak#label = 1
+map s <Plug>Sneak_s
+map S <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 " Coc.nvim
 " nmap <silent> gd <Plug>(coc-definition)
@@ -256,6 +261,15 @@ nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
 nnoremap <silent>K :call <SID>show_documentation()<CR>
 
 " Search word
+let g:ctrlsf_backend = 'rg'
+let g:ctrlsf_extra_backend_args = {
+    \ 'rg': '--vimgrep --type-not sql --smart-case'
+    \ }
+let g:ctrlsf_auto_focus = {
+  \ "at": "start"
+  \ }
+let g:ctrlsf_default_view_mode = 'compact'
+
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
