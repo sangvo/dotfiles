@@ -68,7 +68,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode rails ruby rake zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
+plugins=(
+  git vi-mode rails ruby rake zsh-syntax-highlighting zsh-autosuggestions zsh-completions you-should-use
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,9 +96,6 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-# By default, emoji-cli just prints the name of emojis, and not the actual emoji:
-export EMOJI_CLI_USE_EMOJI=🐼
-
 #Key binding #################################################################
 stty -ixon
 
@@ -120,6 +119,8 @@ export EDITOR="vim"
 alias zshconfig="nvim ~/.zshrc"
 alias ws="cd ~/workspace"
 alias cls="clear"
+alias kill3000="fuser -k 3000/tcp"
+alias joke='curl -H "Accept: text/plain" https://icanhazdadjoke.com'
 
 # alias ohmyzsh="nvim ~/.oh-my-zsh"
 
@@ -133,6 +134,7 @@ export PATH=$PATH:$GOROOT/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="${PATH}:${HOME}/.local/bin/"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
