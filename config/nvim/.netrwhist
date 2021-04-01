@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/local/SUN-ASTERISK/vo.van.sang/workspace/stress-check-admin-api/app/forms/admin_events'
+let g:netrw_dirhist_9='/home/local/SUN-ASTERISK/vo.van.sang/workspace/stress-check-admin-api/spec/requests/api/v1/admin/event_employees'
+let g:netrw_dirhist_8='/etc/nginx/sites-available'
 let g:netrw_dirhist_7='/home/local/SUN-ASTERISK/vo.van.sang/workspace/dotfiles/config/nvim/bundle/vim-snippets'
 let g:netrw_dirhist_6='/home/local/SUN-ASTERISK/vo.van.sang'
 let g:netrw_dirhist_5='/home/local/SUN-ASTERISK/vo.van.sang/workspace/discourse/public'

@@ -1,8 +1,6 @@
-"Plugin
 call plug#begin('~/.config/nvim/bundle')
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
@@ -21,6 +19,9 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
 Plug 'justinmk/vim-sneak'
+Plug 'dyng/ctrlsf.vim'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -37,7 +38,6 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
-Plug 'dyng/ctrlsf.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -158,15 +158,18 @@ nmap <leader>p "+p
 "yank to end
 nnoremap Y y$
 
+" Reselect block
+noremap gV `[v`]
+
 " React
 " let g:vim_jsx_pretty_colorful_config = 1
 let g:vim_jsx_pretty_highlight_close_tag = 1
 
 " HTML
-let g:html5_event_handler_attributes_complete = 0
-let g:html5_rdfa_attributes_complete = 0
-let g:html5_microdata_attributes_complete = 0
-let g:html5_aria_attributes_complete = 0
+let g:html5_event_handler_attributes_complete = 1
+let g:html5_rdfa_attributes_complete = 1
+let g:html5_microdata_attributes_complete = 1
+let g:html5_aria_attributes_complete = 1
 
 " Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
@@ -199,6 +202,8 @@ nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " Vim test
+let test#strategy = "neovim"
+
 nmap <silent> <Leader>cs :TestNearest<CR>
 nmap <silent> <Leader>rs :TestFile<CR>
 nmap <silent> <Leader>ra :TestSuite<CR>
@@ -283,6 +288,16 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'node_modules', 'dist', 'vendor']
 " }}
 
+" Vim table mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+
+nmap <Leader>tm :TableModeToggle<CR>
+
+inoreabbrev <expr> __
+          \ <SID>isAtStartOfLine('__') ?
+          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+
 " Go (Google)
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
@@ -365,7 +380,6 @@ nnoremap <silent> <Leader>F
   \ :<C-u>Defx -resume -toggle=0 -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
 let s:default_columns = 'mark:indent:icons:filename'
 
-
 function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
   nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
@@ -439,8 +453,6 @@ let g:markdown_fenced_languages = [
       \'js=javascript', 'json=javascript', 'jsx=javascriptreact', 'tsx=typescriptreact'
       \'docker=Dockerfile']
 
-map <silent> s<cr> :call OpenFloatTerm()<cr>
-
 " toggle relative numbers
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -480,7 +492,8 @@ map <silent> <leader>h :bprevious<cr>
 
 " Ale plugin
 let b:ale_linters = {
-  \ 'python': ['flake8', 'pylint'],
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint'],
   \ 'ruby': ['rubocop'],
   \}
 
@@ -578,39 +591,6 @@ function! CloseAllBuffersExceptCurrent()
   let last = bufnr("$")
   if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
   if curr < last | silent! execute (curr+1).",".last."bd" | endif
-endfunction
-
-function! OpenFloatTerm()
-  let height = float2nr((&lines - 2) / 1.7)
-  let row = float2nr((&lines - height) / 2)
-  let width = float2nr(&columns / 1.7)
-  let col = float2nr((&columns - width) / 2)
-  " Border Window
-  let border_opts = {
-    \ 'relative': 'editor',
-    \ 'row': row - 1,
-    \ 'col': col - 2,
-      \ 'width': width + 4,
-    \ 'height': height + 2,
-    \ 'style': 'minimal'
-    \ }
-  let border_buf = nvim_create_buf(v:false, v:true)
-  let s:border_win = nvim_open_win(border_buf, v:true, border_opts)
-  " Main Window
-  let opts = {
-    \ 'relative': 'editor',
-    \ 'row': row,
-    \ 'col': col,
-    \ 'width': width,
-    \ 'height': height,
-    \ 'style': 'minimal'
-    \ }
-  let buf = nvim_create_buf(v:false, v:true)
-  let win = nvim_open_win(buf, v:true, opts)
-  terminal
-  startinsert
-  " Hook up TermClose event to close both terminal and border windows
-  autocmd TermClose * ++once :bd! | call nvim_win_close(s:border_win, v:true)
 endfunction
 
 " Detect  Go HTML
@@ -761,4 +741,11 @@ function! VisualSelection(direction, extra_filter) range
 
   let @/ = l:pattern
   let @" = l:saved_reg
+endfunction
+
+function! s:isAtStartOfLine(mapping)
+  let text_before_cursor = getline('.')[0 : col('.')-1]
+  let mapping_pattern = '\V' . escape(a:mapping, '\')
+  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
 endfunction
