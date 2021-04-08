@@ -15,13 +15,12 @@ Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'godlygeek/tabular'
 Plug 'kristijanhusak/defx-icons'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
 Plug 'justinmk/vim-sneak'
 Plug 'dyng/ctrlsf.vim'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -36,7 +35,7 @@ Plug 'kamykn/spelunker.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
-Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
 
 " Go
@@ -54,9 +53,12 @@ Plug 'HerringtonDarkholme/yats.vim'
 "HTML
 Plug 'othree/html5.vim'
 
-"UI
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'akinsho/nvim-bufferline.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -125,7 +127,24 @@ hi VertSplit guifg=grey guibg=NONE gui=NONE cterm=NONE
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
+
+lua require("galaxy-line")
+lua require("buffer-line")
+lua require("lsp-config")
+
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:completion_enable_snippet = 'UltiSnips'
+
 " Mappings                                                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=" "
@@ -259,11 +278,11 @@ map T <Plug>Sneak_T
 
 " Coc.nvim
 " nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd :call <SID>GoToDefinition()<CR>
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
-nnoremap <silent>K :call <SID>show_documentation()<CR>
+" nmap <silent> gd :call <SID>GoToDefinition()<CR>
+" nmap <silent> gr <Plug>(coc-references)
+" nmap <leader>rn <Plug>(coc-rename)
+" nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
+" nnoremap <silent>K :call <SID>show_documentation()<CR>
 
 " Search word
 let g:ctrlsf_backend = 'rg'
@@ -345,22 +364,6 @@ command! Eroutes Einitializer
 command! Egemfile edit Gemfile
 command! Ereadme edit README.md
 
-" Vim color highlighting
-let g:Hexokinase_v2 = 0
-let g:Hexokinase_highlighters = ['virtual']
-let g:Hexokinase_virtualText = '▩'
-let g:Hexokinase_optInPatterns = [
-\     'full_hex',
-\     'triple_hex',
-\     'rgb',
-\     'rgba',
-\     'hsl',
-\     'hsla',
-\     'colour_names'
-\ ]
-" Maping
-nmap <Leader>co :HexokinaseToggle<CR>
-
 " SplitJoin
 let g:splitjoin_join_mapping = ''
 let g:splitjoin_split_mapping = ''
@@ -377,7 +380,7 @@ augroup END
 nnoremap <silent> <Leader>e
   \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
 nnoremap <silent> <Leader>F
-  \ :<C-u>Defx -resume -toggle=0 -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+  \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
 let s:default_columns = 'mark:indent:icons:filename'
 
 function! s:defx_mappings() abort
@@ -464,26 +467,6 @@ function! NumberToggle()
 endfunc
 nnoremap <leader>nt :call NumberToggle()<CR>
 
-" Airline config
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-
 " Buffer
 map <leader>xx :Bclose<cr>
 map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
@@ -508,29 +491,29 @@ let g:ale_fixers = {
   \}
 
 " Coc.nvim setting
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:coc_snippet_next = '<tab>'
-imap <C-l> <Plug>(coc-snippets-expand)
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" let g:coc_snippet_next = '<tab>'
+" imap <C-l> <Plug>(coc-snippets-expand)
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 " Fzf config layout search
 let g:fzf_layout = { 'down': '~30%' }
@@ -713,16 +696,16 @@ function! s:goyo_leave()
 endfunction
 " }}}
 
-function! s:GoToDefinition()
-  if CocAction('jumpDefinition')
-    return v:true
-  endif
+" function! s:GoToDefinition()
+"   if CocAction('jumpDefinition')
+"     return v:true
+"   endif
 
-  let ret = execute("silent! normal \<C-]>")
-  if ret[:5] =~ "Error"
-    call searchdecl(expand('<cword>'))
-  endif
-endfunction
+"   let ret = execute("silent! normal \<C-]>")
+"   if ret[:5] =~ "Error"
+"     call searchdecl(expand('<cword>'))
+"   endif
+" endfunction
 
 function! CmdLine(str)
   call feedkeys(":" . a:str)
