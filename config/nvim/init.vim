@@ -3,7 +3,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
@@ -11,23 +10,19 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'godlygeek/tabular'
-Plug 'kristijanhusak/defx-icons'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
 Plug 'justinmk/vim-sneak'
 Plug 'dyng/ctrlsf.vim'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Markdown Blog
-Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'cespare/vim-toml'
+" Markdown Blo
+" Plug 'plasticboy/vim-markdown'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
+" Plug 'cespare/vim-toml'
 
 " Spell grammar
 Plug 'kamykn/spelunker.vim'
@@ -36,28 +31,36 @@ Plug 'kamykn/spelunker.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
-Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-endwise'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " React
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'jparise/vim-graphql'
+" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'HerringtonDarkholme/yats.vim'
 
 "HTML
 Plug 'othree/html5.vim'
 
-"UI
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Lua ecosystem
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'akinsho/nvim-bufferline.lua'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
 call plug#end()
+
+lua require("galaxy-line")
+lua require("buffer-line")
+lua require("lsp-config")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General configs                                                             "
@@ -126,8 +129,14 @@ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load vim module
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings                                                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let mapleader=" "
 imap jk <Esc>
 map 0 ^
@@ -224,17 +233,6 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
 nnoremap <Leader>t :BTags<CR>
 
-" Ack
-nnoremap <leader>a :Ack!<Space>
-vnoremap <leader>a :call VisualSelection('gv', '')<CR>
-
-let g:ackprg = "rg --vimgrep --type-not sql --smart-case"
-let g:ack_mappings = {
-  \ 'h': '<C-W>k<C-W>l<C-W>l<C-W>s<C-W>j<CR>',
-  \ 'v': '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
-  \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J',
-  \ 'q': '<C-W>p' }
-
 " Fugitive
 nnoremap <silent> <leader>gl :Glog<cr>
 nnoremap <silent> <Leader>gad :Git add %:p<CR>
@@ -256,14 +254,6 @@ map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
-
-" Coc.nvim
-" nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd :call <SID>GoToDefinition()<CR>
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
-nnoremap <silent>K :call <SID>show_documentation()<CR>
 
 " Search word
 let g:ctrlsf_backend = 'rg'
@@ -345,72 +335,11 @@ command! Eroutes Einitializer
 command! Egemfile edit Gemfile
 command! Ereadme edit README.md
 
-" Vim color highlighting
-let g:Hexokinase_v2 = 0
-let g:Hexokinase_highlighters = ['virtual']
-let g:Hexokinase_virtualText = '▩'
-let g:Hexokinase_optInPatterns = [
-\     'full_hex',
-\     'triple_hex',
-\     'rgb',
-\     'rgba',
-\     'hsl',
-\     'hsla',
-\     'colour_names'
-\ ]
-" Maping
-nmap <Leader>co :HexokinaseToggle<CR>
-
 " SplitJoin
 let g:splitjoin_join_mapping = ''
 let g:splitjoin_split_mapping = ''
 nmap <Leader>sj :SplitjoinJoin<CR>
 nmap <Leader>sk :SplitjoinSplit<CR>
-
-" Defx
-augroup vimrc_defx
-  autocmd!
-  autocmd FileType defx call s:defx_mappings()
-  autocmd VimEnter * call s:setup_defx()
-augroup END
-
-nnoremap <silent> <Leader>e
-  \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent> <Leader>F
-  \ :<C-u>Defx -resume -toggle=0 -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
-let s:default_columns = 'mark:indent:icons:filename'
-
-function! s:defx_mappings() abort
-  nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
-  nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
-  nnoremap <silent><buffer><expr> <CR> <sid>defx_toggle_tree()
-  nnoremap <silent><buffer><expr> <2-LeftMouse> <sid>defx_toggle_tree()
-  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : 'C'
-  nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright vsplit')
-  nnoremap <silent><buffer><expr> R defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> U defx#do_action('multi', [['cd', '..'], 'change_vim_cwd'])
-  nnoremap <silent><buffer><expr> H defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> a defx#do_action('new_multiple_files')
-  nnoremap <silent><buffer><expr> r defx#do_action('rename')
-  nnoremap <nowait><silent><buffer><expr> c defx#do_action('copy')
-  nnoremap <silent><buffer><expr> x defx#do_action('move')
-  nnoremap <silent><buffer><expr> X defx#do_action('execute_system')
-  nnoremap <silent><buffer><expr> p defx#do_action('paste')
-  nnoremap <nowait><silent><buffer><expr> d defx#do_action('remove')
-  nnoremap <silent><buffer><expr> q defx#do_action('quit')
-  nnoremap <silent><buffer><expr> P defx#do_action('preview')
-  nnoremap <silent><buffer><expr> v defx#do_action('toggle_select')
-  nnoremap <silent><buffer><expr> V defx#do_action('clear_select_all')
-  nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
-  nnoremap <silent><buffer><expr> ~ defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> <Leader>n defx#do_action('quit')
-  silent exe 'nnoremap <silent><buffer><expr> tt defx#do_action("toggle_columns", "'.s:default_columns.':size:time")'
-endfunction
 
 "Goyo markdown writing
 map <leader>G :Goyo<CR>
@@ -464,26 +393,6 @@ function! NumberToggle()
 endfunc
 nnoremap <leader>nt :call NumberToggle()<CR>
 
-" Airline config
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-
 " Buffer
 map <leader>xx :Bclose<cr>
 map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
@@ -499,38 +408,12 @@ let b:ale_linters = {
 
 let g:ale_fixers = {
   \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \ 'python': ['black', 'flake8'],
   \ 'ruby': ['rubocop'],
   \ 'javascript': ['eslint'],
   \ 'css': ['prettier'],
   \ 'json': ['prettier'],
   \ 'yaml': ['prettier'],
   \}
-
-" Coc.nvim setting
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:coc_snippet_next = '<tab>'
-imap <C-l> <Plug>(coc-snippets-expand)
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 " Fzf config layout search
 let g:fzf_layout = { 'down': '~30%' }
@@ -604,82 +487,6 @@ augroup filetypedetect
     au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
 augroup END
 
-" Defx
-function! s:setup_defx() abort
-  silent! call defx#custom#option('_', {
-        \ 'columns': s:default_columns,
-        \ 'winwidth': 35,
-        \ 'direction': 'topleft',
-        \ 'split': 'vertical',
-        \ 'resume': v:false,
-        \ 'toggle': v:true
-        \ })
-
-  silent! call defx#custom#column('filename', {
-        \ 'min_width': 80,
-        \ 'max_width': 80,
-        \ })
-
-  silent! call defx#custom#column('icon', {
-      \ 'directory_icon': '▸',
-      \ 'opened_icon': '▾',
-      \ 'root_icon': '',
-      \ })
-
-  silent! call defx#custom#column('mark', {
-        \ 'readonly_icon': '✗',
-        \ 'selected_icon': '⚫',
-        \ })
-
-  call s:defx_open({ 'dir': expand('<afile>') })
-endfunction
-
-function s:get_project_root() abort
-  let l:git_root = ''
-  let l:path = expand('%:p:h')
-  let l:cmd = systemlist('cd '.l:path.' && git rev-parse --show-toplevel')
-  if !v:shell_error && !empty(l:cmd)
-    let l:git_root = fnamemodify(l:cmd[0], ':p:h')
-  endif
-
-  if !empty(l:git_root)
-    return l:git_root
-  endif
-
-  return getcwd()
-endfunction
-
-function! s:defx_open(...) abort
-  let l:opts = get(a:, 1, {})
-  let l:is_file = has_key(l:opts, 'dir') && !isdirectory(l:opts.dir)
-
-  if  &filetype ==? 'defx' || l:is_file
-    return
-  endif
-
-  let l:path = s:get_project_root()
-
-  if has_key(l:opts, 'dir') && isdirectory(l:opts.dir)
-    let l:path = l:opts.dir
-  endif
-
-  if has_key(l:opts, 'find_current_file')
-    call execute(printf('Defx -search=%s %s', expand('%:p'), l:path))
-  else
-    call execute(printf('Defx -toggle %s', l:path))
-    call execute('wincmd p')
-  endif
-
-  return execute("norm!\<C-w>=")
-endfunction
-
-function s:defx_toggle_tree() abort
-  if defx#is_directory()
-    return defx#do_action('open_or_close_tree')
-  endif
-  return defx#do_action('drop')
-endfunction
-
 function! s:goyo_enter()
 	if has('gui_running')
 		" Gui fullscreen
@@ -693,8 +500,8 @@ function! s:goyo_enter()
 	" Activate Limelight
 	Limelight
 endfunction
-
 " }}}
+
 " s:goyo_leave() "{{{
 " Enable visuals when leaving Goyo mode
 function! s:goyo_leave()
@@ -712,36 +519,6 @@ function! s:goyo_leave()
 	Limelight!
 endfunction
 " }}}
-
-function! s:GoToDefinition()
-  if CocAction('jumpDefinition')
-    return v:true
-  endif
-
-  let ret = execute("silent! normal \<C-]>")
-  if ret[:5] =~ "Error"
-    call searchdecl(expand('<cword>'))
-  endif
-endfunction
-
-function! CmdLine(str)
-  call feedkeys(":" . a:str)
-endfunction
-
-function! VisualSelection(direction, extra_filter) range
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-
-  let l:pattern = escape(@", "\\/.*'$^~[]")
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-  if a:direction == 'gv'
-    call CmdLine("Ack '" . l:pattern . "' " )
-  endif
-
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction
 
 function! s:isAtStartOfLine(mapping)
   let text_before_cursor = getline('.')[0 : col('.')-1]

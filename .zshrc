@@ -69,7 +69,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git vi-mode rails ruby rake zsh-syntax-highlighting zsh-autosuggestions zsh-completions you-should-use
+  git vi-mode rails sudo zsh-syntax-highlighting zsh-autosuggestions zsh-completions you-should-use
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -122,6 +122,12 @@ alias cls="clear"
 alias kill3000="fuser -k 3000/tcp"
 alias joke='curl -H "Accept: text/plain" https://icanhazdadjoke.com'
 
+# Awesome ls
+alias ls="lsd -F"
+alias la="lsd -Fah"
+alias ll="lsd -Flh"
+alias l="lsd -Flah"
+
 # alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Go
@@ -153,4 +159,3 @@ export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git"
 eval "$(direnv hook zsh)"
 
 [[ -s "/home/sangvo/.gvm/scripts/gvm" ]] && source "/home/sangvo/.gvm/scripts/gvm"
-
