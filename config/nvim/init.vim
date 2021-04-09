@@ -18,7 +18,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'dyng/ctrlsf.vim'
 Plug 'dhruvasagar/vim-table-mode'
 
-" Markdown Blo
+" Markdown Blog
 " Plug 'plasticboy/vim-markdown'
 " Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/limelight.vim'
@@ -55,6 +55,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
 
@@ -132,6 +133,7 @@ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underl
 " Load vim module
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
+source ~/workspace/dotfiles/config/nvim/modules/nvim-compe.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings                                                                    "
@@ -140,6 +142,7 @@ source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
 let mapleader=" "
 imap jk <Esc>
 map 0 ^
+
 " Dont use recording
 map q <Nop>
 
@@ -158,13 +161,13 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>"
 
-"Copy to clipboard"
+" Copy to clipboard"
 vmap <C-C> "+y
 vmap <leader>y "+y
 nmap <leader>y "+y
 nmap <leader>p "+p
 
-"yank to end
+" Yank to end
 nnoremap Y y$
 
 " Reselect block
@@ -209,6 +212,17 @@ nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" Nvim lua mappings
+nnoremap <Leader>1 :lua require"bufferline".go_to_buffer(1)<CR>
+nnoremap <Leader>2 :lua require"bufferline".go_to_buffer(2)<CR>
+nnoremap <Leader>3 :lua require"bufferline".go_to_buffer(3)<CR>
+nnoremap <Leader>4 :lua require"bufferline".go_to_buffer(4)<CR>
+nnoremap <Leader>5 :lua require"bufferline".go_to_buffer(5)<CR>
+nnoremap <Leader>6 :lua require"bufferline".go_to_buffer(6)<CR>
+nnoremap <Leader>7 :lua require"bufferline".go_to_buffer(7)<CR>
+nnoremap <Leader>8 :lua require"bufferline".go_to_buffer(8)<CR>
+nnoremap <Leader>9 :lua require"bufferline".go_to_buffer(9)<CR>
 
 " Vim test
 let test#strategy = "neovim"
@@ -407,7 +421,6 @@ let b:ale_linters = {
   \}
 
 let g:ale_fixers = {
-  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
   \ 'ruby': ['rubocop'],
   \ 'javascript': ['eslint'],
   \ 'css': ['prettier'],
