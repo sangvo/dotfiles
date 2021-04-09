@@ -1,3 +1,5 @@
+source ~/.zsh/zsh-defer/zsh-defer.plugin.zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -79,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -128,34 +130,9 @@ alias la="lsd -Fah"
 alias ll="lsd -Flh"
 alias l="lsd -Flah"
 
-# alias ohmyzsh="nvim ~/.oh-my-zsh"
+# Zsh Defer
 
-# Go
-export GOROOT_BOOTSTRAP=$GOROOT
-export GOPATH=$HOME/go
-export GOROOT=$HOME/go
-export PATH=$PATH:$GOROOT/bin
-
-# Rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH="${PATH}:${HOME}/.local/bin/"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git"
-
-# direnv
-eval "$(direnv hook zsh)"
-
-[[ -s "/home/sangvo/.gvm/scripts/gvm" ]] && source "/home/sangvo/.gvm/scripts/gvm"
+zsh-defer source ~/.zsh/zsh-fzf.zsh
+zsh-defer source ~/.zsh/zsh-export-path.zsh
+zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
