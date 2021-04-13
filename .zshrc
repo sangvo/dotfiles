@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git vi-mode rails sudo zsh-syntax-highlighting zsh-autosuggestions zsh-completions
+  git rails sudo zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,7 +113,6 @@ bindkey "^s" history-incremental-search-backward
 bindkey "^n" history-search-forward
 bindkey "^p" history-search-backward
 bindkey "^ " autosuggest-accept
-bindkey "jk" vi-cmd-mode
 
 export EDITOR="vim"
 
@@ -136,13 +135,3 @@ zsh-defer source ~/.zsh/zsh-fzf.zsh
 zsh-defer source ~/.zsh/zsh-export-path.zsh
 zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Add rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-if command -v rbenv 1>/dev/null 2>&1; then
-  eval "$(rbenv init -)"
-fi
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
-# Cargo
-export PATH="$PATH:$HOME/.cargo/bin"

@@ -1,0 +1,20 @@
+{
+  "pry": {
+    "prefix": "pry",
+    "body": "require 'pry'; binding.pry",
+    "description": "",
+    "scope": "source.ruby"
+	},
+  "todo": {
+    "prefix": "todo",
+    "body": "# TODO: ${1}",
+    "description": "To do rake note",
+    "scope": "source.ruby"
+  },
+  "fixme": {
+    "prefix": "fixme",
+    "body": "# FIXME: #{1}",
+    "description": "Fix me ruby",
+    "scope": "source.ruby"
+  }
+}

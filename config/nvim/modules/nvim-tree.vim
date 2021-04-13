@@ -3,18 +3,21 @@ nnoremap <C-m> :NvimTreeToggle<CR>
 nnoremap <leader>mr :NvimTreeRefresh<CR>
 nnoremap <leader>mf :NvimTreeFindFile<CR>
 
+let nvim_tree_disable_keybindings=0
+
 hi NvimTreeFolderIcon guifg=orange
 hi NvimTreeFolderName guifg=default gui=bold
 
 :lua <<EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
+      ["<CR>"]           = tree_cb("edit"),
       ["i"]              = tree_cb("cd"),
       ["l"]              = tree_cb("edit"),
       ["<2-LeftMouse>"]  = tree_cb("edit"),
       ["o"]              = tree_cb("cd"),
       ["vs"]             = tree_cb("vsplit"),
-      ["ss"]             = tree_cb("split"),
+      ["vv"]             = tree_cb("split"),
       ["<C-t>"]          = tree_cb("tabnew"),
       ["<"]              = tree_cb("prev_sibling"),
       [">"]              = tree_cb("next_sibling"),

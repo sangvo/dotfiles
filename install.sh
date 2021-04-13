@@ -1,5 +1,5 @@
 mkdir ~/.zsh
-ln -s -f ~/dotfiles/zsh/* ~/.zsh
+ln -s -f ~/workspace/dotfiles/config/zsh/* ~/.zsh
 ln -s -f ~/workspace/dotfiles/.zshrc ~/.zshrc
 
 ln -s -f ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf

@@ -8,7 +8,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
-Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'godlygeek/tabular'
@@ -54,14 +53,12 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
 
-lua require("galaxy-line")
-lua require("buffer-line")
-lua require("lsp-config")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General configs                                                             "
@@ -129,16 +126,19 @@ hi VertSplit guifg=grey guibg=NONE gui=NONE cterm=NONE
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lua setup config
+lua require("galaxy-line")
+lua require("buffer-line")
+lua require("lsp-config")
+lua require("module-colorizer")
+lua require("nvim-compe")
+
 " Load vim module
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
-source ~/workspace/dotfiles/config/nvim/modules/nvim-compe.vim
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings                                                                    "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 
+" Mappings
 let mapleader=" "
 imap jk <Esc>
 map 0 ^
@@ -161,7 +161,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>"
 
-" Copy to clipboard"
+" Copy to clipboard
 vmap <C-C> "+y
 vmap <leader>y "+y
 nmap <leader>y "+y
