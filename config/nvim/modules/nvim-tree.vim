@@ -3,18 +3,21 @@ nnoremap <C-m> :NvimTreeToggle<CR>
 nnoremap <leader>mr :NvimTreeRefresh<CR>
 nnoremap <leader>mf :NvimTreeFindFile<CR>
 
-hi NvimTreeFolderIcon guifg=default
-hi NvimTreeFolderName guifg=default
+let nvim_tree_disable_keybindings=0
+
+hi NvimTreeFolderIcon guifg=orange
+hi NvimTreeFolderName guifg=default gui=bold
 
 :lua <<EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
+      ["<CR>"]           = tree_cb("edit"),
       ["i"]              = tree_cb("cd"),
       ["l"]              = tree_cb("edit"),
       ["<2-LeftMouse>"]  = tree_cb("edit"),
       ["o"]              = tree_cb("cd"),
-      ["<C-v>"]          = tree_cb("vsplit"),
-      ["<C-x>"]          = tree_cb("split"),
+      ["vs"]             = tree_cb("vsplit"),
+      ["vv"]             = tree_cb("split"),
       ["<C-t>"]          = tree_cb("tabnew"),
       ["<"]              = tree_cb("prev_sibling"),
       [">"]              = tree_cb("next_sibling"),
@@ -62,6 +65,8 @@ let g:nvim_tree_show_icons = {
     \ 'folders': 1,
     \ 'files': 1,
     \ }
+
+
 "If 0, do not show the icons for one of 'git' 'folder' and 'files'
 "1 by default, notice that if 'files' is 1, it will only display
 "if nvim-web-devicons is installed and on your runtimepath

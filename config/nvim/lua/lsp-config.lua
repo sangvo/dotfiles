@@ -1,4 +1,7 @@
 local nvim_lsp = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -51,7 +54,10 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "solargraph" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

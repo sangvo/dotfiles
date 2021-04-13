@@ -1,7 +1,7 @@
 source ~/.zsh/zsh-defer/zsh-defer.plugin.zsh
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git vi-mode rails sudo zsh-syntax-highlighting zsh-autosuggestions zsh-completions you-should-use
+  git rails sudo zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,7 +113,6 @@ bindkey "^s" history-incremental-search-backward
 bindkey "^n" history-search-forward
 bindkey "^p" history-search-backward
 bindkey "^ " autosuggest-accept
-bindkey "jk" vi-cmd-mode
 
 export EDITOR="vim"
 

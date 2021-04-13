@@ -1,6 +1,6 @@
 set -g status 'on'
 # statusbar black background
-set -g status-bg default
+set -g status-bg black
 
 set -g status-position bottom
 set -g status-justify 'centre'
@@ -19,6 +19,7 @@ set -g status-left '\
 #[fg=colour232,bg=#6272a4] UPTIME: #(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") '
 
 set -g status-right '\
-#[fg=colour232,bg=#6272a4] CPU:#{cpu_percentage} \
+#[fg=colour232,bg=#6272a4] CPU: #{cpu_icon} #{cpu_percentage} \
 #[bg=#1b2b34] \
-#[fg=colour232,bg=#6272a4] MEM:#{ram_percentage} '
+#[fg=colour232,bg=#6272a4] MEM: #{ram_icon} #{ram_percentage} \
+#[fg=colour232,bg=#6272a4] | %a %Y-%m-%d'

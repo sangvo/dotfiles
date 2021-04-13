@@ -375,7 +375,7 @@ shell:
   args:
     - --login
     - -c
-    - 'tmux new -s TMUX'
+    - 'tmux'
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
