@@ -43,7 +43,7 @@ require'bufferline'.setup {
     show_close_icon = true,
     show_tab_indicators = true,
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    separator_style = 'slant',
+    separator_style = 'thick',
     enforce_regular_tabs = false,
     always_show_bufferline = true,
     sort_by = function(buffer_a, buffer_b)

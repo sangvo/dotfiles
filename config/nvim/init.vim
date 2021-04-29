@@ -18,13 +18,13 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'dhruvasagar/vim-table-mode'
 
 " Markdown Blog
-" Plug 'plasticboy/vim-markdown'
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
-" Plug 'cespare/vim-toml'
+Plug 'plasticboy/vim-markdown'
 
 " Spell grammar
 Plug 'kamykn/spelunker.vim'
+
+"JS
+Plug 'pangloss/vim-javascript'
 
 " For Rails
 Plug 'vim-ruby/vim-ruby'
@@ -35,22 +35,13 @@ Plug 'tpope/vim-endwise'
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" React
-" Plug 'pangloss/vim-javascript'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-" Plug 'jparise/vim-graphql'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'HerringtonDarkholme/yats.vim'
-
 "HTML
 Plug 'othree/html5.vim'
 
 " Lua ecosystem
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-tree.lua', {'branch': 'feat/nvim-lsp-diagnostic-integration'}
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -58,7 +49,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General configs                                                             "
@@ -88,7 +78,7 @@ set foldnestmax=5             " Deepest fold is 5 levels
 set nofoldenable              " No fold when start
 set splitbelow                " Split below
 set splitright                " Split right
-set number relativenumber     " turn hybrid line numbers on
+set number                    " turn hybrid line numbers on
 set cursorline                " Highlight cursorline
 set hlsearch                  " Highlight all search results
 set smartcase                 " Enable smart-case search
@@ -120,7 +110,7 @@ let g:oceanic_material_allow_italic=1
 " Set background terminal and line number transparent
 highlight clear SignColumn
 hi Normal ctermbg=NONE guibg=NONE
-hi VertSplit guifg=grey guibg=NONE gui=NONE cterm=NONE
+hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 
 " Override color spell hightlight
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
@@ -132,6 +122,8 @@ lua require("buffer-line")
 lua require("lsp-config")
 lua require("module-colorizer")
 lua require("nvim-compe")
+" lua require("module-nvim-tree")
+lua require("file-icon")
 
 " Load vim module
 source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
@@ -176,6 +168,8 @@ noremap gV `[v`]
 " React
 " let g:vim_jsx_pretty_colorful_config = 1
 let g:vim_jsx_pretty_highlight_close_tag = 1
+
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 " HTML
 let g:html5_event_handler_attributes_complete = 1
@@ -293,8 +287,8 @@ let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'n
 " }}
 
 " Vim table mode
-let g:table_mode_corner_corner='+'
-let g:table_mode_header_fillchar='='
+let g:table_mode_corner_corner='|'
+let g:table_mode_header_fillchar='-'
 
 nmap <Leader>tm :TableModeToggle<CR>
 
@@ -316,11 +310,6 @@ let g:go_highlight_function_parameters = 1
 let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 0
 
-autocmd FileType go
-                   \  let b:coc_pairs_disabled = ['<']
-                   \ | let b:coc_root_patterns = ['.git', 'go.mod']
-
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ALE
 map <leader>= :ALEFix<cr>

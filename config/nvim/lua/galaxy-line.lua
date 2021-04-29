@@ -27,13 +27,13 @@ gls.left[2] = {
     end,
   },
 }
--- gls.left[3] = {
---   FileSize = {
---     provider = 'FileSize',
---     condition = condition.buffer_not_empty,
---     highlight = {colors.fg,colors.bg}
---   }
--- }
+gls.left[3] = {
+  FileSize = {
+    provider = 'FileSize',
+    condition = condition.buffer_not_empty,
+    highlight = {colors.fg,colors.bg}
+  }
+}
 gls.left[4] ={
   FileIcon = {
     provider = 'FileIcon',

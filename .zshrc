@@ -35,7 +35,7 @@ ZSH_THEME="robbyrussell"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git rails sudo zsh-syntax-highlighting zsh-autosuggestions zsh-completions
+  git rails sudo
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -129,9 +129,30 @@ alias la="lsd -Fah"
 alias ll="lsd -Flh"
 alias l="lsd -Flah"
 
+# Jekyll
+alias js="bundle exec jekyll serve --drafts"
+
 # Zsh Defer
 
-zsh-defer source ~/.zsh/zsh-fzf.zsh
-zsh-defer source ~/.zsh/zsh-export-path.zsh
-zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-fzf.zsh
+source ~/.zsh/zsh-export-path.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
+
+export FZF_DEFAULT_COMMAND="fd --type file --follow --no-ignore --hidden --exclude .git --exclude node_modules"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--inline-info"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if command -v rbenv 1>/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+# Cargo
+export PATH="$PATH:$HOME/.cargo/bin"
+export XMODIFIERS=@im=ibus

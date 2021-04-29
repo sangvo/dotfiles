@@ -1,4 +1,7 @@
-mkdir ~/.zsh
+# Tiling window manager
+ln -s -f ~/workspace/dotfiles/config/vm/* ~/.config
+
+mkdir -p ~/.zsh
 ln -s -f ~/workspace/dotfiles/config/zsh/* ~/.zsh
 ln -s -f ~/workspace/dotfiles/.zshrc ~/.zshrc
 

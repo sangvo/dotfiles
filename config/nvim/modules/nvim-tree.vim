@@ -3,10 +3,9 @@ nnoremap <C-m> :NvimTreeToggle<CR>
 nnoremap <leader>mr :NvimTreeRefresh<CR>
 nnoremap <leader>mf :NvimTreeFindFile<CR>
 
-let nvim_tree_disable_keybindings=0
-
-hi NvimTreeFolderIcon guifg=orange
-hi NvimTreeFolderName guifg=default gui=bold
+hi NvimTreeFolderIcon guifg = '#e78a4e'
+hi NvimTreeFolderName guifg = '#5faf5f' gui = bold
+hi NvimTreeIndentMarker guifg='#383c44'
 
 :lua <<EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
@@ -61,7 +60,7 @@ let g:nvim_tree_hijack_netrw = 0 "1 by default, prevents netrw from automaticall
 let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
 let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
 let g:nvim_tree_show_icons = {
-    \ 'git': 1,
+    \ 'git': 0,
     \ 'folders': 1,
     \ 'files': 1,
     \ }
@@ -84,8 +83,8 @@ let g:nvim_tree_icons = {
     \   'untracked': "★"
     \   },
     \ 'folder': {
-    \   'default': "",
-    \   'open': "",
+    \   'default': "",
+    \   'open': "",
     \   'empty': "",
     \   'empty_open': "",
     \   'symlink': "",

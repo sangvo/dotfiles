@@ -7,6 +7,7 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	/5d000b1/
+Application	config/nvim/bundle/vim-test/spec/fixtures/rails/config/application.rb	/^  class Application < Rails::Application$/;"	c	module:Demo
 Bar	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^          module Bar$/;"	m	module:Foo
 Bar	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        module Foo::Bar$/;"	m	module:Foo
 Bar	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^  class Bar$/;"	c	module:Foo
@@ -16,6 +17,7 @@ Baz	config/nvim/bundle/splitjoin.vim/spec/plugin/ruby_spec.rb	/^        class Fo
 Baz	config/nvim/bundle/vim-textobj-rubyblock/t/examples.rb	/^    def Baz$/;"	f	class:Foo.Bar
 Baz	config/nvim/bundle/vim-textobj-rubyblock/t/samples/nested-blocks.rb	/^    def Baz$/;"	f	class:Foo.Bar
 Buffer	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^class Buffer$/;"	c
+Demo	config/nvim/bundle/vim-test/spec/fixtures/rails/config/application.rb	/^module Demo$/;"	m
 Differ	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^class Differ$/;"	c
 EexBuffer	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^module EexBuffer$/;"	m
 ExBuffer	config/nvim/bundle/splitjoin.vim/spec/support/vim-elixir/spec/spec_helper.rb	/^module ExBuffer$/;"	m
