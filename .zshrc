@@ -139,20 +139,3 @@ source ~/.zsh/zsh-export-path.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
-
-export FZF_DEFAULT_COMMAND="fd --type file --follow --no-ignore --hidden --exclude .git --exclude node_modules"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--inline-info"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Add rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-if command -v rbenv 1>/dev/null 2>&1; then
-  eval "$(rbenv init -)"
-fi
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
-# Cargo
-export PATH="$PATH:$HOME/.cargo/bin"
-export XMODIFIERS=@im=ibus

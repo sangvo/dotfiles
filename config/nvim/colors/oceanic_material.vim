@@ -696,19 +696,19 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   " semshi: https://github.com/numirias/semshi
   "===============================================================
-  exec 'hi semshiUnresolved' . s:fg_yellow. s:undercurl
-  exec 'hi semshiImported' . s:fg_purple
-  exec 'hi semshiParameter' . s:fg_blue
-  exec 'hi semshiParameterUnused' . s:fg_grey1
-  exec 'hi semshiSelf' . s:fg_purple  . s:italic
-  exec 'hi semshiGlobal' . s:fg_yellow
-  exec 'hi semshiBuiltin' . s:fg_yellow
-  exec 'hi semshiAttribute' . s:fg_aqua
-  exec 'hi semshiLocal' . s:fg_red
-  exec 'hi semshiFree' . s:fg_red
-  hi link  semshiSelected CocHighlightText
-  exec 'hi semshiErrorSign' . s:fg_red
-  exec 'hi semshiErrorChar' . s:fg_red
+  " exec 'hi semshiUnresolved' . s:fg_yellow. s:undercurl
+  " exec 'hi semshiImported' . s:fg_purple
+  " exec 'hi semshiParameter' . s:fg_blue
+  " exec 'hi semshiParameterUnused' . s:fg_grey1
+  " exec 'hi semshiSelf' . s:fg_purple  . s:italic
+  " exec 'hi semshiGlobal' . s:fg_yellow
+  " exec 'hi semshiBuiltin' . s:fg_yellow
+  " exec 'hi semshiAttribute' . s:fg_aqua
+  " exec 'hi semshiLocal' . s:fg_red
+  " exec 'hi semshiFree' . s:fg_red
+  " hi link  semshiSelected CocHighlightText
+  " exec 'hi semshiErrorSign' . s:fg_red
+  " exec 'hi semshiErrorChar' . s:fg_red
   "===============================================================
   " Lua:
   "===============================================================
@@ -778,27 +778,27 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   " VimL:
   "===============================================================
-  exec 'hi vimCommentTitle'. s:fg_grey1. s:bold
-  exec 'hi vimLet' . s:fg_orange
-  exec 'hi vimFunction' . s:fg_green  . s:bold
-  exec 'hi vimIsCommand' . s:fg_fg0
-  exec 'hi vimUserFunc' . s:fg_green  . s:bold
-  exec 'hi vimFuncName' . s:fg_green  . s:bold
-  exec 'hi vimMap' . s:fg_purple  . s:italic
-  exec 'hi vimNotation' . s:fg_aqua
-  exec 'hi vimMapLhs' . s:fg_green
-  exec 'hi vimMapRhs' . s:fg_green
-  exec 'hi vimSetEqual' . s:fg_yellow
-  exec 'hi vimSetSep' . s:fg_fg0
-  exec 'hi vimOption' . s:fg_aqua
-  exec 'hi vimUserAttrbKey' . s:fg_yellow
-  exec 'hi vimUserAttrb' . s:fg_green
-  exec 'hi vimAutoCmdSfxList' . s:fg_aqua
-  exec 'hi vimSynType' . s:fg_orange
-  exec 'hi vimHiBang' . s:fg_orange
-  exec 'hi vimSet' . s:fg_yellow
-  exec 'hi vimSetSep' . s:fg_grey1
-  exec 'hi vimContinue' . s:fg_grey1
+  " exec 'hi vimCommentTitle'. s:fg_grey1. s:bold
+  " exec 'hi vimLet' . s:fg_orange
+  " exec 'hi vimFunction' . s:fg_green  . s:bold
+  " exec 'hi vimIsCommand' . s:fg_fg0
+  " exec 'hi vimUserFunc' . s:fg_green  . s:bold
+  " exec 'hi vimFuncName' . s:fg_green  . s:bold
+  " exec 'hi vimMap' . s:fg_purple  . s:italic
+  " exec 'hi vimNotation' . s:fg_aqua
+  " exec 'hi vimMapLhs' . s:fg_green
+  " exec 'hi vimMapRhs' . s:fg_green
+  " exec 'hi vimSetEqual' . s:fg_yellow
+  " exec 'hi vimSetSep' . s:fg_fg0
+  " exec 'hi vimOption' . s:fg_aqua
+  " exec 'hi vimUserAttrbKey' . s:fg_yellow
+  " exec 'hi vimUserAttrb' . s:fg_green
+  " exec 'hi vimAutoCmdSfxList' . s:fg_aqua
+  " exec 'hi vimSynType' . s:fg_orange
+  " exec 'hi vimHiBang' . s:fg_orange
+  " exec 'hi vimSet' . s:fg_yellow
+  " exec 'hi vimSetSep' . s:fg_grey1
+  " exec 'hi vimContinue' . s:fg_grey1
   "===============================================================
   " Makefile:
   "===============================================================
@@ -827,70 +827,70 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   " Diff:
   "===============================================================
-  exec 'hi diffAdded' . s:fg_green
-  exec 'hi diffRemoved' . s:fg_red
-  exec 'hi diffChanged' . s:fg_blue
-  exec 'hi diffOldFile' . s:fg_yellow
-  exec 'hi diffNewFile' . s:fg_orange
-  exec 'hi diffFile' . s:fg_aqua
-  exec 'hi diffLine' . s:fg_grey1
-  exec 'hi diffIndexLine' . s:fg_purple
-  "===============================================================
-  " Git Commit:
-  "===============================================================
-  exec 'hi gitcommitSummary' . s:fg_red
-  exec 'hi gitcommitUntracked' . s:fg_grey1
-  exec 'hi gitcommitDiscarded' . s:fg_grey1
-  exec 'hi gitcommitSelected' . s:fg_grey1
-  exec 'hi gitcommitUnmerged' . s:fg_grey1
-  exec 'hi gitcommitOnBranch' . s:fg_grey1
-  exec 'hi gitcommitArrow' . s:fg_grey1
-  exec 'hi gitcommitFile' . s:fg_green
+  "exec 'hi diffAdded' . s:fg_green
+  "exec 'hi diffRemoved' . s:fg_red
+  "exec 'hi diffChanged' . s:fg_blue
+  "exec 'hi diffOldFile' . s:fg_yellow
+  "exec 'hi diffNewFile' . s:fg_orange
+  "exec 'hi diffFile' . s:fg_aqua
+  "exec 'hi diffLine' . s:fg_grey1
+  "exec 'hi diffIndexLine' . s:fg_purple
+  ""===============================================================
+  "" Git Commit:
+  ""===============================================================
+  "exec 'hi gitcommitSummary' . s:fg_red
+  "exec 'hi gitcommitUntracked' . s:fg_grey1
+  "exec 'hi gitcommitDiscarded' . s:fg_grey1
+  "exec 'hi gitcommitSelected' . s:fg_grey1
+  "exec 'hi gitcommitUnmerged' . s:fg_grey1
+  "exec 'hi gitcommitOnBranch' . s:fg_grey1
+  "exec 'hi gitcommitArrow' . s:fg_grey1
+  "exec 'hi gitcommitFile' . s:fg_green
   "===============================================================
   " neoclide/coc.nvim
   "===============================================================
-  exec 'hi CocHoverRange'. s:fg_none. s:bold . s:underline
-  exec 'hi CocHintHighlight'. s:fg_none. s:undercurl. s:sp_aqua
-  exec 'hi CocErrorFloat'. s:fg_red. s:bg_bg3
-  exec 'hi CocWarningFloat'. s:fg_yellow. s:bg_bg3
-  exec 'hi CocInfoFloat'. s:fg_blue. s:bg_bg3
-  exec 'hi CocHintFloat'. s:fg_aqua. s:bg_bg3
-  exec 'hi CocHighlightText'. s:bg_fg3
-  exec 'hi CocErrorSign' . s:fg_red
-  exec 'hi CocWarningSign' . s:fg_yellow
-  exec 'hi CocInfoSign' . s:fg_blue
-  exec 'hi CocHintSign' . s:fg_aqua
-  exec 'hi CocErrorHighlight' . s:fg_none  . s:undercurl . s:sp_red
-  exec 'hi CocWarningHighlight' . s:fg_none  . s:undercurl . s:sp_yellow
-  exec 'hi CocInfoHighlight' . s:fg_none  . s:undercurl . s:sp_blue
-  exec 'hi CocWarningVirtualText' . s:fg_grey1
-  exec 'hi CocErrorVirtualText' . s:fg_grey1
-  exec 'hi CocInfoVirtualText' . s:fg_grey1
-  exec 'hi CocHintVirtualText' . s:fg_grey1
-  exec 'hi CocCodeLens' . s:fg_grey1
-  exec 'hi HighlightedyankRegion'. s:fg_none. s:reverse
-  exec 'hi CocGitAddedSign' . s:fg_green
-  exec 'hi CocGitChangeRemovedSign' . s:fg_purple
-  exec 'hi CocGitChangedSign' . s:fg_blue
-  exec 'hi CocGitRemovedSign' . s:fg_red
-  exec 'hi CocGitTopRemovedSign' . s:fg_red
-  "coc-explorer
-  exec 'hi CocExplorerBufferRoot' . s:fg_orange
-  exec 'hi CocExplorerBufferExpandIcon'. s:fg_aqua
-  exec 'hi CocExplorerBufferBufnr' . s:fg_purple
-  exec 'hi CocExplorerBufferModified'. s:fg_red
-  exec 'hi CocExplorerBufferBufname'. s:fg_grey0
-  exec 'hi CocExplorerBufferFullpath'. s:fg_grey0
-  exec 'hi CocExplorerFileRoot' . s:fg_orange
-  exec 'hi CocExplorerFileExpandIcon' . s:fg_aqua
-  exec 'hi CocExplorerFileFullpath' . s:fg_grey0
-  exec 'hi CocExplorerFileDirectory' .  s:fg_green
-  exec 'hi CocExplorerFileGitStage' . s:fg_purple
-  exec 'hi CocExplorerFileGitUnstage' . s:fg_yellow
-  exec 'hi CocExplorerFileSize' . s:fg_blue
-  exec 'hi CocExplorerTimeAccessed' . s:fg_aqua
-  exec 'hi CocExplorerTimeCreated' . s:fg_aqua
-  exec 'hi CocExplorerTimeModified' . s:fg_aqua
+  "exec 'hi CocHoverRange'. s:fg_none. s:bold . s:underline
+  "exec 'hi CocHintHighlight'. s:fg_none. s:undercurl. s:sp_aqua
+  "exec 'hi CocErrorFloat'. s:fg_red. s:bg_bg3
+  "exec 'hi CocWarningFloat'. s:fg_yellow. s:bg_bg3
+  "exec 'hi CocInfoFloat'. s:fg_blue. s:bg_bg3
+  "exec 'hi CocHintFloat'. s:fg_aqua. s:bg_bg3
+  "exec 'hi CocHighlightText'. s:bg_fg3
+  "exec 'hi CocErrorSign' . s:fg_red
+  "exec 'hi CocWarningSign' . s:fg_yellow
+  "exec 'hi CocInfoSign' . s:fg_blue
+  "exec 'hi CocHintSign' . s:fg_aqua
+  "exec 'hi CocErrorHighlight' . s:fg_none  . s:undercurl . s:sp_red
+  "exec 'hi CocWarningHighlight' . s:fg_none  . s:undercurl . s:sp_yellow
+  "exec 'hi CocInfoHighlight' . s:fg_none  . s:undercurl . s:sp_blue
+  "exec 'hi CocWarningVirtualText' . s:fg_grey1
+  "exec 'hi CocErrorVirtualText' . s:fg_grey1
+  "exec 'hi CocInfoVirtualText' . s:fg_grey1
+  "exec 'hi CocHintVirtualText' . s:fg_grey1
+  "exec 'hi CocCodeLens' . s:fg_grey1
+  "exec 'hi HighlightedyankRegion'. s:fg_none. s:reverse
+  "exec 'hi CocGitAddedSign' . s:fg_green
+  "exec 'hi CocGitChangeRemovedSign' . s:fg_purple
+  "exec 'hi CocGitChangedSign' . s:fg_blue
+  "exec 'hi CocGitRemovedSign' . s:fg_red
+  "exec 'hi CocGitTopRemovedSign' . s:fg_red
+  ""coc-explorer
+  "exec 'hi CocExplorerBufferRoot' . s:fg_orange
+  "exec 'hi CocExplorerBufferExpandIcon'. s:fg_aqua
+  "exec 'hi CocExplorerBufferBufnr' . s:fg_purple
+  "exec 'hi CocExplorerBufferModified'. s:fg_red
+  "exec 'hi CocExplorerBufferBufname'. s:fg_grey0
+  "exec 'hi CocExplorerBufferFullpath'. s:fg_grey0
+  "exec 'hi CocExplorerFileRoot' . s:fg_orange
+  "exec 'hi CocExplorerFileExpandIcon' . s:fg_aqua
+  "exec 'hi CocExplorerFileFullpath' . s:fg_grey0
+  "exec 'hi CocExplorerFileDirectory' .  s:fg_green
+  "exec 'hi CocExplorerFileGitStage' . s:fg_purple
+  "exec 'hi CocExplorerFileGitUnstage' . s:fg_yellow
+  "exec 'hi CocExplorerFileSize' . s:fg_blue
+  "exec 'hi CocExplorerTimeAccessed' . s:fg_aqua
+  "exec 'hi CocExplorerTimeCreated' . s:fg_aqua
+  "exec 'hi CocExplorerTimeModified' . s:fg_aqua
   "===============================================================
   " dense-analysis/ale
   "===============================================================
@@ -906,57 +906,57 @@ function! s:apply_syntax_highlightings()
   exec 'hi ALEVirtualTextStyleError' . s:fg_grey1
   exec 'hi ALEVirtualTextStyleWarning' . s:fg_grey1
   "===============================================================
-  " liuchengxu/vista.vim
-  "===============================================================
-  exec 'hi VistaBracket' . s:fg_grey1
-  exec 'hi VistaChildrenNr' . s:fg_orange
-  exec 'hi VistaKind' . s:fg_purple
-  exec 'hi VistaScope' . s:fg_red
-  exec 'hi VistaScopeKind' . s:fg_blue
-  exec 'hi VistaTag' . s:fg_green . s:bold
-  exec 'hi VistaPrefix' . s:fg_grey1
-  exec 'hi VistaColon' . s:fg_green
-  exec 'hi VistaIcon' . s:fg_yellow
-  exec 'hi VistaLineNr' . s:fg_fg0
-  "===============================================================
-  " airblade/vim-gitgutter
-  "===============================================================
-  exec 'hi GitGutterAdd' . s:fg_green  . s:bold
-  exec 'hi GitGutterChange' . s:fg_blue  . s:bold
-  exec 'hi GitGutterDelete' . s:fg_red  . s:bold
-  exec 'hi GitGutterChangeDelete' . s:fg_purple  .s:bold
-  "===============================================================
-  " easymotion/vim-easymotion
-  "===============================================================
-  exec 'hi EasyMotionTarget'. s:fg_bg0 . s:bg_green
-  exec 'hi EasyMotionShade' . s:fg_grey1
+  "" liuchengxu/vista.vim
+  ""===============================================================
+  "exec 'hi VistaBracket' . s:fg_grey1
+  "exec 'hi VistaChildrenNr' . s:fg_orange
+  "exec 'hi VistaKind' . s:fg_purple
+  "exec 'hi VistaScope' . s:fg_red
+  "exec 'hi VistaScopeKind' . s:fg_blue
+  "exec 'hi VistaTag' . s:fg_green . s:bold
+  "exec 'hi VistaPrefix' . s:fg_grey1
+  "exec 'hi VistaColon' . s:fg_green
+  "exec 'hi VistaIcon' . s:fg_yellow
+  "exec 'hi VistaLineNr' . s:fg_fg0
+  ""===============================================================
+  "" airblade/vim-gitgutter
+  ""===============================================================
+  "exec 'hi GitGutterAdd' . s:fg_green  . s:bold
+  "exec 'hi GitGutterChange' . s:fg_blue  . s:bold
+  "exec 'hi GitGutterDelete' . s:fg_red  . s:bold
+  "exec 'hi GitGutterChangeDelete' . s:fg_purple  .s:bold
+  ""===============================================================
+  "" easymotion/vim-easymotion
+  ""===============================================================
+  "exec 'hi EasyMotionTarget'. s:fg_bg0 . s:bg_green
+  "exec 'hi EasyMotionShade' . s:fg_grey1
   "===============================================================
   " liuchengxu/vim-which-key
   "===============================================================
-  exec 'hi WhichKey' . s:fg_red
-  exec 'hi WhichKeySeperator' . s:fg_green
-  exec 'hi WhichKeyGroup' . s:fg_yellow
-  exec 'hi WhichKeyDesc' . s:fg_blue
-  "===============================================================
-  " machakann/vim-sandwich
-  "===============================================================
-  exec 'hi OperatorSandwichChange' .s:fg_bg4 . s:bg_darkgreen
-  "===============================================================
-  "kristijanhusak/vim-dadbod-ui
-  "===============================================================
-  exec 'hi dbui_tables' . s:fg_blue
-  "===============================================================
-  "Shougo/defx.nvim
-  "===============================================================
-  exec 'hi DefxIconsParentDirectory' . s:fg_orange
-  exec 'hi Defx_filename_directory' . s:fg_blue
-  exec 'hi Defx_filename_root' . s:fg_red
-  "===============================================================
-  "hardcoreplayers/dashboard-nvim
-  "===============================================================
-  exec 'hi DashboardShortCut' . s:fg_red . s:bold
-  exec 'hi DashboardFooter' . s:fg_purple .s:bold
-  exec 'hi DashboardHeader' . s:fg_blue .s:bold
+  "exec 'hi WhichKey' . s:fg_red
+  "exec 'hi WhichKeySeperator' . s:fg_green
+  "exec 'hi WhichKeyGroup' . s:fg_yellow
+  "exec 'hi WhichKeyDesc' . s:fg_blue
+  ""===============================================================
+  "" machakann/vim-sandwich
+  ""===============================================================
+  "exec 'hi OperatorSandwichChange' .s:fg_bg4 . s:bg_darkgreen
+  ""===============================================================
+  ""kristijanhusak/vim-dadbod-ui
+  ""===============================================================
+  "exec 'hi dbui_tables' . s:fg_blue
+  ""===============================================================
+  ""Shougo/defx.nvim
+  ""===============================================================
+  "exec 'hi DefxIconsParentDirectory' . s:fg_orange
+  "exec 'hi Defx_filename_directory' . s:fg_blue
+  "exec 'hi Defx_filename_root' . s:fg_red
+  ""===============================================================
+  ""hardcoreplayers/dashboard-nvim
+  ""===============================================================
+  "exec 'hi DashboardShortCut' . s:fg_red . s:bold
+  "exec 'hi DashboardFooter' . s:fg_purple .s:bold
+  "exec 'hi DashboardHeader' . s:fg_blue .s:bold
   "===============================================================
 
 endfunction

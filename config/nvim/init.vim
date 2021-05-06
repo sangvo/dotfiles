@@ -10,7 +10,6 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'godlygeek/tabular'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
 Plug 'justinmk/vim-sneak'
@@ -35,19 +34,18 @@ Plug 'tpope/vim-endwise'
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-"HTML
-Plug 'othree/html5.vim'
-
 " Lua ecosystem
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua', {'branch': 'feat/nvim-lsp-diagnostic-integration'}
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'hrsh7th/vim-vsnip'
-
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,7 +93,7 @@ set termguicolors
 set fillchars+=vert:\|        " add a bar for vertical splits
 set fcs=eob:\                 " hide ~ tila
 set list
-set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+set listchars=tab:»·,nbsp:+,trail:·,eol:¬,space:.,extends:→,precedes:←
 
 " Auto remove trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
@@ -124,6 +122,7 @@ lua require("module-colorizer")
 lua require("nvim-compe")
 " lua require("module-nvim-tree")
 lua require("file-icon")
+lua require("nvim-telescope")
 
 " Load vim module
 source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
@@ -162,9 +161,6 @@ nmap <leader>p "+p
 " Yank to end
 nnoremap Y y$
 
-" Reselect block
-noremap gV `[v`]
-
 " React
 " let g:vim_jsx_pretty_colorful_config = 1
 let g:vim_jsx_pretty_highlight_close_tag = 1
@@ -196,16 +192,6 @@ map <leader>ss <C-W>s
 "  Resize panel
 nmap <C-w>[ :vertical resize -3<CR>
 nmap <C-w>] :vertical resize +3<CR>
-
-" Buffer tab
-map <leader>tc :tabnew<cr>
-map <leader>tx :tabclose<cr>
-
-"Tabular
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " Nvim lua mappings
 nnoremap <Leader>1 :lua require"bufferline".go_to_buffer(1)<CR>

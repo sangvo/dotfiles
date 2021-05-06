@@ -1,53 +1,72 @@
--- Mappings
-vim.api.nvim_set_keymap('n', '<leader>l', ':BufferLineCycleNext<CR>', {silent=true, noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>h', ':BufferLineCyclePrev<CR>', {silent=true, noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>bl', ':BufferLineMoveNext<CR>', {silent=true, noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>bh', ':BufferLineMovePrev<CR>', {silent=true, noremap=true})
+-- colors
 
--- Configs
-require'bufferline'.setup {
-  options = {
-    view = "multiwindow",
-    numbers = "ordinal",
-    number_style = "none",
-    mappings = true,
-    buffer_close_icon= '',
-    modified_icon = '●',
-    close_icon = '',
-    left_trunc_marker = '',
-    right_trunc_marker = '',
-    max_name_length = 10,
-    max_prefix_length = 7, -- prefix used when a buffer is deduplicated
-    tab_size = 18,
-    diagnostics = "nvim_lsp",
-    diagnostics_indicator = function(count, level, diagnostics_dict)
-      return "("..count..")"
-    end,
-    -- NOTE: this will be called a lot so don't do any heavy processing here
-    custom_filter = function(buf_number)
-      -- filter out filetypes you don't want to see
-      if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-        return true
-      end
-      -- filter out by buffer name
-      if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-        return true
-      end
-      -- filter out based on arbitrary rules
-      -- e.g. filter out vim wiki buffer from tabline in your work repo
-      if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-        return true
-      end
-    end,
-    show_buffer_close_icons = true,
-    show_close_icon = true,
-    show_tab_indicators = true,
-    persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    separator_style = 'thick',
-    enforce_regular_tabs = false,
-    always_show_bufferline = true,
-    sort_by = function(buffer_a, buffer_b)
-            return buffer_a.id < buffer_b.id
-          end
-  }
+local bar_fg = "#565c64"
+local activeBuffer_fg = "#c8ccd4"
+
+require "bufferline".setup {
+    options = {
+        buffer_close_icon = "",
+        modified_icon = "",
+        close_icon = "",
+        left_trunc_marker = "",
+        right_trunc_marker = "",
+        max_name_length = 14,
+        max_prefix_length = 13,
+        tab_size = 18,
+        enforce_regular_tabs = true,
+        view = "multiwindow",
+        numbers = "ordinal",
+        show_buffer_close_icons = true,
+        separator_style = "thin"
+    },
+    highlights = {
+        background = {
+            guifg = bar_fg,
+            guibg = "#1e222a"
+        },
+        fill = {
+            guifg = bar_fg,
+            guibg = "#1e222a"
+        },
+        -- focused window
+        buffer_selected = {
+            guifg = activeBuffer_fg,
+            guibg = "#353b45",
+            gui = "bold"
+        },
+        separator_selected = {
+            guifg = "#353b45",
+            guibg = "#353b45"
+        },
+        -- unfocused opened window
+        buffer_visible = {
+            guifg = "#9298a0",
+            guibg = "#282c34"
+        },
+        separator_visible = {
+            guifg = "#282c34",
+            guibg = "#282c34"
+        },
+        separator = {
+            guifg = "#1e222a",
+            guibg = "#1e222a"
+        },
+        indicator_selected = {
+            guifg = "#1e222a",
+            guibg = "#1e222a"
+        },
+        modified_selected = {
+            guifg = "#d0f5c2",
+            guibg = "#353b45"
+        }
+    }
 }
+
+local opt = {silent = true}
+
+local map = vim.api.nvim_set_keymap
+vim.g.mapleader = " "
+
+-- tabnext and tabprev
+map("n", "<<Leader>-l>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
+map("n", "<<Leader>-h>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)

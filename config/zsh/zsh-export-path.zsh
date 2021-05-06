@@ -14,6 +14,8 @@ fi
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # Go
+export GOROOT=$HOME/go
+export GOPATH=$GOROOT/bin
 export PATH=$PATH:/usr/local/go/bin
 
 # direnv
