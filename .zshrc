@@ -139,3 +139,5 @@ source ~/.zsh/zsh-export-path.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

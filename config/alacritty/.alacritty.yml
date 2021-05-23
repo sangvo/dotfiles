@@ -20,7 +20,6 @@ window:
   #  lines: 0
 
   # Window position (changes require restart)
-  #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
   #position:
@@ -122,8 +121,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
+    # family: Iosevka Term
     family: Operator Mono Lig Book
-    # family: Hack Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     style: Regular

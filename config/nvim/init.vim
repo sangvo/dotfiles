@@ -43,9 +43,14 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'nvim-lua/popup.nvim'
+Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'airblade/vim-gitgutter'
+Plug 'rafamadriz/friendly-snippets'
+
+" Debug
+Plug 'dstein64/vim-startuptime'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -76,7 +81,7 @@ set foldnestmax=5             " Deepest fold is 5 levels
 set nofoldenable              " No fold when start
 set splitbelow                " Split below
 set splitright                " Split right
-set number                    " turn hybrid line numbers on
+set number relativenumber     " turn hybrid line numbers on
 set cursorline                " Highlight cursorline
 set hlsearch                  " Highlight all search results
 set smartcase                 " Enable smart-case search
@@ -122,7 +127,7 @@ lua require("module-colorizer")
 lua require("nvim-compe")
 " lua require("module-nvim-tree")
 lua require("file-icon")
-lua require("nvim-telescope")
+lua require("nvim-kind")
 
 " Load vim module
 source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim

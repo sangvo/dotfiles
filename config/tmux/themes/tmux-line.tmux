@@ -1,6 +1,6 @@
 set -g status 'on'
 # statusbar black background
-set -g status-bg black
+set -g status-bg "#627b8a"
 
 set -g status-position bottom
 set -g status-justify 'centre'

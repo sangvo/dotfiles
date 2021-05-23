@@ -3,9 +3,10 @@ nnoremap <C-m> :NvimTreeToggle<CR>
 nnoremap <leader>mr :NvimTreeRefresh<CR>
 nnoremap <leader>mf :NvimTreeFindFile<CR>
 
-hi NvimTreeFolderIcon guifg = '#e78a4e'
-hi NvimTreeFolderName guifg = '#5faf5f' gui = bold
-hi NvimTreeIndentMarker guifg='#383c44'
+hi NvimTreeFolderIcon guifg = '#78838f'
+hi NvimTreeFolderName guifg = '#6699cc' gui = bold
+hi NvimTreeIndentMarker guifg= '#565f69'
+" hi NvimTreeNormal guibg=#191d21 guifg=#9da5b3
 
 :lua <<EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
