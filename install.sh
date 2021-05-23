@@ -7,6 +7,10 @@ ln -s -f ~/workspace/dotfiles/.zshrc ~/.zshrc
 
 ln -s -f ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf
 
+# Git
+ln -s -f ~/workspace/dotfiles/gitconfig ~/.gitconfig
+ln -s -f ~/workspace/dotfiles/gitignore_global ~/.gitignore_global
+
 rm -r -f ~/.config/nvim
 ln -s -f ~/workspace/dotfiles/config/nvim ~/.config/nvim
 
