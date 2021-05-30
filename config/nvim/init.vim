@@ -35,7 +35,7 @@ Plug 'tpope/vim-endwise'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Lua ecosystem
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/nvim-bufferline.lua'
@@ -46,7 +46,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'airblade/vim-gitgutter'
-Plug 'rafamadriz/friendly-snippets'
+Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
 
 " Debug
 Plug 'dstein64/vim-startuptime'

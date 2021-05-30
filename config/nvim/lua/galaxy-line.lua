@@ -102,34 +102,6 @@ local function split(str, sep)
     return res
 end
 
--- local function trailing_whitespace()
---     local trail = vim.fn.search('\\s$', 'nw')
---     if trail ~= 0 then
---         return '  '
---     else
---         return nil
---     end
--- end
-
--- local function tab_indent()
---     local tab = vim.fn.search('^\\t', 'nw')
---     if tab ~= 0 then
---         return ' → '
---     else
---         return nil
---     end
--- end
-
--- local function buffers_count()
---     local buffers = {}
---     for _, val in ipairs(vim.fn.range(1, vim.fn.bufnr('$'))) do
---         if vim.fn.bufexists(val) == 1 and vim.fn.buflisted(val) == 1 then
---             table.insert(buffers, val)
---         end
---     end
---     return #buffers
--- end
-
 local function get_basename(file)
     return file:match '^.+/(.+)$'
 end
@@ -143,20 +115,6 @@ local GetGitRoot = function()
     local git_root = git_dir:gsub('/.git/?$', '')
     return get_basename(git_root)
 end
-
-
--- local LspCheckDiagnostics = function()
---     if
---         #vim.lsp.get_active_clients() > 0
---         and diagnostic.get_diagnostic_error() == nil
---         and diagnostic.get_diagnostic_warn() == nil
---         and diagnostic.get_diagnostic_info() == nil
---         and require('lsp-status').status() == ' '
---     then
---         return ' '
---     end
---     return ''
--- end
 
 -- Left side
 gls.left[1] = {
@@ -191,6 +149,7 @@ gls.left[1] = {
         highlight = { colors.bg, colors.bg, 'bold' },
     },
 }
+
 gls.left[2] = {
     FileIcon = {
         provider = { function()
@@ -203,6 +162,7 @@ gls.left[2] = {
         },
     },
 }
+
 gls.left[3] = {
     FilePath = {
         provider = function()
@@ -224,6 +184,7 @@ gls.left[3] = {
         highlight = { colors.middlegrey, colors.section_bg },
     },
 }
+
 gls.left[4] = {
     FileName = {
         provider = get_current_file_name,
@@ -233,73 +194,46 @@ gls.left[4] = {
         separator_highlight = { colors.section_bg, colors.bg },
     },
 }
--- gls.left[4] = {
---     WhiteSpace = {
---         provider = trailing_whitespace,
---         condition = buffer_not_empty,
---         highlight = {colors.fg, colors.bg}
---     }
--- }
--- gls.left[5] = {
---     TabIndent = {
---         provider = tab_indent,
---         condition = buffer_not_empty,
---         highlight = {colors.fg, colors.bg}
---     }
--- }
--- gls.left[8] = {
---     DiagnosticsCheck = {
---         provider = { LspCheckDiagnostics },
---         highlight = { colors.middlegrey, colors.bg },
---     },
--- }
-gls.left[9] = {
+
+gls.left[5] = {
+  LineInfo = {
+    provider = 'LineColumn',
+    condition = buffer_not_empty,
+    highlight = {colors.fg,colors.section_bg},
+    separator = ' ',
+    separator_highlight = { colors.section_bg, colors.bg },
+  },
+}
+
+gls.left[6] = {
     DiagnosticError = {
         provider = { 'DiagnosticError' },
         icon = '  ',
         highlight = { colors.red, colors.bg },
-        -- separator = ' ',
-        -- separator_highlight = {colors.bg, colors.bg}
+        separator = ' ',
+        separator_highlight = {colors.bg, colors.bg}
     },
 }
--- gls.left[10] = {
---     Space = {
---         provider = function() return ' ' end,
---         highlight = {colors.section_bg, colors.bg}
---     }
--- }
-gls.left[11] = {
+
+gls.left[7] = {
     DiagnosticWarn = {
         provider = { 'DiagnosticWarn' },
         icon = '  ',
         highlight = { colors.orange, colors.bg },
-        -- separator = ' ',
-        -- separator_highlight = {colors.bg, colors.bg}
+        separator = ' ',
+        separator_highlight = {colors.bg, colors.bg}
     },
 }
--- gls.left[12] = {
---     Space = {
---         provider = function() return ' ' end,
---         highlight = {colors.section_bg, colors.bg}
---     }
--- }
-gls.left[13] = {
+
+gls.left[8] = {
     DiagnosticInfo = {
         provider = { 'DiagnosticInfo' },
         icon = '  ',
         highlight = { colors.blue, colors.bg },
-        -- separator = ' ',
-        -- separator_highlight = {colors.section_bg, colors.bg}
+        separator = ' ',
+        separator_highlight = {colors.section_bg, colors.bg}
     },
 }
--- gls.left[14] = {
---     LspStatus = {
---         provider = { LspStatus },
---         -- separator = ' ',
---         -- separator_highlight = {colors.bg, colors.bg},
---         highlight = { colors.middlegrey, colors.bg },
---     },
--- }
 
 -- Right side
 gls.right[0] = {
