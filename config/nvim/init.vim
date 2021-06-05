@@ -147,6 +147,10 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" Shift+H goto head of the line, Shift+L goto end of the line
+nnoremap H ^
+nnoremap L $
+
 " Useful saving mapping
 noremap <leader>w :w!<cr>
 noremap <C-S> :update<CR>

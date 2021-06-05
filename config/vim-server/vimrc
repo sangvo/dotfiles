@@ -1,0 +1,131 @@
+" General config
+set encoding=UTF-8
+set history=2000
+set mouse=a " enable mouse for all mode
+set noswapfile
+set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
+set autoread                  " Set to auto read when a file is changed
+set clipboard=unnamed         " Use the OS clipboard by default
+set hid                       " A buffer becomes hidden when it is abandoned
+set textwidth=120             " Text width maximum chars before wrapping
+set autoindent                " Auto-indent new lines
+set tabstop=4                 " The number of spaces a tab is
+set expandtab                 " Use spaces instead of tabs
+set shiftwidth=2              " Number of auto-indent spaces
+set smartindent               " Enable smart-indent
+set smarttab                  " Enable smart-tabs
+set softtabstop=2             " Number of spaces per Tab
+set foldmethod=indent         " Fold based on indent
+set foldnestmax=5             " Deepest fold is 5 levels
+set nofoldenable              " No fold when start
+set splitbelow                " Split below
+set splitright                " Split right
+set number relativenumber     " turn hybrid line numbers on
+set cursorline                " Highlight cursorline
+set hlsearch                  " Highlight all search results
+set smartcase                 " Enable smart-case search
+set ignorecase                " Always case-insensitive
+set incsearch                 " Searches for strings incrementally
+set so=7                      " Set 7 lines to the cursor
+set laststatus=2
+set ruler
+set wildmenu
+set nospell                   " turn off vim spell same work
+
+" Editor UI
+set termguicolors
+set fillchars+=vert:\|        " add a bar for vertical splits
+set fcs=eob:\                 " hide ~ tila
+set list
+set listchars=tab:»·,nbsp:+,trail:·,eol:¬,space:.,extends:→,precedes:←
+
+" Leader
+let mapleader=" "
+
+" filetype
+filetype on
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Shift+H goto head of the line, Shift+L goto end of the line
+nnoremap H ^
+nnoremap L $
+
+" Yank to end
+map Y y$
+
+" Turn off search highlight
+map <silent> <leader><cr> :noh<cr>
+
+" Split windows
+map <leader>sv <C-W>v
+map <leader>ss <C-W>s
+
+" Copy to clipboard
+vmap <C-C> "+y
+vmap <leader>y "+y
+nmap <leader>y "+y
+nmap <leader>p "+p
+
+" jk to ESC
+inoremap jk <Esc>
+
+" Auto remove trailing spaces
+autocmd BufWritePre * %s/\s\+$//e
+
+" theme
+set background=dark
+colorscheme desert
+
+" set mark column color
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" status line
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set laststatus=2   " Always show the status line - use 2 lines for the status bar
+
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    " .sh
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    " python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" ============================ key map ============================
+
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
