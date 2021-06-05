@@ -33,15 +33,11 @@ set ruler
 set wildmenu
 set nospell                   " turn off vim spell same work
 
-" Editor UI
-set termguicolors
-set fillchars+=vert:\|        " add a bar for vertical splits
-set fcs=eob:\                 " hide ~ tila
-set list
-set listchars=tab:»·,nbsp:+,trail:·,eol:¬,space:.,extends:→,precedes:←
-
 " Leader
 let mapleader=" "
+
+" syntax
+syntax on
 
 " filetype
 filetype on
