@@ -129,9 +129,6 @@ alias la="lsd -Fah"
 alias ll="lsd -Flh"
 alias l="lsd -Flah"
 
-# Jekyll
-alias js="bundle exec jekyll serve --drafts"
-
 # Zsh Defer
 
 source ~/.zsh/zsh-fzf.zsh

@@ -72,10 +72,10 @@ set textwidth=120             " Text width maximum chars before wrapping
 set autoindent                " Auto-indent new lines
 set tabstop=4                 " The number of spaces a tab is
 set expandtab                 " Use spaces instead of tabs
-set shiftwidth=2              " Number of auto-indent spaces
+set shiftwidth=4              " Number of auto-indent spaces
 set smartindent               " Enable smart-indent
 set smarttab                  " Enable smart-tabs
-set softtabstop=2             " Number of spaces per Tab
+set softtabstop=4             " Number of spaces per Tab
 set foldmethod=indent         " Fold based on indent
 set foldnestmax=5             " Deepest fold is 5 levels
 set nofoldenable              " No fold when start
