@@ -14,9 +14,9 @@ fi
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # Go
-export GOROOT=$HOME/go
-export GOPATH=$GOROOT/bin
-export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # direnv
 eval "$(direnv hook zsh)"
@@ -28,4 +28,3 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 # Neovim
 export PATH="$HOME/neovim/bin:$PATH"
-
