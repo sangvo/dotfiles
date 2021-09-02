@@ -1,9 +1,11 @@
 [color]
 	ui = true
-[user]
-	name = Sang Vo
-	email = vo.van.sang@sun-asterisk.com
 
+[includeIf "gitdir/i:~/company/"]
+    path = ~/.gitconfig_company
+
+[includeIf "gitdir/i:~/workspace/"]
+    path =~/.gitconfig_personal
 [core]
   editor = vim
   excludesfile = ~/.gitignore_global
@@ -31,4 +33,3 @@
     line-numbers-plus-style = 28
 [push]
 	default = matching
-

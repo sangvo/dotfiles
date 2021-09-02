@@ -1,0 +1,11 @@
+# Personal account
+Host github.com
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/id_rsa
+
+# Company account (Ruby dev)
+Host github.com-ruby-dev
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/ruby_dev_rsa

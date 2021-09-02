@@ -25,6 +25,9 @@ Plug 'kamykn/spelunker.vim'
 "JS
 Plug 'pangloss/vim-javascript'
 
+" hightlight
+Plug 'slim-template/vim-slim'
+
 " For Rails
 Plug 'vim-ruby/vim-ruby'
 Plug 'nelstrom/vim-textobj-rubyblock'

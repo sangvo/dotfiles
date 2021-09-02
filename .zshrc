@@ -119,6 +119,7 @@ export EDITOR="vim"
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ws="cd ~/workspace"
+alias co="cd ~/company"
 alias cls="clear"
 alias kill3000="fuser -k 3000/tcp"
 alias joke='curl -H "Accept: text/plain" https://icanhazdadjoke.com'
