@@ -71,7 +71,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git rails sudo
+  git rails sudo docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh

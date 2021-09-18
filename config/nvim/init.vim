@@ -103,6 +103,11 @@ set fcs=eob:\                 " hide ~ tila
 set list
 set listchars=tab:»·,nbsp:+,trail:·,eol:¬,space:.,extends:→,precedes:←
 
+" User neomvim config local
+" Refs > https://medium.com/@dnrvs/per-project-settings-in-nvim-fc8c8877d970
+set exrc
+set secure
+
 " Auto remove trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -224,6 +229,7 @@ nmap <silent> <Leader>rs :TestFile<CR>
 nmap <silent> <Leader>ra :TestSuite<CR>
 nmap <silent> <Leader>rl :TestLast<CR>
 
+" rspec
 let test#ruby#rspec#options = {
   \ 'nearest': '--backtrace',
   \ 'file':    '--format documentation',
