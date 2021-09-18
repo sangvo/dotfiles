@@ -135,10 +135,10 @@ alias js="bundle exec jekyll serve --drafts"
 
 # Zsh Defer
 
-source ~/.zsh/zsh-fzf.zsh
-source ~/.zsh/zsh-export-path.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
+zsh-defer source ~/.zsh/zsh-fzf.zsh
+zsh-defer source ~/.zsh/zsh-export-path.zsh
+zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-defer source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
