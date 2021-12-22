@@ -233,7 +233,7 @@ nmap <silent> <Leader>rl :TestLast<CR>
 let test#ruby#rspec#options = {
   \ 'nearest': '--backtrace',
   \ 'file':    '--format documentation',
-  \ 'suite':   '--tag ~slow',
+  \ 'suite':   '--tag slow',
 \}
 
 " Enable matchit for ruby textobject

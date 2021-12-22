@@ -130,8 +130,16 @@ alias la="lsd -Fah"
 alias ll="lsd -Flh"
 alias l="lsd -Flah"
 
+# Git
+alias recent-branch="git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ |  fzf | sed 's/\* //g' | xargs -I '{}' git checkout {}"
+
 # Jekyll
 alias js="bundle exec jekyll serve --drafts"
+
+# Auto add bundle exec rails command
+for cmd in rspec ruby rubocop rails; do
+  alias $cmd="bundle exec $cmd"
+done
 
 # Zsh Defer
 

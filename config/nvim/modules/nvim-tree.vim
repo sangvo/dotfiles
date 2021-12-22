@@ -65,7 +65,7 @@ let g:nvim_tree_width_allow_resize  = 1 "0 by default, will not resize the tree 
 let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
 let g:nvim_tree_hijack_netrw = 0 "1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
 let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
-let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
+let g:nvim_tree_group_empty = 0 " 0 by default, compact folders that only contain a single folder into one node in the file tree
 let g:nvim_tree_show_icons = {
     \ 'git': 0,
     \ 'folders': 1,
@@ -80,18 +80,22 @@ let g:nvim_tree_show_icons = {
 " default will show icon by default if no icon is provided
 " default shows no icon by default
 let g:nvim_tree_icons = {
-    \ 'default': '',
+    \ 'default': '',
     \ 'symlink': '',
     \ 'git': {
     \   'unstaged': "✗",
     \   'staged': "✓",
     \   'unmerged': "",
     \   'renamed': "➜",
-    \   'untracked': "★"
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
     \   },
     \ 'folder': {
-    \   'default': "",
-    \   'open': "",
+    \   'arrow_open': "",
+    \   'arrow_closed': "",
+    \   'default': "",
+    \   'open': "",
     \   'empty': "",
     \   'empty_open': "",
     \   'symlink': "",
