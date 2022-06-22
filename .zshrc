@@ -137,9 +137,9 @@ alias recent-branch="git for-each-ref --sort=-committerdate --format='%(refname:
 alias js="bundle exec jekyll serve --drafts"
 
 # Auto add bundle exec rails command
-for cmd in rspec ruby rubocop rails; do
-  alias $cmd="bundle exec $cmd"
-done
+# for cmd in rspec ruby rubocop rails; do
+#   alias $cmd="bundle exec $cmd"
+# done
 
 # Zsh Defer
 
@@ -150,3 +150,7 @@ zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 zsh-defer source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+

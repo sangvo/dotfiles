@@ -20,45 +20,6 @@ require "bufferline".setup {
         separator_style = "thin"
     },
     highlights = {
-        background = {
-            guifg = bar_fg,
-            guibg = "#1e222a"
-        },
-        fill = {
-            guifg = bar_fg,
-            guibg = "#1e222a"
-        },
-        -- focused window
-        buffer_selected = {
-            guifg = activeBuffer_fg,
-            guibg = "#353b45",
-            gui = "bold"
-        },
-        separator_selected = {
-            guifg = "#353b45",
-            guibg = "#353b45"
-        },
-        -- unfocused opened window
-        buffer_visible = {
-            guifg = "#9298a0",
-            guibg = "#282c34"
-        },
-        separator_visible = {
-            guifg = "#282c34",
-            guibg = "#282c34"
-        },
-        separator = {
-            guifg = "#1e222a",
-            guibg = "#1e222a"
-        },
-        indicator_selected = {
-            guifg = "#1e222a",
-            guibg = "#1e222a"
-        },
-        modified_selected = {
-            guifg = "#d0f5c2",
-            guibg = "#353b45"
-        }
     }
 }
 

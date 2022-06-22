@@ -127,6 +127,9 @@ hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+au BufNewFile,BufRead *.json.jb set ft=ruby
+
 " Lua setup config
 lua require("galaxy-line")
 lua require("buffer-line")
