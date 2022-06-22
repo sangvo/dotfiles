@@ -1,3 +1,7 @@
 [user]
-email = v-sang@ruby-dev.vn
-name = v-sang
+  email = v-sang@ruby-dev.vn
+  name = v-sang
+
+[url "git@github.com-ruby-dev"]
+  insteadOf = git@github.com
+

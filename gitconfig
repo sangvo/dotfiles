@@ -1,6 +1,12 @@
 [color]
 	ui = true
 
+[user]
+  useConfigOnly = true
+
+[include]
+  path = ~/.gitconfig_personal
+
 [includeIf "gitdir/i:~/company/"]
     path = ~/.gitconfig_company
 

@@ -1,11 +1,23 @@
-# Personal account
+### github
+
+### -- PERSONAL/MAIN ACCOUNT --
+
 Host github.com
 	HostName github.com
 	User git
 	IdentityFile ~/.ssh/id_rsa
 
-# Company account (Ruby dev)
+### -- WORK ACCOUNT --
+
 Host github.com-ruby-dev
 	HostName github.com
 	User git
 	IdentityFile ~/.ssh/ruby_dev_rsa
+
+### general
+
+Host *
+  AddKeysToAgent yes
+  IdentitiesOnly yes
+  PreferredAuthentications publickey
+  Compression yes
