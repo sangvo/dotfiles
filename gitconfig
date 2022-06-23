@@ -39,5 +39,3 @@
     line-numbers-plus-style = 28
 [push]
 	default = matching
-[commit]
-	gpgsign = true

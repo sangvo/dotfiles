@@ -2,3 +2,5 @@
 email = sangvo111@gmail.com
 name = sangvo
 signingkey = F92731A32AFD526E
+[commit]
+	gpgsign = true

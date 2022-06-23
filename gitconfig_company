@@ -2,6 +2,9 @@
   email = v-sang@ruby-dev.vn
   name = v-sang
 
+[commit]
+	gpgsign = false
+
 [url "git@github.com-ruby-dev"]
   insteadOf = git@github.com
 
