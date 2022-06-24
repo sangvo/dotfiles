@@ -12,6 +12,7 @@
 
 [includeIf "gitdir/i:~/workspace/"]
     path =~/.gitconfig_personal
+
 [core]
   editor = vim
   excludesfile = ~/.gitignore_global
