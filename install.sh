@@ -11,6 +11,8 @@ ln -s -f ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s -f ~/workspace/dotfiles/multi_ssh_git_config ~/.ssh/config
 ln -s -f ~/workspace/dotfiles/gitconfig ~/.gitconfig
 ln -s -f ~/workspace/dotfiles/gitignore_global ~/.gitignore_global
+ln -s -f ~/workspace/dotfiles/gitconfig_personal ~/.gitconfig_personal
+
 
 rm -r -f ~/.config/nvim
 ln -s -f ~/workspace/dotfiles/config/nvim ~/.config/nvim
