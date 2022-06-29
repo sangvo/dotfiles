@@ -4,6 +4,9 @@
 [user]
   useConfigOnly = true
 
+[commit]
+	gpgsign = true
+
 [include]
   path = ~/.gitconfig_personal
 
