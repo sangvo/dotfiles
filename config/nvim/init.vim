@@ -136,12 +136,12 @@ lua require("buffer-line")
 lua require("lsp-config")
 lua require("module-colorizer")
 lua require("nvim-compe")
-" lua require("module-nvim-tree")
+lua require("module-nvim-tree")
 lua require("file-icon")
 lua require("nvim-kind")
 
 " Load vim module
-source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
+" source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
 
 let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 

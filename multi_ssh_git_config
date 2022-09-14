@@ -14,6 +14,11 @@ Host github.com-ruby-dev
 	User git
 	IdentityFile ~/.ssh/ruby_dev_rsa
 
+Host git.ruby-dev.jp
+	HostName git.ruby-dev.jp
+	User git
+	IdentityFile ~/.ssh/ruby_dev_rsa
+
 ### general
 
 Host *
