@@ -59,57 +59,57 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General configs                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set encoding=UTF-8
-set history=500
-set mouse=a " enable mouse for all mode
-set noswapfile
-set backspace=indent,eol,start
-set whichwrap+=<,>,h,l
-set autoread                  " Set to auto read when a file is changed
-set clipboard=unnamed         " Use the OS clipboard by default
-set hid                       " A buffer becomes hidden when it is abandoned
+" set encoding=UTF-8
+" set history=500
+" set mouse=a " enable mouse for all mode
+" set noswapfile
+" set backspace=indent,eol,start
+" set whichwrap+=<,>,h,l
+" set autoread                  " Set to auto read when a file is changed
+" set clipboard=unnamed         " Use the OS clipboard by default
+" set hid                       " A buffer becomes hidden when it is abandoned
 filetype indent on            " Enable filetype plugins
 filetype plugin on
-syntax enable
-set textwidth=120             " Text width maximum chars before wrapping
-set autoindent                " Auto-indent new lines
-set tabstop=4                 " The number of spaces a tab is
-set expandtab                 " Use spaces instead of tabs
-set shiftwidth=2              " Number of auto-indent spaces
-set smartindent               " Enable smart-indent
-set smarttab                  " Enable smart-tabs
-set softtabstop=2             " Number of spaces per Tab
-set foldmethod=indent         " Fold based on indent
-set foldnestmax=5             " Deepest fold is 5 levels
-set nofoldenable              " No fold when start
-set splitbelow                " Split below
-set splitright                " Split right
-set number relativenumber     " turn hybrid line numbers on
-set cursorline                " Highlight cursorline
-set hlsearch                  " Highlight all search results
-set smartcase                 " Enable smart-case search
-set ignorecase                " Always case-insensitive
-set incsearch                 " Searches for strings incrementally
-set so=7                      " Set 7 lines to the cursor
-set laststatus=2
-set ruler
-set wildmenu
-set nospell                   " turn off vim spell same work
+" syntax enable
+" set textwidth=120             " Text width maximum chars before wrapping
+" set autoindent                " Auto-indent new lines
+" set tabstop=4                 " The number of spaces a tab is
+" set expandtab                 " Use spaces instead of tabs
+" set shiftwidth=2              " Number of auto-indent spaces
+" set smartindent               " Enable smart-indent
+" set smarttab                  " Enable smart-tabs
+" set softtabstop=2             " Number of spaces per Tab
+" set foldmethod=indent         " Fold based on indent
+" set foldnestmax=5             " Deepest fold is 5 levels
+" set nofoldenable              " No fold when start
+" set splitbelow                " Split below
+" set splitright                " Split right
+" set number relativenumber     " turn hybrid line numbers on
+" set cursorline                " Highlight cursorline
+" set hlsearch                  " Highlight all search results
+" set smartcase                 " Enable smart-case search
+" set ignorecase                " Always case-insensitive
+" set incsearch                 " Searches for strings incrementally
+" set so=7                      " Set 7 lines to the cursor
+" set laststatus=2
+" set ruler
+" set wildmenu
+" set nospell                   " turn off vim spell same work
 
 " Editor UI
 set termguicolors
-set fillchars+=vert:\|        " add a bar for vertical splits
-set fcs=eob:\                 " hide ~ tila
-set list
-set listchars=tab:»·,nbsp:+,trail:·,eol:¬,space:.,extends:→,precedes:←
+" set fillchars+=vert:\|        " add a bar for vertical splits
+" set fcs=eob:\                 " hide ~ tila
+" set list
+" set listchars=tab:»·,nbsp:+,trail:·,eol:¬,space:.,extends:→,precedes:←
 
 " User neomvim config local
 " Refs > https://medium.com/@dnrvs/per-project-settings-in-nvim-fc8c8877d970
 set exrc
 set secure
 
-" Auto remove trailing spaces
-autocmd BufWritePre * %s/\s\+$//e
+" " Auto remove trailing spaces
+" autocmd BufWritePre * %s/\s\+$//e
 
 " Scheme
 set background=dark
