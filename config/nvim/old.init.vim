@@ -146,40 +146,40 @@ lua require("nvim-kind")
 let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 
 " Mappings
-let mapleader=" "
-imap jk <Esc>
-map 0 ^
+" let mapleader=" "
+" imap jk <Esc>
+" map 0 ^
 
 " Dont use recording
-map q <Nop>
+" map q <Nop>
 
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+" nnoremap <Left> :echoe "Use h"<CR>
+" nnoremap <Right> :echoe "Use l"<CR>
+" nnoremap <Up> :echoe "Use k"<CR>
+" nnoremap <Down> :echoe "Use j"<CR>
 
 " Shift+H goto head of the line, Shift+L goto end of the line
-nnoremap H ^
-nnoremap L $
+" nnoremap H ^
+" nnoremap L $
 
 " Useful saving mapping
-noremap <leader>w :w!<cr>
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <Esc>:update<CR>
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+" noremap <leader>w :w!<cr>
+" noremap <C-S> :update<CR>
+" vnoremap <C-S> <C-C>:update<CR>
+" inoremap <C-S> <Esc>:update<CR>
+" command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>"
+" map <leader>cd :cd %:p:h<cr>:pwd<cr>"
 
 " Copy to clipboard
-vmap <C-C> "+y
-vmap <leader>y "+y
-nmap <leader>y "+y
-nmap <leader>p "+p
+" vmap <C-C> "+y
+" vmap <leader>y "+y
+" nmap <leader>y "+y
+" nmap <leader>p "+p
 
 " Yank to end
-nnoremap Y y$
+" nnoremap Y y$
 
 " React
 " let g:vim_jsx_pretty_colorful_config = 1
@@ -194,35 +194,36 @@ let g:html5_microdata_attributes_complete = 1
 let g:html5_aria_attributes_complete = 1
 
 " Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" nmap <M-j> mz:m+<cr>`z
+" nmap <M-k> mz:m-2<cr>`z
+" vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+" vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-nmap ]<space> o<esc>
-nmap [<space> O<esc>
+" TODO: ???
+" nmap ]<space> o<esc>
+" nmap [<space> O<esc>
 
 " Turn off search highlight
-map <silent> <leader><cr> :noh<cr>
+" map <silent> <leader><cr> :noh<cr>
 
 " Split windows
-map <leader>sv <C-W>v
-map <leader>ss <C-W>s
+" map <leader>sv <C-W>v
+" map <leader>ss <C-W>s
 
-"  Resize panel
-nmap <C-w>[ :vertical resize -3<CR>
-nmap <C-w>] :vertical resize +3<CR>
+" Resize panel
+" nmap <C-w>[ :vertical resize -6<CR>
+" nmap <C-w>] :vertical resize +6<CR>
 
 " Nvim lua mappings
-nnoremap <Leader>1 :lua require"bufferline".go_to_buffer(1)<CR>
-nnoremap <Leader>2 :lua require"bufferline".go_to_buffer(2)<CR>
-nnoremap <Leader>3 :lua require"bufferline".go_to_buffer(3)<CR>
-nnoremap <Leader>4 :lua require"bufferline".go_to_buffer(4)<CR>
-nnoremap <Leader>5 :lua require"bufferline".go_to_buffer(5)<CR>
-nnoremap <Leader>6 :lua require"bufferline".go_to_buffer(6)<CR>
-nnoremap <Leader>7 :lua require"bufferline".go_to_buffer(7)<CR>
-nnoremap <Leader>8 :lua require"bufferline".go_to_buffer(8)<CR>
-nnoremap <Leader>9 :lua require"bufferline".go_to_buffer(9)<CR>
+" nnoremap <Leader>1 :lua require"bufferline".go_to_buffer(1)<CR>
+" nnoremap <Leader>2 :lua require"bufferline".go_to_buffer(2)<CR>
+" nnoremap <Leader>3 :lua require"bufferline".go_to_buffer(3)<CR>
+" nnoremap <Leader>4 :lua require"bufferline".go_to_buffer(4)<CR>
+" nnoremap <Leader>5 :lua require"bufferline".go_to_buffer(5)<CR>
+" nnoremap <Leader>6 :lua require"bufferline".go_to_buffer(6)<CR>
+" nnoremap <Leader>7 :lua require"bufferline".go_to_buffer(7)<CR>
+" nnoremap <Leader>8 :lua require"bufferline".go_to_buffer(8)<CR>
+" nnoremap <Leader>9 :lua require"bufferline".go_to_buffer(9)<CR>
 
 " Vim test
 let test#strategy = "neovim"
