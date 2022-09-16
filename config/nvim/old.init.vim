@@ -185,7 +185,7 @@ nnoremap Y y$
 " let g:vim_jsx_pretty_colorful_config = 1
 let g:vim_jsx_pretty_highlight_close_tag = 1
 
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 " HTML
 let g:html5_event_handler_attributes_complete = 1
