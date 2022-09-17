@@ -131,14 +131,14 @@ au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 au BufNewFile,BufRead *.json.jb set ft=ruby
 
 " Lua setup config
-lua require("galaxy-line")
-lua require("buffer-line")
+" lua require("galaxy-line")
+" lua require("buffer-line")
 lua require("lsp-config")
-lua require("module-colorizer")
+" lua require("module-colorizer")
 lua require("nvim-compe")
-lua require("module-nvim-tree")
-lua require("file-icon")
-lua require("nvim-kind")
+" lua require("module-nvim-tree")
+" lua require("file-icon")
+" lua require("nvim-kind")
 
 " Load vim module
 " source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
@@ -279,7 +279,7 @@ let g:ctrlsf_extra_backend_args = {
 let g:ctrlsf_auto_focus = {
   \ "at": "start"
   \ }
-" let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_default_view_mode = 'compact'
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -330,9 +330,9 @@ let g:ale_sign_warning = '•'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
-" Edit quickly config nvim
-nmap <Leader><Leader>c :e ~/.config/nvim/init.vim<CR>
-noremap <Leader><Leader>r :so ~/.config/nvim/init.vim<CR>
+" " Edit quickly config nvim
+" nmap <Leader><Leader>c :e ~/.config/nvim/init.vim<CR>
+" noremap <Leader><Leader>r :so ~/.config/nvim/init.vim<CR>
 
 " Indentline
 let g:indentLine_char = '¦'
@@ -352,60 +352,8 @@ let g:splitjoin_split_mapping = ''
 nmap <Leader>sj :SplitjoinJoin<CR>
 nmap <Leader>sk :SplitjoinSplit<CR>
 
-"Goyo markdown writing
-map <leader>G :Goyo<CR>
-
-" Goyo Commands {{{
-augroup user_plugin_goyo
-	autocmd!
-	autocmd! User GoyoEnter
-	autocmd! User GoyoLeave
-	autocmd  User GoyoEnter nested call <SID>goyo_enter()
-    autocmd User GoyoLeave nested source $MYVIMRC |
-	autocmd  User GoyoLeave nested call <SID>goyo_leave()
-augroup END
-
-" Limelight
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
-
-let g:vim_markdown_folding_level = 1
-let g:vim_markdown_folding_style_pythonic = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_auto_insert_bullets = 1
-let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_strikethrough = 1
-let g:vim_markdown_edit_url_in = 'vsplit'
-let g:markdown_fenced_languages = [
-      \'html',
-      \'css',
-      \'scss',
-      \'sql',
-      \'javascript',
-      \'go',
-      \'py=python',
-      \'bash=sh',
-      \'ruby',
-      \'js=javascript', 'json=javascript', 'jsx=javascriptreact', 'tsx=typescriptreact'
-      \'docker=Dockerfile']
-
-" toggle relative numbers
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <leader>nt :call NumberToggle()<CR>
-
 " Buffer
-map <leader>xx :Bclose<cr>
+" map <leader>xx :Bclose<cr>
 map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 map <silent> <leader>l :bnext<cr>
 map <silent> <leader>h :bprevious<cr>
@@ -496,39 +444,6 @@ endfunction
 augroup filetypedetect
     au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
 augroup END
-
-function! s:goyo_enter()
-	if has('gui_running')
-		" Gui fullscreen
-		set fullscreen
-		set linespace=7
-	elseif exists('$TMUX')
-		" Hide tmux status
-		silent !tmux set status off
-	endif
-
-	" Activate Limelight
-	Limelight
-endfunction
-" }}}
-
-" s:goyo_leave() "{{{
-" Enable visuals when leaving Goyo mode
-function! s:goyo_leave()
-	if has('gui_running')
-		" Gui exit fullscreen
-		set nofullscreen
-		set background=dark
-		set linespace=0
-	elseif exists('$TMUX')
-		" Show tmux status
-		silent !tmux set status on
-	endif
-
-	" De-activate Limelight
-	Limelight!
-endfunction
-" }}}
 
 function! s:isAtStartOfLine(mapping)
   let text_before_cursor = getline('.')[0 : col('.')-1]
