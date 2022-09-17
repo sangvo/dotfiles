@@ -244,23 +244,23 @@ let test#ruby#rspec#options = {
 runtime macros/matchit.vim
 
 " Fzf
-nnoremap <silent> <c-p> :Files<cr>
-nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>fr :Rg<cr>
-nnoremap <Leader>t :BTags<CR>
+" nnoremap <silent> <c-p> :Files<cr>
+" nnoremap <silent> <leader>b :Buffers<cr>
+" nnoremap <silent> <leader>fr :Rg<cr>
+" nnoremap <Leader>t :BTags<CR>
 
 " Fugitive
-nnoremap <silent> <leader>gl :Glog<cr>
-nnoremap <silent> <Leader>gad :Git add %:p<CR>
-"nnoremap <silent> <Leader>gc :Git commit<CR>
-nnoremap <silent> <Leader>gb :Git blame<CR>
-nnoremap <silent> <Leader>gf :Gfetch<CR>
-nnoremap <silent> <Leader>gs :Git<CR>
-nnoremap <silent> <Leader>gp :Gpush<CR>
+"nnoremap <silent> <leader>gl :Glog<cr>
+"nnoremap <silent> <Leader>gad :Git add %:p<CR>
+""nnoremap <silent> <Leader>gc :Git commit<CR>
+"nnoremap <silent> <Leader>gb :Git blame<CR>
+"nnoremap <silent> <Leader>gf :Gfetch<CR>
+"nnoremap <silent> <Leader>gs :Git<CR>
+"nnoremap <silent> <Leader>gp :Gpush<CR>
 " Fugitive Conflict Resolution
-nnoremap <silent> <Leader>gdf :Gvdiff!<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
+" nnoremap <silent> <Leader>gdf :Gvdiff!<CR>
+" nnoremap gdh :diffget //2<CR>
+" nnoremap gdl :diffget //3<CR>
 
 " Vim sneak
 let g:sneak#label = 1
@@ -279,7 +279,7 @@ let g:ctrlsf_extra_backend_args = {
 let g:ctrlsf_auto_focus = {
   \ "at": "start"
   \ }
-let g:ctrlsf_default_view_mode = 'compact'
+" let g:ctrlsf_default_view_mode = 'compact'
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath

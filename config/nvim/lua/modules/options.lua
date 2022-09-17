@@ -10,7 +10,7 @@ o.swapfile = false -- Disable vim create swap file
 o.whichwrap = "b,s,<,>,[,]"
 o.autoread = true -- Set to auto read when a file is changed
 o.autowrite      = true -- auto write buffer when it's not focused
-o.clipboard = "unnamedplus" -- Use the OS clipboard by default
+o.clipboard = "unnamed" -- Use the OS clipboard by default
 o.hidden = true
 o.mouse = "a" -- enable mouse for all mode
 o.syntax = "on"
@@ -76,6 +76,10 @@ o.fillchars = {
 o.listchars      = {
   -- eol = "↲",
   tab = "» ",
+  space = ".",
+  trail = "·",
+  extends = "→",
+  precedes = "←",
 } -- set listchars
 
 -- Auto remove trailing spaces

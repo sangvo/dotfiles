@@ -1,33 +1,43 @@
--- colors
-
-local bar_fg = "#565c64"
-local activeBuffer_fg = "#c8ccd4"
-
-require "bufferline".setup {
-    options = {
-        buffer_close_icon = "",
-        modified_icon = "",
-        close_icon = "",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
-        max_name_length = 14,
-        max_prefix_length = 13,
-        tab_size = 18,
-        enforce_regular_tabs = true,
-        view = "multiwindow",
-        numbers = "ordinal",
-        show_buffer_close_icons = true,
-        separator_style = "thin"
+require("bufferline").setup {
+  options = {
+    show_buffer_close_icons = true,
+    separator_style = "thick",
+    diagnostics = "nvim_lsp",
+    buffer_close_icon = "",
+    numbers = "ordinal",
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        text_align = "center",
+      },
     },
-    highlights = {
-    }
+    custom_areas = {
+      right = function()
+        local result = {}
+        local error = vim.diagnostic.get_count(0, [[Error]])
+        local warning = vim.diagnostic.get_count(0, [[Warning]])
+        local info = vim.diagnostic.get_count(0, [[Information]])
+        local hint = vim.diagnostic.get_count(0, [[Hint]])
+
+        if error ~= 0 then
+          result[1] = { text = "  " .. error, guifg = "#EC5241" }
+        end
+
+        if warning ~= 0 then
+          result[2] = { text = "  " .. warning, guifg = "#EFB839" }
+        end
+
+        if hint ~= 0 then
+          result[3] = { text = "  " .. hint, guifg = "#A3BA5E" }
+        end
+
+        if info ~= 0 then
+          result[4] = { text = "  " .. info, guifg = "#7EA9A7" }
+        end
+
+        return result
+      end,
+    },
+  },
 }
-
-local opt = {silent = true}
-
-local map = vim.api.nvim_set_keymap
-vim.g.mapleader = " "
-
--- tabnext and tabprev
-map("n", "<<Leader>-l>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
-map("n", "<<Leader>-h>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)

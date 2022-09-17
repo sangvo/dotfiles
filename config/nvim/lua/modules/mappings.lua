@@ -81,7 +81,7 @@ map("", "<<leader>ss>sv", "<C-W>s")
 nmap("<C-w>[", ":vertical resize -6<CR>")
 nmap("<C-w>]", ":vertical resize +6<CR>")
 
--- Goto buffer
+-- buffer-line
 nnoremap("<Leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>")
 nnoremap("<Leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>")
 nnoremap("<Leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>")
@@ -93,3 +93,22 @@ nnoremap("<Leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>")
 nnoremap("<Leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>")
 nnoremap("<Leader>$", "<Cmd>BufferLineGoToBuffer -1<CR>")
 
+map("n", "<Leader>l", "<Cmd>BufferLineCycleNext<CR>")
+map("n", "<Leader>h", "<Cmd>BufferLineCyclePrev<CR>")
+
+-- Fzf
+nnoremap("<c-p>", ":Files<CR>")
+nnoremap("<Leader>b", ":Buffers<CR>")
+nnoremap("<Leader>fr", ":Rg<CR>")
+nnoremap("<Leader>t", ":BTags<CR>")
+
+-- Fugitive
+nnoremap("<Leader>gl", ":Gclog<CR>")
+-- Fugitive Conflict Resolution
+nnoremap("<Leader>gdf", ":Gvdiff!<CR>")
+nnoremap("gdh", ":diffget //2<CR>")
+nnoremap("gdl", ":diffget //3<CR>")
+
+-- Buffer
+map("", "<Leader>xx", ":Bclose<CR>")
+nnoremap("<Leader>gb",":Git blame<CR>")
