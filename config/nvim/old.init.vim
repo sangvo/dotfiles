@@ -119,16 +119,16 @@ let g:oceanic_material_allow_bold=1
 let g:oceanic_material_allow_italic=1
 
 " Set background terminal and line number transparent
-highlight clear SignColumn
+hi clear SignColumn
 hi Normal ctermbg=NONE guibg=NONE
 hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 
 " Override color spell hightlight
-highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
-highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
+hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
-au BufNewFile,BufRead *.json.jbuilder set ft=ruby
-au BufNewFile,BufRead *.json.jb set ft=ruby
+" au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+" au BufNewFile,BufRead *.json.jb set ft=ruby
 
 " Lua setup config
 " lua require("galaxy-line")
@@ -263,13 +263,13 @@ runtime macros/matchit.vim
 " nnoremap gdl :diffget //3<CR>
 
 " Vim sneak
-let g:sneak#label = 1
-map s <Plug>Sneak_s
-map S <Plug>Sneak_S
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+" let g:sneak#label = 1
+" map s <Plug>Sneak_s
+" map S <Plug>Sneak_S
+" map f <Plug>Sneak_f
+" map F <Plug>Sneak_F
+" map t <Plug>Sneak_t
+" map T <Plug>Sneak_T
 
 " Search word
 let g:ctrlsf_backend = 'rg'
@@ -305,18 +305,18 @@ inoreabbrev <expr> __
           \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
 " Go (Google)
-let g:go_highlight_structs = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_variable_assignments = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_format_strings = 1
-let g:go_auto_type_info = 0
+" let g:go_highlight_structs = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_variable_assignments = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_function_parameters = 1
+" let g:go_highlight_format_strings = 1
+" let g:go_auto_type_info = 0
 
 
 " ALE
@@ -335,16 +335,16 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " noremap <Leader><Leader>r :so ~/.config/nvim/init.vim<CR>
 
 " Indentline
-let g:indentLine_char = '¦'
-"Prevent hidden double quotes in json file and markdown
-let g:indentLine_setConceal = 2
-let g:indentLine_concealcursor = ""
-let g:indentLine_fileTypeExclude = ['defx']
+"let g:indentLine_char = '¦'
+""Prevent hidden double quotes in json file and markdown
+"let g:indentLine_setConceal = 2
+"let g:indentLine_concealcursor = ""
+"let g:indentLine_fileTypeExclude = ['defx']
 
 " [rails.vim] custom commands
-command! Eroutes Einitializer
-command! Egemfile edit Gemfile
-command! Ereadme edit README.md
+" command! Eroutes Einitializer
+" command! Egemfile edit Gemfile
+" command! Ereadme edit README.md
 
 " SplitJoin
 let g:splitjoin_join_mapping = ''
@@ -354,24 +354,24 @@ nmap <Leader>sk :SplitjoinSplit<CR>
 
 " Buffer
 " map <leader>xx :Bclose<cr>
-map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
-map <silent> <leader>l :bnext<cr>
-map <silent> <leader>h :bprevious<cr>
+" map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
+" map <silent> <leader>l :bnext<cr>
+" map <silent> <leader>h :bprevious<cr>
 
 " Ale plugin
-let b:ale_linters = {
-  \ 'javascript': ['eslint'],
-  \ 'typescript': ['eslint'],
-  \ 'ruby': ['rubocop'],
-  \}
+" let b:ale_linters = {
+"   \ 'javascript': ['eslint'],
+"   \ 'typescript': ['eslint'],
+"   \ 'ruby': ['rubocop'],
+"   \}
 
-let g:ale_fixers = {
-  \ 'ruby': ['rubocop'],
-  \ 'javascript': ['eslint'],
-  \ 'css': ['prettier'],
-  \ 'json': ['prettier'],
-  \ 'yaml': ['prettier'],
-  \}
+" let g:ale_fixers = {
+"   \ 'ruby': ['rubocop'],
+"   \ 'javascript': ['eslint'],
+"   \ 'css': ['prettier'],
+"   \ 'json': ['prettier'],
+"   \ 'yaml': ['prettier'],
+"   \}
 
 " Fzf config layout search
 let g:fzf_layout = { 'down': '~30%' }
@@ -427,27 +427,27 @@ function! <SID>BufcloseCloseIt()
   endif
 endfunction
 
-function! CloseAllBuffersExceptCurrent()
-  let curr = bufnr("%")
-  let last = bufnr("$")
-  if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
-  if curr < last | silent! execute (curr+1).",".last."bd" | endif
-endfunction
+" function! CloseAllBuffersExceptCurrent()
+"   let curr = bufnr("%")
+"   let last = bufnr("$")
+"   if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
+"   if curr < last | silent! execute (curr+1).",".last."bd" | endif
+" endfunction
 
-" Detect  Go HTML
-function DetectGoHtmlTmpl()
-    if expand('%:e') == "html" && search("{{") != 0
-        set filetype=gohtmltmpl
-    endif
-endfunction
+" " Detect  Go HTML
+" function DetectGoHtmlTmpl()
+"     if expand('%:e') == "html" && search("{{") != 0
+"         set filetype=gohtmltmpl
+"     endif
+" endfunction
 
-augroup filetypedetect
-    au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
-augroup END
+" augroup filetypedetect
+"     au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+" augroup END
 
-function! s:isAtStartOfLine(mapping)
-  let text_before_cursor = getline('.')[0 : col('.')-1]
-  let mapping_pattern = '\V' . escape(a:mapping, '\')
-  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-endfunction
+" function! s:isAtStartOfLine(mapping)
+"   let text_before_cursor = getline('.')[0 : col('.')-1]
+"   let mapping_pattern = '\V' . escape(a:mapping, '\')
+"   let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+"   return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+" endfunction
