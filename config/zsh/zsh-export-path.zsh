@@ -15,14 +15,11 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# Go
-export PATH=$PATH:/usr/local/go/bin
+
 # Neovim
 export PATH="$HOME/neovim/bin:$PATH"
 
