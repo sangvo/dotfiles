@@ -354,7 +354,7 @@ nmap <Leader>sk :SplitjoinSplit<CR>
 
 " Buffer
 " map <leader>xx :Bclose<cr>
-" map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
+map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 " map <silent> <leader>l :bnext<cr>
 " map <silent> <leader>h :bprevious<cr>
 
@@ -427,12 +427,12 @@ function! <SID>BufcloseCloseIt()
   endif
 endfunction
 
-" function! CloseAllBuffersExceptCurrent()
-"   let curr = bufnr("%")
-"   let last = bufnr("$")
-"   if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
-"   if curr < last | silent! execute (curr+1).",".last."bd" | endif
-" endfunction
+function! CloseAllBuffersExceptCurrent()
+  let curr = bufnr("%")
+  let last = bufnr("$")
+  if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
+  if curr < last | silent! execute (curr+1).",".last."bd" | endif
+endfunction
 
 " " Detect  Go HTML
 " function DetectGoHtmlTmpl()
