@@ -25,3 +25,5 @@ export NVM_DIR="$HOME/.nvm"
 # Neovim
 export PATH="$HOME/neovim/bin:$PATH"
 
+# exercism
+export PATH=~/bin:$PATH
