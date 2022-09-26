@@ -2,10 +2,36 @@
 
 killall mpd &
 
-pgrep -x sxhkd > /dev/null || sxhkd &
+#Configs side of monitors BSPWM
+SECOND_MONITOR_SIDE="right"
+THIRD_MONITOR_SIDE="right"
 
-bspc monitor -d I II III IV
-bspc monitor HDMI-1 -d V VI
+#Get Monitors
+PRINCIPAL=$(xrandr | grep primary | awk '{print $1}')
+SECOND_MONITOR=$(xrandr | grep connected | awk '{i++}i==2'| awk '{print $1}')
+THIRD_MONITOR=$(xrandr | grep connected | awk '{i++}i==3'| awk '{print $1}')
+
+sxhkd &
+
+ # Configure Monitors
+if [ "$(xrandr | grep -sw 'connected' | wc -l)" = "3" ]; then
+  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
+  bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
+  bspc monitor $(bspc query -M | sed -n 3p) -d XI XII XIII XIV XV
+   # Set Monitors Side and output
+  xrandr --output $SECOND_MONITOR --$SECOND_MONITOR_SIDE-of $PRINCIPAL
+  xrandr --output $THIRD_MONITOR --$THIRD_MONITOR_SIDE-of $PRINCIPAL
+elif [ "$(xrandr | grep -sw 'connected' | wc -l)" = "2" ]; then
+  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
+  bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
+  #Set Monitors Side and output
+  xrandr --output $SECOND_MONITOR --$SECOND_MONITOR_SIDE-of $THIRD_MONITOR
+else
+  bspc monitor -d I II III IV V VI VII VIII IX X
+fi
+
+# bspc monitor -d I II III IV
+# bspc monitor HDMI-1 -d V VI
 
 bspc config border_width         2
 bspc config window_gap          12
