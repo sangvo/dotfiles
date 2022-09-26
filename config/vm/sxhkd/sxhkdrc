@@ -7,6 +7,9 @@ super + Return
 	alacritty
 
 # program launcher
+super + d
+	rofi -show drun -theme simple -lines 7 -width 35 -location 0 -yoffset -100 -columns 1 -font 'Hack Regular 10'
+
 super + @space
 	dmenu_run
 
@@ -14,9 +17,7 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#
 # bspwm hotkeys
-#
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -120,3 +121,19 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+#tmp shortcut
+ctrl + alt + l
+	betterlockscreen -l blur
+
+
+#Print screen
+Print
+	scrot -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
+shift + @Print
+	scrot -s -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
+alt + Print
+	scrot -u -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
+ctrl + Print
+	scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
+ctrl + shift + @Print
+	scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xcrip -selection c -t image/png < $f'
