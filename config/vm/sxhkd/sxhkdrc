@@ -8,14 +8,20 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show drun -theme simple -lines 7 -width 35 -location 0 -yoffset -100 -columns 1 -font 'Hack Regular 10'
+	rofi -show drun -theme menu -lines 7 -width 35 -location 0 -yoffset -100 -columns 1 -font 'Hack Regular 10'
 
 super + @space
 	dmenu_run
 
+super + e
+	alacritty -e ranger
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+super + q
+	~/workspace/dotfiles/config/vm/rofi/rofi-power
 
 # bspwm hotkeys
 

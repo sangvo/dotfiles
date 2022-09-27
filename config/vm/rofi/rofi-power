@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# rofi-power
+# Use rofi to call systemctl for shutdown, reboot, etc
+
+# 2016 Oliver Kraitschy - http://okraits.de
+
+OPTIONS="LOCK\nSUSPEND\nSHUTDOWN\nREBOOT"
+
+# source configuration or use default values
+if [ -f $HOME/.config/rofi-power/config ]; then
+  source $HOME/.config/rofi-power/config
+else
+  LAUNCHER="rofi -lines 1 -columns 4 -location 3 -xoffset -30 -yoffset 60 -width 25 -dmenu -theme power"
+  LOCKER="betterlockscreen --lock blur"
+fi
+
+# Show exit wm option if exit command is provided as an argument
+if [ ${#1} -gt 0 ]; then
+  OPTIONS="Exit window manager\n$OPTIONS"
+fi
+
+option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
+if [ ${#option} -gt 0 ]
+then
+    case $option in
+      Exit)
+        eval $1
+        ;;
+      SHUTDOWN)
+        shutdown -h now
+        ;;
+      LOCK)
+        $LOCKER
+        ;;
+      SUSPEND)
+        betterlockscreen -s blur
+        ;;
+      REBOOT)
+        systemctl reboot
+        ;;
+      *)
+        ;;
+    esac
+fi

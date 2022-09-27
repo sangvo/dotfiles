@@ -3,7 +3,7 @@
 killall mpd &
 
 #Configs side of monitors BSPWM
-SECOND_MONITOR_SIDE="right"
+SECOND_MONITOR_SIDE="left"
 THIRD_MONITOR_SIDE="right"
 
 #Get Monitors
@@ -13,7 +13,7 @@ THIRD_MONITOR=$(xrandr | grep connected | awk '{i++}i==3'| awk '{print $1}')
 
 sxhkd &
 
- # Configure Monitors
+ #Configure Monitors
 if [ "$(xrandr | grep -sw 'connected' | wc -l)" = "3" ]; then
   bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
   bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
