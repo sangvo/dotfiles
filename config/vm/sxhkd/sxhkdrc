@@ -131,6 +131,29 @@ super + {Left,Down,Up,Right}
 ctrl + alt + l
 	betterlockscreen -l blur
 
+#Volume Control
+XF86AudioLowerVolume
+	~/.config/sxhkd/volume.sh down
+XF86AudioRaiseVolume
+	~/.config/sxhkd/volume.sh up
+XF86AudioMute
+	~/.config/sxhkd/volume.sh toggle
+
+#Brightness control
+XF86MonBrightnessDown
+	xbacklight -dec 5
+XF86MonBrightnessUp
+  xbacklight -inc 5
+
+#Music control
+XF86AudioPlay
+	mpc toggle
+XF86AudioNext
+	mpc next
+XF86AudioPrev
+	mpc prev
+XF86AudioStop
+	mpc stop
 
 #Print screen
 Print
