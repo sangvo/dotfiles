@@ -41,7 +41,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'akinsho/nvim-bufferline.lua'
+Plug 'akinsho/bufferline.nvim',  { 'tag': 'v2.*' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'norcalli/nvim-colorizer.lua'

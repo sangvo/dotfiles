@@ -15,15 +15,15 @@ sxhkd &
 
  #Configure Monitors
 if [ "$(xrandr | grep -sw 'connected' | wc -l)" = "3" ]; then
-  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
-  bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
+  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV
+  bspc monitor $(bspc query -M | sed -n 2p) -d V VI VII VIII IX X
   bspc monitor $(bspc query -M | sed -n 3p) -d XI XII XIII XIV XV
    # Set Monitors Side and output
   xrandr --output $SECOND_MONITOR --$SECOND_MONITOR_SIDE-of $PRINCIPAL
   xrandr --output $THIRD_MONITOR --$THIRD_MONITOR_SIDE-of $PRINCIPAL
 elif [ "$(xrandr | grep -sw 'connected' | wc -l)" = "2" ]; then
-  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
-  bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
+  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV
+  bspc monitor $(bspc query -M | sed -n 2p) -d V VI VII VIII IX X
   #Set Monitors Side and output
   xrandr --output $SECOND_MONITOR --$SECOND_MONITOR_SIDE-of $THIRD_MONITOR
 else
@@ -43,6 +43,7 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a Alacritty state=floating
+bspc rule -a '*:*:Picture in picture' state=floating
 
 # border colors
 bspc config focused_border_color "#83a598"
@@ -52,5 +53,6 @@ compton &
 dunst &
 mpd &
 setxkbmap -option caps:escape &
-feh --bg-fill $HOME/workspace/dotfiles/wallpapers/saitama-ok.png &
-$HOME/.config/polybar/launch.sh
+feh --bg-fill $HOME/workspace/dotfiles/wallpapers/asta.jpg &
+$HOME/.config/polybar/launch.sh &
+$HOME/workspace/dotfiles/scripts/setup-xinput.sh &
