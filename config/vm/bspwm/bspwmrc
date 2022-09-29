@@ -51,6 +51,6 @@ bspc config normal_border_color "#454849"
 compton &
 dunst &
 mpd &
-setxkbmap -option caps:super &
+setxkbmap -option caps:escape &
 feh --bg-fill $HOME/workspace/dotfiles/wallpapers/saitama-ok.png &
 $HOME/.config/polybar/launch.sh
