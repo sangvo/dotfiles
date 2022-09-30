@@ -1,0 +1,3 @@
+#!/bin/sh
+# this is ubuntu sound
+paplay --volume=50000 ~/.config/dunst/message.oga
