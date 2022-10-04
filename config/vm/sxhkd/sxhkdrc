@@ -165,4 +165,4 @@ alt + Print
 ctrl + Print
 	scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
 ctrl + shift + @Print
-	scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xcrip -selection c -t image/png < $f'
+	scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
