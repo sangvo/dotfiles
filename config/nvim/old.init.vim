@@ -8,7 +8,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
-Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-user'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
@@ -30,7 +30,7 @@ Plug 'slim-template/vim-slim'
 
 " For Rails
 Plug 'vim-ruby/vim-ruby'
-Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 
@@ -50,6 +50,10 @@ Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
+
+Plug 'glepnir/zephyr-nvim', {'branch': 'main'}
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Debug
 Plug 'dstein64/vim-startuptime'
@@ -113,7 +117,7 @@ set secure
 
 " Scheme
 set background=dark
-colorscheme oceanic_material
+colorscheme zephyr
 let g:oceanic_material_background='ocean'
 let g:oceanic_material_allow_bold=1
 let g:oceanic_material_allow_italic=1
@@ -123,9 +127,9 @@ hi clear SignColumn
 hi Normal ctermbg=NONE guibg=NONE
 hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 
-" Override color spell hightlight
-hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
-hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+" " Override color spell hightlight
+" hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
+" hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 " au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 " au BufNewFile,BufRead *.json.jb set ft=ruby
