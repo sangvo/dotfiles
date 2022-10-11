@@ -44,6 +44,14 @@ bspc config gapless_monocle      true
 
 bspc rule -a Alacritty state=floating
 bspc rule -a '*:*:Picture in picture' state=floating
+bspc rule -a Chrome desktop='^2' follow=on border=off
+
+bspc rule -a TelegramDesktop desktop='^5' follow=on border=off state=tiled
+bspc rule -a Skype desktop='^5' follow=on border=off state=tiled
+bspc rule -a Slack desktop='^5' follow=on border=off state=tiled
+
+bspc rule -a zoom desktop='^6' state=floating center=on follow=on border=off
+
 
 # border colors
 bspc config focused_border_color "#83a598"

@@ -54,6 +54,7 @@ Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
 Plug 'glepnir/zephyr-nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'editorconfig/editorconfig-vim'
 
 " Debug
 Plug 'dstein64/vim-startuptime'
@@ -128,8 +129,8 @@ hi Normal ctermbg=NONE guibg=NONE
 hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 
 " " Override color spell hightlight
-" hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
-" hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
+hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 " au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 " au BufNewFile,BufRead *.json.jb set ft=ruby
@@ -365,7 +366,7 @@ map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 " Ale plugin
 " let b:ale_linters = {
 "   \ 'javascript': ['eslint'],
-"   \ 'typescript': ['eslint'],
+"   \ 'ypescript': ['eslint'],
 "   \ 'ruby': ['rubocop'],
 "   \}
 

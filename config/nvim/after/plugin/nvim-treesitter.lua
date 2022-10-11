@@ -23,6 +23,7 @@ ts_config.setup {
     "typescript",
     "vue",
     "ruby",
+    "scss",
   },
 
   autotag = { enable = true },

@@ -22,8 +22,5 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Neovim
-export PATH="$HOME/neovim/bin:$PATH"
-
 # exercism
 export PATH=~/bin:$PATH
