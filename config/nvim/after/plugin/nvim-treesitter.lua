@@ -2,9 +2,7 @@ local ts_config = require "nvim-treesitter.configs"
 
 ts_config.setup {
   ensure_installed = {
-    "c",
     "comment",
-    "cpp",
     "css",
     "go",
     "html",
@@ -16,7 +14,6 @@ ts_config.setup {
     "lua",
     "python",
     "query",
-    "rst",
     "rust",
     "yaml",
     "tsx",

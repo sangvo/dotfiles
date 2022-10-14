@@ -14,7 +14,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
 Plug 'justinmk/vim-sneak'
 Plug 'dyng/ctrlsf.vim'
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 
 " Markdown Blog
 Plug 'plasticboy/vim-markdown'
@@ -50,11 +50,16 @@ Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
+Plug 'windwp/nvim-autopairs'
 
 Plug 'glepnir/zephyr-nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 
 " Debug
 Plug 'dstein64/vim-startuptime'
@@ -453,15 +458,15 @@ function! CloseAllBuffersExceptCurrent()
 endfunction
 
 " " Detect  Go HTML
-" function DetectGoHtmlTmpl()
-"     if expand('%:e') == "html" && search("{{") != 0
-"         set filetype=gohtmltmpl
-"     endif
-" endfunction
+function DetectGoHtmlTmpl()
+    if expand('%:e') == "html" && search("{{") != 0
+        set filetype=gohtmltmpl
+    endif
+endfunction
 
-" augroup filetypedetect
-"     au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
-" augroup END
+augroup filetypedetect
+    au! BufRead,BufNewFile *.html call DetectGoHtmlTmpl()
+augroup END
 
 " function! s:isAtStartOfLine(mapping)
 "   let text_before_cursor = getline('.')[0 : col('.')-1]
