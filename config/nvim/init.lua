@@ -24,4 +24,6 @@ runtime! lua/modules/mappings.lua
 
 -- source a vimscript file
 vim.cmd('source ~/workspace/dotfiles/config/nvim/old.init.vim')
+require("lsp-config")
+require("nvim-compe")
 require("theme")

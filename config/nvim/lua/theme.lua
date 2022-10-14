@@ -1,5 +1,4 @@
 vim.cmd[[
-set termguicolors
 colorscheme zephyr
 ]]
 vim.o.background = "dark"

@@ -109,7 +109,9 @@ nnoremap("gdh", ":diffget //2<CR>")
 nnoremap("gdl", ":diffget //3<CR>")
 
 -- Buffer
-map("", "<Leader>xx", ":Bclose<CR>")
+map("", "<Leader>xx", ":Bdelete!<CR>")
+-- Close all but except current
+map("", "<Leader>xa", "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>")
 nnoremap("<Leader>gb",":Git blame<CR>")
 
 -- Ale

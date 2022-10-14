@@ -53,6 +53,7 @@ Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag', {'branch': 'main'}
 Plug 'andymass/vim-matchup'
+Plug 'famiu/bufdelete.nvim'
 
 Plug 'glepnir/zephyr-nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -118,8 +119,8 @@ call plug#end()
 
 " User neomvim config local
 " Refs > https://medium.com/@dnrvs/per-project-settings-in-nvim-fc8c8877d970
-set exrc
-set secure
+" set exrc
+" set secure
 
 " " Auto remove trailing spaces
 " autocmd BufWritePre * %s/\s\+$//e
@@ -146,9 +147,9 @@ set secure
 " Lua setup config
 " lua require("galaxy-line")
 " lua require("buffer-line")
-lua require("lsp-config")
+" lua require("lsp-config")
 " lua require("module-colorizer")
-lua require("nvim-compe")
+" lua require("nvim-compe")
 " lua require("module-nvim-tree")
 " lua require("file-icon")
 " lua require("nvim-kind")
@@ -156,7 +157,7 @@ lua require("nvim-compe")
 " Load vim module
 " source ~/workspace/dotfiles/config/nvim/modules/nvim-tree.vim
 
-let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
+" let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 
 " Mappings
 " let mapleader=" "
@@ -285,23 +286,23 @@ let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 " map T <Plug>Sneak_T
 
 " Search word
-let g:ctrlsf_backend = 'rg'
-let g:ctrlsf_extra_backend_args = {
-    \ 'rg': '--vimgrep --type-not sql --smart-case'
-    \ }
-let g:ctrlsf_auto_focus = {
-  \ "at": "start"
-  \ }
-let g:ctrlsf_default_view_mode = 'compact'
+" let g:ctrlsf_backend = 'rg'
+" let g:ctrlsf_extra_backend_args = {
+"     \ 'rg': '--vimgrep --type-not sql --smart-case'
+"     \ }
+" let g:ctrlsf_auto_focus = {
+"   \ "at": "start"
+"   \ }
+" let g:ctrlsf_default_view_mode = 'compact'
 
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+" nmap     <C-F>f <Plug>CtrlSFPrompt
+" vmap     <C-F>f <Plug>CtrlSFVwordPath
+" vmap     <C-F>F <Plug>CtrlSFVwordExec
+" nmap     <C-F>n <Plug>CtrlSFCwordPath
+" nmap     <C-F>p <Plug>CtrlSFPwordPath
+" nnoremap <C-F>o :CtrlSFOpen<CR>
+" nnoremap <C-F>t :CtrlSFToggle<CR>
+" inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " vim-gutentags {{ "
 " let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'node_modules', 'dist', 'vendor']
@@ -362,12 +363,12 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 " SplitJoin
 " let g:splitjoin_join_mapping = ''
 " let g:splitjoin_split_mapping = ''
-nmap <Leader>sj :SplitjoinJoin<CR>
-nmap <Leader>sk :SplitjoinSplit<CR>
+" nmap <Leader>sj :SplitjoinJoin<CR>
+" nmap <Leader>sk :SplitjoinSplit<CR>
 
 " Buffer
 " map <leader>xx :Bclose<cr>
-map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
+" map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 " map <silent> <leader>l :bnext<cr>
 " map <silent> <leader>h :bprevious<cr>
 
@@ -387,36 +388,36 @@ map <leader>xa :call CloseAllBuffersExceptCurrent()<cr>
 "   \}
 
 " Fzf config layout search
-let g:fzf_layout = { 'down': '~30%' }
+" let g:fzf_layout = { 'down': '~30%' }
 
-autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+" autocmd  FileType fzf set laststatus=0 noshowmode noruler
+"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+" let g:fzf_action = {
+"   \ 'ctrl-t': 'tab split',
+"   \ 'ctrl-s': 'split',
+"   \ 'ctrl-v': 'vsplit' }
 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'Normal', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'Normal', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"   \   fzf#vim#with_preview(), <bang>0)
 
 " command! FZFMru call fzf#run({
 " \ 'source':  reverse(s:all_files()),
@@ -433,32 +434,32 @@ command! -bang -nargs=* Rg
 
 "Function
 " Don't close window when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-  let l:currentBufNum = bufnr("%")
-  let l:alternateBufNum = bufnr("#")
+" command! Bclose call <SID>BufcloseCloseIt()
+" function! <SID>BufcloseCloseIt()
+"   let l:currentBufNum = bufnr("%")
+"   let l:alternateBufNum = bufnr("#")
 
-  if buflisted(l:alternateBufNum)
-    buffer #
-  else
-    bnext
-  endif
+"   if buflisted(l:alternateBufNum)
+"     buffer #
+"   else
+"     bnext
+"   endif
 
-  if bufnr("%") == l:currentBufNum
-    new
-  endif
+"   if bufnr("%") == l:currentBufNum
+"     new
+"   endif
 
-  if buflisted(l:currentBufNum)
-    execute("bdelete! ".l:currentBufNum)
-  endif
-endfunction
+"   if buflisted(l:currentBufNum)
+"     execute("bdelete! ".l:currentBufNum)
+"   endif
+" endfunction
 
-function! CloseAllBuffersExceptCurrent()
-  let curr = bufnr("%")
-  let last = bufnr("$")
-  if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
-  if curr < last | silent! execute (curr+1).",".last."bd" | endif
-endfunction
+" function! CloseAllBuffersExceptCurrent()
+"   let curr = bufnr("%")
+"   let last = bufnr("$")
+"   if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
+"   if curr < last | silent! execute (curr+1).",".last."bd" | endif
+" endfunction
 
 
 " function! s:isAtStartOfLine(mapping)

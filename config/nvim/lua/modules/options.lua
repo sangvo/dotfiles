@@ -25,6 +25,7 @@ o.equalalways    = true -- make window size always equal
 o.undofile       = true -- persistent undo
 o.writebackup    = false -- disable backup
 o.backup         = false -- disable backup
+o.termguicolors = true
 
 -- Indent
 o.autoindent = true

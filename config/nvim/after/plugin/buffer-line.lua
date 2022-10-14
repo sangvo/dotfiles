@@ -1,6 +1,10 @@
 require("bufferline").setup {
   options = {
     show_buffer_close_icons = true,
+    show_close_icon = false,
+    close_command = function(bufnum)
+        require('bufdelete').bufdelete(bufnum, true)
+    end,
     separator_style = "thick",
     diagnostics = "nvim_lsp",
     buffer_close_icon = "",
