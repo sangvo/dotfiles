@@ -37,7 +37,4 @@ vim.api.nvim_set_keymap(
     }
 )
 
--- Change color folder
-vim.cmd[[hi NvimTreeFolderName guifg = '#6699cc']]
-
 -- See more mappings: :help nvim-tree.view.mappings

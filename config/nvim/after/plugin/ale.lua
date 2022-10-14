@@ -2,7 +2,7 @@ vim.g.ale_disable_lsp = 1
 vim.g.ale_fix_on_save = 0
 vim.g.ale_hover_cursor = 0
 
-vim.g.ale_sign_error = ".●"
+vim.g.ale_sign_error = "✘"
 vim.g.ale_sign_warning = " ●"
 
 vim.g.ale_javascript_eslint_suppress_missing_config = 1

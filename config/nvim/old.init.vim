@@ -16,23 +16,23 @@ Plug 'justinmk/vim-sneak'
 Plug 'dyng/ctrlsf.vim'
 " Plug 'dhruvasagar/vim-table-mode'
 
-" Markdown Blog
+" Markdown
 Plug 'plasticboy/vim-markdown'
 
 " Spell grammar
 Plug 'kamykn/spelunker.vim'
 
 "JS
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 
 " hightlight
-Plug 'slim-template/vim-slim'
+" Plug 'slim-template/vim-slim'
 
 " For Rails
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 " Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-endwise'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -51,10 +51,13 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rafamadriz/friendly-snippets', {'branch': 'main'}
 Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag', {'branch': 'main'}
+Plug 'andymass/vim-matchup'
 
 Plug 'glepnir/zephyr-nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'heavenshell/vim-jsdoc', {
   \ 'for': ['javascript', 'javascript.jsx','typescript'],
@@ -78,8 +81,8 @@ call plug#end()
 " set autoread                  " Set to auto read when a file is changed
 " set clipboard=unnamed         " Use the OS clipboard by default
 " set hid                       " A buffer becomes hidden when it is abandoned
-filetype indent on            " Enable filetype plugins
-filetype plugin on
+" filetype indent on            " Enable filetype plugins
+" filetype plugin on
 " syntax enable
 " set textwidth=120             " Text width maximum chars before wrapping
 " set autoindent                " Auto-indent new lines
@@ -107,7 +110,7 @@ filetype plugin on
 " set nospell                   " turn off vim spell same work
 
 " Editor UI
-set termguicolors
+" set termguicolors
 " set fillchars+=vert:\|        " add a bar for vertical splits
 " set fcs=eob:\                 " hide ~ tila
 " set list
@@ -122,20 +125,20 @@ set secure
 " autocmd BufWritePre * %s/\s\+$//e
 
 " Scheme
-set background=dark
-colorscheme zephyr
-let g:oceanic_material_background='ocean'
-let g:oceanic_material_allow_bold=1
-let g:oceanic_material_allow_italic=1
+" set background=dark
+" colorscheme zephyr
+" let g:oceanic_material_background='ocean'
+" let g:oceanic_material_allow_bold=1
+" let g:oceanic_material_allow_italic=1
 
 " Set background terminal and line number transparent
-hi clear SignColumn
-hi Normal ctermbg=NONE guibg=NONE
-hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
+" hi clear SignColumn
+" hi Normal ctermbg=NONE guibg=NONE
+" hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 
 " " Override color spell hightlight
-hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
-hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+" hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
+" hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 " au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 " au BufNewFile,BufRead *.json.jb set ft=ruby
@@ -193,15 +196,15 @@ let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 
 " React
 " let g:vim_jsx_pretty_colorful_config = 1
-let g:vim_jsx_pretty_highlight_close_tag = 1
+" let g:vim_jsx_pretty_highlight_close_tag = 1
 
 " autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 " HTML
-let g:html5_event_handler_attributes_complete = 1
-let g:html5_rdfa_attributes_complete = 1
-let g:html5_microdata_attributes_complete = 1
-let g:html5_aria_attributes_complete = 1
+" let g:html5_event_handler_attributes_complete = 1
+" let g:html5_rdfa_attributes_complete = 1
+" let g:html5_microdata_attributes_complete = 1
+" let g:html5_aria_attributes_complete = 1
 
 " Move a line of text using ALT+[jk]
 " nmap <M-j> mz:m+<cr>`z
@@ -251,7 +254,7 @@ let test#ruby#rspec#options = {
 \}
 
 " Enable matchit for ruby textobject
-runtime macros/matchit.vim
+" runtime macros/matchit.vim
 
 " Fzf
 " nnoremap <silent> <c-p> :Files<cr>
@@ -305,14 +308,14 @@ let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'n
 " }}
 
 " Vim table mode
-let g:table_mode_corner_corner='|'
-let g:table_mode_header_fillchar='-'
+" let g:table_mode_corner_corner='|'
+" let g:table_mode_header_fillchar='-'
 
-nmap <Leader>tm :TableModeToggle<CR>
+" nmap <Leader>tm :TableModeToggle<CR>
 
-inoreabbrev <expr> __
-          \ <SID>isAtStartOfLine('__') ?
-          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+" inoreabbrev <expr> __
+"           \ <SID>isAtStartOfLine('__') ?
+"           \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
 " Go (Google)
 " let g:go_highlight_structs = 1
@@ -335,10 +338,10 @@ nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
 
 " Better warning error ALE
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '•'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+" let g:ale_sign_error = '✘'
+" let g:ale_sign_warning = '•'
+" highlight ALEErrorSign ctermbg=NONE ctermfg=red
+" highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
 " " Edit quickly config nvim
 " nmap <Leader><Leader>c :e ~/.config/nvim/init.vim<CR>
@@ -457,16 +460,6 @@ function! CloseAllBuffersExceptCurrent()
   if curr < last | silent! execute (curr+1).",".last."bd" | endif
 endfunction
 
-" " Detect  Go HTML
-function DetectGoHtmlTmpl()
-    if expand('%:e') == "html" && search("{{") != 0
-        set filetype=gohtmltmpl
-    endif
-endfunction
-
-augroup filetypedetect
-    au! BufRead,BufNewFile *.html call DetectGoHtmlTmpl()
-augroup END
 
 " function! s:isAtStartOfLine(mapping)
 "   let text_before_cursor = getline('.')[0 : col('.')-1]

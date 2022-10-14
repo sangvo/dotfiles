@@ -1,8 +1,6 @@
 local o = vim.opt
 local indent = 2
 
-vim.g.termguicolors=true
-
 o.encoding = "UTF-8" -- set encoding
 o.history = 500
 o.mouse = "nvi" -- enable mouse support in normal, insert, and visual mode

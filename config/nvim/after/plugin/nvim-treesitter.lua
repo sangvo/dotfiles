@@ -28,6 +28,7 @@ ts_config.setup {
   indent = { enable = true },
   matchup = { enable = true },
   playground = { enable = true },
+  endwise = { enable = true, },
 
   context_commentstring = {
     enable = true,

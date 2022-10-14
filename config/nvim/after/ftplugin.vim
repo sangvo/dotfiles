@@ -14,5 +14,16 @@ augroup Yank
   au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
 augroup END
 
+" Detect  Go HTML
+function DetectGoHtmlTmpl()
+    if expand('%:e') == "html" && search("{{") != 0
+        set filetype=gohtmltmpl
+    endif
+endfunction
+
+augroup filetypedetect
+    au! BufRead,BufNewFile *.html call DetectGoHtmlTmpl()
+augroup END
+
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 au BufNewFile,BufRead *.json.jb set ft=ruby
