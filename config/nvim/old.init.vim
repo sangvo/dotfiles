@@ -10,7 +10,7 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
 " Plug 'kana/vim-textobj-user'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-test/vim-test'
 Plug 'justinmk/vim-sneak'
 Plug 'dyng/ctrlsf.vim'
@@ -239,19 +239,19 @@ let g:vsnip_snippet_dir = expand('~/workspace/dotfiles/config/nvim/snips')
 " nnoremap <Leader>9 :lua require"bufferline".go_to_buffer(9)<CR>
 
 " Vim test
-let test#strategy = "neovim"
+" let test#strategy = "neovim"
 
-nmap <silent> <Leader>cs :TestNearest<CR>
-nmap <silent> <Leader>rs :TestFile<CR>
-nmap <silent> <Leader>ra :TestSuite<CR>
-nmap <silent> <Leader>rl :TestLast<CR>
+" nmap <silent> <Leader>cs :TestNearest<CR>
+" nmap <silent> <Leader>rs :TestFile<CR>
+" nmap <silent> <Leader>ra :TestSuite<CR>
+" nmap <silent> <Leader>rl :TestLast<CR>
 
-" rspec
-let test#ruby#rspec#options = {
-  \ 'nearest': '--backtrace',
-  \ 'file':    '--format documentation',
-  \ 'suite':   '--tag slow',
-\}
+" " rspec
+" let test#ruby#rspec#options = {
+"   \ 'nearest': '--backtrace',
+"   \ 'file':    '--format documentation',
+"   \ 'suite':   '--tag slow',
+" \}
 
 " Enable matchit for ruby textobject
 " runtime macros/matchit.vim
@@ -304,7 +304,7 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " vim-gutentags {{ "
-let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'node_modules', 'dist', 'vendor']
+" let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'node_modules', 'dist', 'vendor']
 " }}
 
 " Vim table mode
@@ -333,9 +333,9 @@ let g:gutentags_ctags_exclude = ['*.js', '*.ts', '*.css', '*.less', '*.sass', 'n
 
 
 " ALE
-map <leader>= :ALEFix<cr>
-nmap <silent> [e <Plug>(ale_previous_wrap)
-nmap <silent> ]e <Plug>(ale_next_wrap)
+" map <leader>= :ALEFix<cr>
+" nmap <silent> [e <Plug>(ale_previous_wrap)
+" nmap <silent> ]e <Plug>(ale_next_wrap)
 
 " Better warning error ALE
 " let g:ale_sign_error = '✘'
@@ -360,8 +360,8 @@ nmap <silent> ]e <Plug>(ale_next_wrap)
 " command! Ereadme edit README.md
 
 " SplitJoin
-let g:splitjoin_join_mapping = ''
-let g:splitjoin_split_mapping = ''
+" let g:splitjoin_join_mapping = ''
+" let g:splitjoin_split_mapping = ''
 nmap <Leader>sj :SplitjoinJoin<CR>
 nmap <Leader>sk :SplitjoinSplit<CR>
 
@@ -418,18 +418,18 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-command! FZFMru call fzf#run({
-\ 'source':  reverse(s:all_files()),
-\ 'sink':    'edit',
-\ 'options': '-m -x +s',
-\ 'down':    '40%' })
+" command! FZFMru call fzf#run({
+" \ 'source':  reverse(s:all_files()),
+" \ 'sink':    'edit',
+" \ 'options': '-m -x +s',
+" \ 'down':    '40%' })
 
-function! s:all_files()
-  return extend(
-  \ filter(copy(v:oldfiles),
-  \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-  \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
-endfunction
+" function! s:all_files()
+"   return extend(
+"   \ filter(copy(v:oldfiles),
+"   \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
+"   \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+" endfunction
 
 "Function
 " Don't close window when deleting a buffer

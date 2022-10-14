@@ -111,3 +111,10 @@ nnoremap("gdl", ":diffget //3<CR>")
 -- Buffer
 map("", "<Leader>xx", ":Bclose<CR>")
 nnoremap("<Leader>gb",":Git blame<CR>")
+
+-- Ale
+map("", "<Leader>=", ":ALEFix<CR>")
+
+-- SplitJoin
+nmap("<Leader>sj", ":SplitjoinJoin<CR>")
+nmap("<Leader>sk", ":SplitjoinSplit<CR>")
