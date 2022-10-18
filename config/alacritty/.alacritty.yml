@@ -269,38 +269,77 @@ draw_bold_text_with_bright_colors: true
 #    white:   '0xdddddd'
 
 # Colors (Oceanic Next)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '#1b2b34'
+#     foreground: '#d8dee9'
+
+#   # Colors the cursor will use if `custom_cursor_colors` is true
+#   cursor:
+#     text: '#1b2b34'
+#     cursor: '#ffffff'
+
+#   # Normal colors
+#   normal:
+#     black:   '#343d46'
+#     red:     '#EC5f67'
+#     green:   '#99C794'
+#     yellow:  '#FAC863'
+#     blue:    '#6699cc'
+#     magenta: '#c594c5'
+#     cyan:    '#5fb3b3'
+#     white:   '#d8dee9'
+
+#   # Bright colors
+#   bright:
+#     black:   '#343d46'
+#     red:     '#EC5f67'
+#     green:   '#99C794'
+#     yellow:  '#FAC863'
+#     blue:    '#6699cc'
+#     magenta: '#c594c5'
+#     cyan:    '#5fb3b3'
+#     white:   '#d8dee9'
+# Colors NightFly
 colors:
   # Default colors
   primary:
-    background: '#1b2b34'
-    foreground: '#d8dee9'
+    background:        '#011627'
+    foreground:        '#acb4c2'
+    bright_foreground: '#eeeeee'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
+  # Cursor colors
   cursor:
-    text: '#1b2b34'
-    cursor: '#ffffff'
+    text:   '#080808'
+    cursor: '#9ca1aa'
+
+  # Selection colors
+  selection:
+    text:       '#080808'
+    background: '#b2ceee'
 
   # Normal colors
   normal:
-    black:   '#343d46'
-    red:     '#EC5f67'
-    green:   '#99C794'
-    yellow:  '#FAC863'
-    blue:    '#6699cc'
-    magenta: '#c594c5'
-    cyan:    '#5fb3b3'
-    white:   '#d8dee9'
+    black:   '#1d3b53'
+    red:     '#fc514e'
+    green:   '#a1cd5e'
+    yellow:  '#e3d18a'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#7fdbca'
+    white:   '#a1aab8'
 
   # Bright colors
   bright:
-    black:   '#343d46'
-    red:     '#EC5f67'
-    green:   '#99C794'
-    yellow:  '#FAC863'
-    blue:    '#6699cc'
-    magenta: '#c594c5'
-    cyan:    '#5fb3b3'
-    white:   '#d8dee9'
+    black:   '#7c8f8f'
+    red:     '#ff5874'
+    green:   '#21c7a8'
+    yellow:  '#ecc48d'
+    blue:    '#82aaff'
+    magenta: '#ae81ff'
+    cyan:    '#7fdbca'
+    white:   '#d6deeb'
   # Indexed Colors
   #
   # The indexed colors include all colors from 16 to 256.

@@ -14,6 +14,10 @@ vim.g.ale_javascript_eslint_suppress_missing_config = 1
 --   as possible, unless otherwise specified.
 vim.g.ale_linters_explicit = 1
 
+vim.g.ale_linter_aliases = {
+  vue = {'vue', 'javascript'}
+}
+
 vim.g.ale_linters = {
   ruby = { 'rubocop' },
   rspec = { 'rubocop' },

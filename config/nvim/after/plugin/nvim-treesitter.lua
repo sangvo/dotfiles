@@ -1,6 +1,11 @@
 local ts_config = require "nvim-treesitter.configs"
 
+-- Defines a rw for treesitter in the cache dir
+local parser_install_dir = vim.fn.stdpath('data') .. '/treesitter_parser'
+vim.opt.runtimepath:append(parser_install_dir)
+
 ts_config.setup {
+  parser_install_dir = parser_install_dir,
   ensure_installed = {
     "comment",
     "css",

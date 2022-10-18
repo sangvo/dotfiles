@@ -1,5 +1,6 @@
 require("bootstrap")
 require("impatient").enable_profile()
+require("plugins")
 -- enable filetype.lua
 vim.g.do_filetype_lua = 1
 
@@ -23,7 +24,7 @@ runtime! lua/modules/mappings.lua
 ]]
 
 -- source a vimscript file
-vim.cmd('source ~/workspace/dotfiles/config/nvim/old.init.vim')
+-- vim.cmd('source ~/workspace/dotfiles/config/nvim/old.init.vim')
 require("lsp-config")
 require("nvim-compe")
 require("theme")
