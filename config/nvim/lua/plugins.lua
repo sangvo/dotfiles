@@ -30,8 +30,6 @@ return require('packer').startup(function(use)
   use { 'glepnir/galaxyline.nvim', branch = 'main' }
   use 'kyazdani42/nvim-tree.lua'
   use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
   use 'norcalli/nvim-colorizer.lua'
   use 'hrsh7th/vim-vsnip'
   use 'onsails/lspkind-nvim'
@@ -52,4 +50,24 @@ return require('packer').startup(function(use)
   use { 'heavenshell/vim-jsdoc', run = 'make install' }
   use { 'dstein64/vim-startuptime' }
   use 'bluz71/vim-nightfly-guicolors'
+
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+  use "williamboman/mason.nvim"
+  use 'hrsh7th/nvim-compe'
+  use 'ray-x/lsp_signature.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'j-hui/fidget.nvim'
+  use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+
+  -- CMP
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-calc'
+  use 'lukas-reineke/cmp-rg'
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'hrsh7th/cmp-nvim-lua'
 end)
