@@ -60,11 +60,6 @@ require "nvim-web-devicons".setup {
             color = "#b8b5ff",
             name = "Dockerfile"
         },
-        rb = {
-            icon = "",
-            color = "#9b111e",
-            name = "rb"
-        },
         vue = {
             icon = "﵂",
             color = "#7eca9c",

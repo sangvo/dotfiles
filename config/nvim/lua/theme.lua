@@ -6,7 +6,7 @@ vim.o.background = "dark"
 -- Set background terminal and line number transparent
 vim.cmd[[
 hi clear SignColumn
-hi Normal ctermbg=NONE guibg=NONE
+hi Normal ctermbg=NONE guibg=NONE gui=NONE
 hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
 
 hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
