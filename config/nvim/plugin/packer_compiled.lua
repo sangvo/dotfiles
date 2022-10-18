@@ -210,6 +210,11 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
   },
+  ["vim-jsdoc"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-jsdoc",
+    url = "https://github.com/heavenshell/vim-jsdoc"
+  },
   ["vim-matchup"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-matchup",
@@ -219,6 +224,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
   },
   ["vim-surround"] = {
     loaded = true,

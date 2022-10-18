@@ -41,13 +41,13 @@ return require('packer').startup(function(use)
   use { 'windwp/nvim-ts-autotag', branch = 'main' }
   use 'andymass/vim-matchup'
   use 'famiu/bufdelete.nvim'
-  use { "ellisonleao/gruvbox.nvim" }
   use({
     'glepnir/zephyr-nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
   })
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'RRethy/nvim-treesitter-endwise'
   use 'editorconfig/editorconfig-vim'
+  use { 'heavenshell/vim-jsdoc', run = 'make install' }
+  use { 'dstein64/vim-startuptime' }
 end)

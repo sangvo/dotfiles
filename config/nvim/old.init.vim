@@ -55,7 +55,7 @@ Plug 'windwp/nvim-ts-autotag', {'branch': 'main'}
 Plug 'andymass/vim-matchup'
 Plug 'famiu/bufdelete.nvim'
 
-Plug 'glepnir/zephyr-nvim', {'branch': 'main', 'commit': '20c8c936b21ec62a1ada559c815d665576efbbaf'}
+Plug 'glepnir/zephyr-nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'RRethy/nvim-treesitter-endwise'
