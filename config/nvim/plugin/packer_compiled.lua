@@ -139,11 +139,6 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
     url = "https://github.com/editorconfig/editorconfig-vim"
   },
-  ["fidget.nvim"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/fidget.nvim",
-    url = "https://github.com/j-hui/fidget.nvim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -204,11 +199,6 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/nvim-compe",
-    url = "https://github.com/hrsh7th/nvim-compe"
-  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -243,12 +233,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
-  },
-  ["packer.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/opt/packer.nvim",
-    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -290,11 +274,6 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
-  ["vim-repeat"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-repeat",
-    url = "https://github.com/tpope/vim-repeat"
-  },
   ["vim-startuptime"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-startuptime",
@@ -314,11 +293,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
-  },
-  ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-vsnip",
-    url = "https://github.com/hrsh7th/vim-vsnip"
   }
 }
 

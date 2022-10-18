@@ -4,11 +4,7 @@ if (not status) then
   return
 end
 
-vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
-  use { 'wbthomason/packer.nvim', opt = true }
-
   -- Dependencies
   use 'nvim-lua/plenary.nvim'
   use 'kyazdani42/nvim-web-devicons'
@@ -23,7 +19,6 @@ return require('packer').startup(function(use)
   use 'Yggdroot/indentLine'
   use 'tpope/vim-commentary'
   use 'dense-analysis/ale'
-  use 'tpope/vim-repeat'
   use 'AndrewRadev/splitjoin.vim'
   use 'vim-test/vim-test'
   use 'kamykn/spelunker.vim'
@@ -31,7 +26,6 @@ return require('packer').startup(function(use)
   use 'kyazdani42/nvim-tree.lua'
   use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
   use 'norcalli/nvim-colorizer.lua'
-  use 'hrsh7th/vim-vsnip'
   use 'onsails/lspkind-nvim'
   use 'airblade/vim-gitgutter'
   use { 'rafamadriz/friendly-snippets', branch = 'main' }
@@ -54,10 +48,8 @@ return require('packer').startup(function(use)
   -- LSP
   use 'neovim/nvim-lspconfig'
   use "williamboman/mason.nvim"
-  use 'hrsh7th/nvim-compe'
   use 'ray-x/lsp_signature.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
-  use 'j-hui/fidget.nvim'
   use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
 
   -- CMP
