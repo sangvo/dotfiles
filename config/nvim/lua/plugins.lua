@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'Yggdroot/indentLine'
   use 'tpope/vim-commentary'
-  use 'dense-analysis/ale'
+  -- use 'dense-analysis/ale'
   use 'AndrewRadev/splitjoin.vim'
   use 'vim-test/vim-test'
   use 'kamykn/spelunker.vim'
@@ -53,13 +53,20 @@ return require('packer').startup(function(use)
   use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
 
   -- CMP
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-calc'
-  use 'lukas-reineke/cmp-rg'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'hrsh7th/cmp-nvim-lua'
+  use({'hrsh7th/nvim-cmp',
+    requires = {
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+      { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+      { "hrsh7th/cmp-calc", after = "nvim-cmp" },
+      { "lukas-reineke/cmp-rg", after = "nvim-cmp" },
+      { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+      { "hrsh7th/cmp_luasnip", after = "nvim-cmp" },
+    },
+    after  = { "LuaSnip", "nvim-treesitter" } ,
+    wants  = { "LuaSnip" },
+    event  = { "BufNewFile", "BufRead", "InsertEnter" },
+  })
+  use "hrsh7th/cmp-nvim-lsp"
 end)
