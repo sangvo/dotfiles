@@ -1,5 +1,5 @@
 vim.cmd[[
-colorscheme zephyr
+colorscheme nightfly
 ]]
 vim.o.background = "dark"
 

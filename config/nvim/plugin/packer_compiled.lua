@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/galaxyline.nvim",
     url = "https://github.com/glepnir/galaxyline.nvim"
   },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
   indentLine = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/indentLine",
@@ -220,6 +215,11 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-matchup",
     url = "https://github.com/andymass/vim-matchup"
   },
+  ["vim-nightfly-guicolors"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
+    url = "https://github.com/bluz71/vim-nightfly-guicolors"
+  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-repeat",
@@ -249,11 +249,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
-  },
-  ["zephyr-nvim"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/zephyr-nvim",
-    url = "https://github.com/glepnir/zephyr-nvim"
   }
 }
 
