@@ -2,7 +2,17 @@ require("mason").setup()
 require("lsp_signature").setup({})
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "html", "cssls", "tsserver", "solargraph", "bashls", "vuels", "gopls", "rust_analyzer" },
+	ensure_installed = {
+		"html",
+		"cssls",
+		"tsserver",
+		"solargraph",
+		"bashls",
+		"vuels",
+		"gopls",
+		"rust_analyzer",
+		"tailwindcss",
+	},
 })
 
 -- shorthands for null-ls
@@ -57,7 +67,8 @@ local lsp_defaults = lspconfig.util.default_config
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, default_capabilities)
-local servers = { "html", "cssls", "tsserver", "solargraph", "bashls", "vuels", "gopls", "rust_analyzer" }
+local servers =
+	{ "html", "cssls", "tsserver", "solargraph", "bashls", "vuels", "gopls", "rust_analyzer", "tailwindcss" }
 
 for k, lang in pairs(servers) do
 	lspconfig[lang].setup({})

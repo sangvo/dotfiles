@@ -21,14 +21,12 @@ return require("packer").startup(function(use)
 	-- Dependencies
 	use("nvim-lua/plenary.nvim")
 	use("kyazdani42/nvim-web-devicons")
-	-- use({ "junegunn/fzf", run = ":call fzf#install()" })
-	-- use({ "junegunn/fzf.vim" })
 
 	-- Navigation
 	use("christoomey/vim-tmux-navigator")
 
 	-- Plugins
-	use("tpope/vim-surround")
+	use("kylechui/nvim-surround")
 	use("Yggdroot/indentLine")
 	use("numToStr/Comment.nvim")
 	use("AndrewRadev/splitjoin.vim")

@@ -1,5 +1,5 @@
 require("bootstrap")
-require("impatient").enable_profile()
+require("impatient")
 require("plugins")
 -- enable filetype.lua
 vim.g.do_filetype_lua = 1
