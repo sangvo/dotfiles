@@ -64,6 +64,7 @@ return require("packer").startup(function(use)
 		requires = { "hrsh7th/cmp-nvim-lua" },
 	})
 	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 	use("ray-x/lsp_signature.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
