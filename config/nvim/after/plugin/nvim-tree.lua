@@ -1,3 +1,9 @@
+local present, nvimtree = pcall(require, "nvim-tree")
+
+if not present then
+  return
+end
+
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 

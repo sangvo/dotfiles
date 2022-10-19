@@ -1,3 +1,9 @@
+local present, telescope = pcall(require, "telescope")
+
+if not present then
+  return
+end
+
 local M = {}
 
 local ignored_list = {

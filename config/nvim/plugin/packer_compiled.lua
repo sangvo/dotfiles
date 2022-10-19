@@ -220,7 +220,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp_luasnip", "cmp-rg", "cmp-path", "cmp-calc", "cmp-buffer", "cmp-cmdline" },
+    after = { "cmp_luasnip", "cmp-rg", "cmp-buffer", "cmp-cmdline", "cmp-calc", "cmp-path" },
     load_after = {},
     loaded = false,
     needs_bufread = false,

@@ -8,14 +8,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 
+vim.cmd("packadd packer.nvim")
+
 local packer = require("packer")
 local util = require("packer.util")
 packer.init({
 	package_root = util.join_paths(vim.fn.stdpath("data"), "site", "pack"),
 })
-
--- Load packer.nvim
-vim.cmd("packadd packer.nvim")
 
 return require("packer").startup(function(use)
 	-- Dependencies

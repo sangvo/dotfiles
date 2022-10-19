@@ -1,3 +1,9 @@
+local present, telescope = pcall(require, "gitsigns")
+
+if not present then
+  return
+end
+
 require("gitsigns").setup({
 	signs = {
 		add = { hl = "SignAdd", text = "▎" },

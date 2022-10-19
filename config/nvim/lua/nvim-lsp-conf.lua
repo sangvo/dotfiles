@@ -1,3 +1,9 @@
+local present, lspconfig = pcall(require, "lspconfig")
+
+if not present then
+  return
+end
+
 require("mason").setup()
 require("lsp_signature").setup({})
 

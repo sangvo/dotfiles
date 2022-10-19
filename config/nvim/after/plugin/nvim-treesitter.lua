@@ -1,3 +1,9 @@
+local present, treesitter = pcall(require, "nvim-treesitter.configs")
+
+if not present then
+  return
+end
+
 local ts_config = require "nvim-treesitter.configs"
 
 -- Defines a rw for treesitter in the cache dir
