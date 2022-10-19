@@ -7,7 +7,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 	execute("packadd packer.nvim")
 end
-vim.cmd("packadd packer.nvim")
+
 local packer = require("packer")
 local util = require("packer.util")
 packer.init({
@@ -21,17 +21,16 @@ return require("packer").startup(function(use)
 	-- Dependencies
 	use("nvim-lua/plenary.nvim")
 	use("kyazdani42/nvim-web-devicons")
-	use({ "junegunn/fzf", run = ":call fzf#install()" })
+	-- use({ "junegunn/fzf", run = ":call fzf#install()" })
+	-- use({ "junegunn/fzf.vim" })
 
 	-- Navigation
 	use("christoomey/vim-tmux-navigator")
 
 	-- Plugins
-	use({ "junegunn/fzf.vim" })
 	use("tpope/vim-surround")
 	use("Yggdroot/indentLine")
-	use("tpope/vim-commentary")
-	-- use 'dense-analysis/ale'
+	use("numToStr/Comment.nvim")
 	use("AndrewRadev/splitjoin.vim")
 	use("vim-test/vim-test")
 	use("kamykn/spelunker.vim")
@@ -40,17 +39,18 @@ return require("packer").startup(function(use)
 	use({ "akinsho/bufferline.nvim", tag = "v2.*" })
 	use("norcalli/nvim-colorizer.lua")
 	use("onsails/lspkind-nvim")
-	use("airblade/vim-gitgutter")
+	use({ "lewis6991/gitsigns.nvim" })
 	use({ "rafamadriz/friendly-snippets", branch = "main" })
 	use("windwp/nvim-autopairs")
 	use({ "windwp/nvim-ts-autotag", branch = "main" })
 	use("andymass/vim-matchup")
 	use("famiu/bufdelete.nvim")
-	-- use({
-	--   'glepnir/zephyr-nvim',
-	--   requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
-	-- })
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })
+		end,
+	})
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("RRethy/nvim-treesitter-endwise")
 	use("editorconfig/editorconfig-vim")
@@ -67,6 +67,11 @@ return require("packer").startup(function(use)
 	use("ray-x/lsp_signature.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+
+	-- Telescope
+	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use("nvim-telescope/telescope-ui-select.nvim")
 
 	-- CMP
 	use({

@@ -1,0 +1,7 @@
+{
+  "ife": {
+    "prefix": ["ife"],
+    "body": ["if err != nil {", "\treturn $0", "}"],
+    "description": "error"
+  }
+}
