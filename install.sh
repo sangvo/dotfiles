@@ -13,6 +13,7 @@ ln -s -f ~/workspace/dotfiles/git-host-config ~/.ssh/config
 ln -s -f ~/workspace/dotfiles/gitconfig ~/.gitconfig
 ln -s -f ~/workspace/dotfiles/gitignore_global ~/.gitignore_global
 ln -s -f ~/workspace/dotfiles/gitconfig_personal ~/.gitconfig_personal
+ln -s -f ~/workspace/dotfiles/.gitmessage ~/.gitmessage
 
 
 rm -r -f ~/.config/nvim
