@@ -1,4 +1,4 @@
-local u = require "modules.util"
+local u = require("modules.util")
 local noremap = u.noremap
 local nnoremap = u.nnoremap
 local inoremap = u.inoremap
@@ -6,23 +6,23 @@ local tnoremap = u.tnoremap
 local vnoremap = u.vnoremap
 
 function map(mode, shortcut, command)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
 function nmap(shortcut, command)
-  map('n', shortcut, command)
+	map("n", shortcut, command)
 end
 
 function imap(shortcut, command)
-  map('i', shortcut, command)
+	map("i", shortcut, command)
 end
 
 function cmap(shortcut, command)
-  map('c', shortcut, command)
+	map("c", shortcut, command)
 end
 
 function vmap(shortcut, command)
-  map('v', shortcut, command)
+	map("v", shortcut, command)
 end
 
 imap("jk", "<Esc>")
@@ -46,11 +46,7 @@ nnoremap("<C-S>", ":update<CR>", { desc = "Force save" })
 vnoremap("<C-S>", "<C-C>:update<CR>", { desc = "Force save" })
 inoremap("<C-S>", "<C-C>:update<CR>", { desc = "Force save" })
 
-vim.api.nvim_create_user_command(
-  'W',
-  'execute w !sudo tee % > /dev/null) <bar> edit!',
-  { bang = true }
-)
+vim.api.nvim_create_user_command("W", "execute w !sudo tee % > /dev/null) <bar> edit!", { bang = true })
 
 -- Switch CWD to the directory of the open buffer
 map("", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
@@ -101,18 +97,10 @@ nnoremap("<Leader>b", ":Buffers<CR>")
 nnoremap("<Leader>fr", ":Rg<CR>")
 nnoremap("<Leader>t", ":BTags<CR>")
 
--- Fugitive
-nnoremap("<Leader>gl", ":Gclog<CR>")
--- Fugitive Conflict Resolution
-nnoremap("<Leader>gdf", ":Gvdiff!<CR>")
-nnoremap("gdh", ":diffget //2<CR>")
-nnoremap("gdl", ":diffget //3<CR>")
-
 -- Buffer
 map("", "<Leader>xx", ":Bdelete!<CR>")
 -- Close all but except current
 map("", "<Leader>xa", "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>")
-nnoremap("<Leader>gb",":Git blame<CR>")
 
 -- Ale
 map("", "<Leader>=", ":ALEFix<CR>")
