@@ -55,6 +55,9 @@ return require("packer").startup(function(use)
 	use({ "dstein64/vim-startuptime" })
 	use("bluz71/vim-nightfly-guicolors")
 
+	-- Easy motion
+	use("phaazon/hop.nvim")
+
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",

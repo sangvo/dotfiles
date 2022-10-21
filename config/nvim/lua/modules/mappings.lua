@@ -49,13 +49,13 @@ inoremap("<C-S>", "<C-C>:update<CR>", { desc = "Force save" })
 vim.api.nvim_create_user_command("W", "execute w !sudo tee % > /dev/null) <bar> edit!", { bang = true })
 
 -- Switch CWD to the directory of the open buffer
-map("", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
+map("", "<Leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 
 -- Copy to clipboard
 vmap("<C-C>", '"+y')
-vmap("<leader>y", '"+y')
-nmap("<leader>y", '"+y')
-nmap("<leader>p", '"+p')
+vmap("<Leader>y", '"+y')
+nmap("<Leader>y", '"+y')
+nmap("<Leader>p", '"+p')
 
 -- Yank to end
 nnoremap("Y", "y$", { desc = "Yank to end" })
@@ -67,11 +67,11 @@ vmap("<M-j>", ":m'>+<cr>`<my`>mzgv`yo`z")
 vmap("<M-k>", ":m'<-2<cr>`>my`<mzgv`yo`z")
 
 -- Turn off search highlight
-map("", "<leader><cr>", ":noh<cr>")
+map("", "<Leader><cr>", ":noh<cr>")
 
 -- Split windows
 map("", "<leader>sv", "<C-W>v")
-map("", "<<leader>ss>sv", "<C-W>s")
+map("", "<Leader>ss", "<C-W>s")
 
 -- Resize panel
 nmap("<C-w>[", ":vertical resize -6<CR>")
@@ -91,19 +91,10 @@ nnoremap("<Leader>9", ':<cmd>lua require("bufferline").go_to_buffer(9, true)<CR>
 map("n", "<Leader>l", "<Cmd>BufferLineCycleNext<CR>")
 map("n", "<Leader>h", "<Cmd>BufferLineCyclePrev<CR>")
 
--- Fzf
-nnoremap("<c-p>", ":Files<CR>")
-nnoremap("<Leader>b", ":Buffers<CR>")
-nnoremap("<Leader>fr", ":Rg<CR>")
-nnoremap("<Leader>t", ":BTags<CR>")
-
 -- Buffer
 map("", "<Leader>xx", ":Bdelete!<CR>")
 -- Close all but except current
 map("", "<Leader>xa", "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>")
-
--- Ale
-map("", "<Leader>=", ":ALEFix<CR>")
 
 -- SplitJoin
 nmap("<Leader>sj", ":SplitjoinJoin<CR>")

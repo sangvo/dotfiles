@@ -1,7 +1,7 @@
 local present, lspconfig = pcall(require, "lspconfig")
 
 if not present then
-  return
+	return
 end
 
 require("mason").setup()
@@ -40,8 +40,14 @@ nls.setup({
 		diagnostics.golangci_lint,
 		formatting.eslint_d,
 		formatting.gofmt,
-		diagnostics.rubocop,
-		-- formatting.rubocop,
+		diagnostics.rubocop.with({
+			command = "bundle",
+			args = vim.list_extend({ "exec", "rubocop" }, diagnostics.rubocop._opts.args),
+		}),
+		formatting.rubocop.with({
+			command = "bundle",
+			args = vim.list_extend({ "exec", "rubocop" }, diagnostics.rubocop._opts.args),
+		}),
 	},
 	root_dir = lspconfig.util.root_pattern(
 		"stylua.toml",
@@ -53,20 +59,9 @@ nls.setup({
 		".prettierc",
 		".prettierc.json",
 		".prettierc.yaml",
-		".prettierc.yml"
+		".prettierc.yml",
+    ".rubocop.yml"
 	),
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({ bufnr = bufnr })
-				end,
-			})
-		end
-	end,
 })
 
 local lsp_defaults = lspconfig.util.default_config
@@ -127,5 +122,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Move to the next diagnostic
 		bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+
+		-- Format code
+		bufmap("n", "<Leader>=", vim.lsp.buf.format, { bufnr = 0 })
 	end,
 })

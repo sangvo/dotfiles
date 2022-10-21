@@ -1,7 +1,7 @@
 local present, telescope = pcall(require, "telescope")
 
 if not present then
-  return
+	return
 end
 
 local M = {}
@@ -170,6 +170,14 @@ map("n", "<Leader>ft", builtins, {
 
 map("n", "<Leader>fb", require("telescope.builtin").current_buffer_fuzzy_find, {
 	desc = "Fuzzy grep current buffer content using Telescope",
+	noremap = true,
+	silent = true,
+})
+
+map("n", "<Leader>b", function()
+	require("telescope.builtin").buffers({ initial_mode = "normal", ignore_current_buffer = true, sort_mru = true })
+end, {
+	desc = "Find Buffers",
 	noremap = true,
 	silent = true,
 })
