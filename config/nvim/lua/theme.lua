@@ -5,10 +5,13 @@ vim.o.background = "dark"
 vim.cmd([[
 hi clear SignColumn
 hi Normal ctermbg=NONE guibg=NONE
-hi VertSplit guifg=#343D46 guibg=#343D46 gui=NONE cterm=NONE
+hi VertSplit guifg=#3D4C4C guibg=reverse gui=NONE cterm=NONE
 
 hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=NONE
 hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+
+hi CursorLine	guibg=#3D4C4C
+hi ColorColumn ctermbg=235 guibg=#3D4C4C
 ]])
 
 -- Change color folder nvim-tree
