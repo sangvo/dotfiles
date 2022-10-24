@@ -26,3 +26,4 @@ runtime! lua/modules/mappings.lua
 require("nvim-lsp-conf")
 require("nvim-cmp")
 require("theme")
+require("which.init")

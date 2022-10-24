@@ -86,7 +86,6 @@ local servers = {
 	"gopls",
 	"rust_analyzer",
 	"tailwindcss",
-	"sumneko_lua",
 }
 
 for k, lang in pairs(servers) do
@@ -94,7 +93,27 @@ for k, lang in pairs(servers) do
 end
 
 -- TODO: Custom server
-
+lspconfig.sumneko_lua.setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true), -- make lsp aware of nvim runtime_path
+      },
+      telemetry = { enable = false },
+    },
+  },
+  on_attach = function(client) -- use null-ls for formatting instead
+    client.server_capabilities.document_formatting = false
+  end,
+}
 -- Mapping
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
