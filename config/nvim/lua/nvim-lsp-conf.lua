@@ -18,8 +18,22 @@ require("mason-lspconfig").setup({
 		"gopls",
 		"rust_analyzer",
 		"tailwindcss",
+		"sumneko_lua",
 	},
 })
+
+-- Linter
+require ('mason-null-ls').setup({
+	ensure_installed = {
+		"stylua",
+		"prettierd",
+		"eslint_d",
+		"golangci_lint",
+		"gofmt",
+		"rubocop",
+	},
+})
+
 
 -- shorthands for null-ls
 local nls = require("null-ls")
@@ -40,14 +54,8 @@ nls.setup({
 		diagnostics.golangci_lint,
 		formatting.eslint_d,
 		formatting.gofmt,
-		diagnostics.rubocop.with({
-			command = "bundle",
-			args = vim.list_extend({ "exec", "rubocop" }, diagnostics.rubocop._opts.args),
-		}),
-		formatting.rubocop.with({
-			command = "bundle",
-			args = vim.list_extend({ "exec", "rubocop" }, diagnostics.rubocop._opts.args),
-		}),
+		diagnostics.rubocop,
+		formatting.rubocop,
 	},
 	root_dir = lspconfig.util.root_pattern(
 		"stylua.toml",
@@ -60,7 +68,7 @@ nls.setup({
 		".prettierc.json",
 		".prettierc.yaml",
 		".prettierc.yml",
-    ".rubocop.yml"
+		".rubocop.yml"
 	),
 })
 
@@ -68,8 +76,18 @@ local lsp_defaults = lspconfig.util.default_config
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, default_capabilities)
-local servers =
-	{ "html", "cssls", "tsserver", "solargraph", "bashls", "vuels", "gopls", "rust_analyzer", "tailwindcss" }
+local servers = {
+	"html",
+	"cssls",
+	"tsserver",
+	"solargraph",
+	"bashls",
+	"vuels",
+	"gopls",
+	"rust_analyzer",
+	"tailwindcss",
+	"sumneko_lua",
+}
 
 for k, lang in pairs(servers) do
 	lspconfig[lang].setup({})

@@ -164,6 +164,11 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/opt/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["diffview.nvim"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/diffview.nvim",
+    url = "https://github.com/sindrets/diffview.nvim"
+  },
   ["editorconfig-vim"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
@@ -209,10 +214,20 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
+  ["mason-null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/mason-null-ls.nvim",
+    url = "https://github.com/jayp0521/mason-null-ls.nvim"
+  },
   ["mason.nvim"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -225,7 +240,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-calc", "cmp_luasnip", "cmp-cmdline", "cmp-buffer", "cmp-rg", "cmp-path" },
+    after = { "cmp-rg", "cmp_luasnip", "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-path" },
     load_after = {},
     loaded = false,
     needs_bufread = false,

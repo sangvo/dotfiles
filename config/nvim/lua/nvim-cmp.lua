@@ -24,7 +24,11 @@ cmp.setup {
   window = {
     documentation = {
       border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+      winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
     },
+    completion = cmp.config.window.bordered({
+      winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+    }),
   },
   mapping = {
     -- move up/down in the completion list

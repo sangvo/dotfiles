@@ -140,7 +140,7 @@ end
 
 local function grep_prompt()
 	require("telescope.builtin").grep_string({
-		path_display = { "shorten" },
+		path_display = { "absolute" },
 		search = vim.fn.input("Grep String > "),
 		only_sort_text = true,
 		use_regex = true,
