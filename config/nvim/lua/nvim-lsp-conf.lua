@@ -34,7 +34,6 @@ require ('mason-null-ls').setup({
 	},
 })
 
-
 -- shorthands for null-ls
 local nls = require("null-ls")
 local formatting = nls.builtins.formatting
@@ -67,8 +66,7 @@ nls.setup({
 		".prettierc",
 		".prettierc.json",
 		".prettierc.yaml",
-		".prettierc.yml",
-		".rubocop.yml"
+		".prettierc.yml"
 	),
 })
 
@@ -93,8 +91,13 @@ for k, lang in pairs(servers) do
 end
 
 -- TODO: Custom server
+-- setup the runtime path for sumneko_lua
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
 lspconfig.sumneko_lua.setup {
-  capabilities = capabilities,
+  capabilities = default_capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -161,6 +164,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
 
 		-- Format code
-		bufmap("n", "<Leader>=", vim.lsp.buf.format, { bufnr = 0 })
+		bufmap("n", "<Leader>=", function()
+      vim.lsp.buf.format({ bufnr = 0 })
+    end)
 	end,
 })

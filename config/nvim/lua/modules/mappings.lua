@@ -5,29 +5,9 @@ local inoremap = u.inoremap
 local tnoremap = u.tnoremap
 local vnoremap = u.vnoremap
 
-function map(mode, shortcut, command)
-	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
-end
-
-function nmap(shortcut, command)
-	map("n", shortcut, command)
-end
-
-function imap(shortcut, command)
-	map("i", shortcut, command)
-end
-
-function cmap(shortcut, command)
-	map("c", shortcut, command)
-end
-
-function vmap(shortcut, command)
-	map("v", shortcut, command)
-end
-
-imap("jk", "<Esc>")
-map("", "0", "^")
-map("", "q", "<Nop>")
+inoremap("jk", "<Esc>", { desc = "Esc" })
+noremap("0", "^", { desc = "Beginning of line" })
+noremap("q", "<Nop>", { desc = "Don't use macro" })
 
 -- Don't move with arrow key
 
@@ -37,8 +17,8 @@ nnoremap("<Up>", ':echoe "Use k"<CR>', { desc = "Use k" })
 nnoremap("<Down>", ':echoe "Use j"<CR>', { desc = "Use j" })
 
 -- Shift+H goto head of the line, Shift+L goto end of the line
-nnoremap("H", "^")
-nnoremap("L", "$")
+nnoremap("H", "^", { desc = "Go to beginning line" })
+nnoremap("L", "$", { desc = "Go to end line" })
 
 -- Useful saving mapping
 nnoremap("<leader>w", ":w!<cr>", { desc = "Force save" })
@@ -46,56 +26,70 @@ nnoremap("<C-S>", ":update<CR>", { desc = "Force save" })
 vnoremap("<C-S>", "<C-C>:update<CR>", { desc = "Force save" })
 inoremap("<C-S>", "<C-C>:update<CR>", { desc = "Force save" })
 
-vim.api.nvim_create_user_command("W", "execute w !sudo tee % > /dev/null) <bar> edit!", { bang = true })
+vim.api.nvim_create_user_command("W", "execute w !sudo tee % > /dev/null) <bar> edit!", {
+  bang = true,
+})
 
 -- Switch CWD to the directory of the open buffer
-map("", "<Leader>cd", ":cd %:p:h<cr>:pwd<cr>")
+noremap("<Leader>cd", ":cd %:p:h<cr>:pwd<cr>", { desc = "Change working directory" })
 
 -- Copy to clipboard
-vmap("<C-C>", '"+y')
-vmap("<Leader>y", '"+y')
-nmap("<Leader>y", '"+y')
-nmap("<Leader>p", '"+p')
+vnoremap("<C-C>", '"+y', { desc = "Copy to clipboard" })
+vnoremap("<Leader>y", '"+y', { desc = "Copy to clipboard" })
+nnoremap("<Leader>y", '"+y', { desc = "Copy to clipboard" })
+nnoremap("<Leader>p", '"+p', { desc = "Paste" })
 
 -- Yank to end
 nnoremap("Y", "y$", { desc = "Yank to end" })
 
 -- Move a line of text using ALT+[jk]
-nmap("<M-j>", "mz:m+<cr>`z")
-nmap("<M-k>", "mz:m-2<cr>`z")
-vmap("<M-j>", ":m'>+<cr>`<my`>mzgv`yo`z")
-vmap("<M-k>", ":m'<-2<cr>`>my`<mzgv`yo`z")
+nnoremap("<M-j>", "mz:m+<cr>`z")
+nnoremap("<M-k>", "mz:m-2<cr>`z")
+vnoremap("<M-j>", ":m'>+<cr>`<my`>mzgv`yo`z")
+vnoremap("<M-k>", ":m'<-2<cr>`>my`<mzgv`yo`z")
 
 -- Turn off search highlight
-map("", "<Leader><cr>", ":noh<cr>")
+noremap("<Leader><cr>", ":noh<cr>", { desc = "Clear highlight" })
 
 -- Split windows
-map("", "<leader>sv", "<C-W>v")
-map("", "<Leader>ss", "<C-W>s")
+noremap("<leader>sv", "<C-W>v", { desc = "Split vertical" })
+noremap("<Leader>ss", "<C-W>s", { desc = "Split horizontal" })
 
 -- Resize panel
-nmap("<C-w>[", ":vertical resize -6<CR>")
-nmap("<C-w>]", ":vertical resize +6<CR>")
+nnoremap("<C-w>[", ":vertical resize -6<CR>")
+nnoremap("<C-w>]", ":vertical resize +6<CR>")
 
 -- buffer-line
-nnoremap("<Leader>1", '<cmd>lua require("bufferline").go_to_buffer(1, true)<CR>')
-nnoremap("<Leader>2", '<cmd>lua require("bufferline").go_to_buffer(2, true)<CR>')
-nnoremap("<Leader>3", '<cmd>lua require("bufferline").go_to_buffer(3, true)<CR>')
-nnoremap("<Leader>4", '<cmd>lua require("bufferline").go_to_buffer(4, true)<CR>')
-nnoremap("<Leader>5", '<cmd>lua require("bufferline").go_to_buffer(5, true)<CR>')
-nnoremap("<Leader>6", '<cmd>lua require("bufferline").go_to_buffer(6, true)<CR>')
-nnoremap("<Leader>7", '<cmd>lua require("bufferline").go_to_buffer(7, true)<CR>')
-nnoremap("<Leader>8", '<cmd>lua require("bufferline").go_to_buffer(8, true)<CR>')
-nnoremap("<Leader>9", ':<cmd>lua require("bufferline").go_to_buffer(9, true)<CR>')
+nnoremap("<Leader>1", '<cmd>lua require("bufferline").go_to_buffer(1, true)<CR>', { desc = "Go Buffer 1" })
+nnoremap("<Leader>2", '<cmd>lua require("bufferline").go_to_buffer(2, true)<CR>', { desc = "Go Buffer 2" })
+nnoremap("<Leader>3", '<cmd>lua require("bufferline").go_to_buffer(3, true)<CR>', { desc = "Go Buffer 3" })
+nnoremap("<Leader>4", '<cmd>lua require("bufferline").go_to_buffer(4, true)<CR>', { desc = "Go Buffer 4" })
+nnoremap("<Leader>5", '<cmd>lua require("bufferline").go_to_buffer(5, true)<CR>', { desc = "Go Buffer 5" })
+nnoremap("<Leader>6", '<cmd>lua require("bufferline").go_to_buffer(6, true)<CR>', { desc = "Go Buffer 6" })
+nnoremap("<Leader>7", '<cmd>lua require("bufferline").go_to_buffer(7, true)<CR>', { desc = "Go Buffer 7" })
+nnoremap("<Leader>8", '<cmd>lua require("bufferline").go_to_buffer(8, true)<CR>', { desc = "Go Buffer 8" })
+nnoremap("<Leader>9", ':<cmd>lua require("bufferline").go_to_buffer(9, true)<CR>', { desc = "Go Buffer 9" })
 
-map("n", "<Leader>l", "<Cmd>BufferLineCycleNext<CR>")
-map("n", "<Leader>h", "<Cmd>BufferLineCyclePrev<CR>")
+noremap("<Leader>l", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next Buffer" })
+noremap("<Leader>h", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev Buffer" })
 
 -- Buffer
-map("", "<Leader>xx", ":Bdelete!<CR>")
+noremap("<Leader>xx", ":Bdelete!<CR>", { desc = "Delete Buffers" })
 -- Close all but except current
-map("", "<Leader>xa", "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>")
+noremap(
+  "<Leader>xa",
+  "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
+  { desc = "Close all buffer but except current" }
+)
 
 -- SplitJoin
-nmap("<Leader>sj", ":SplitjoinJoin<CR>")
-nmap("<Leader>sk", ":SplitjoinSplit<CR>")
+nnoremap("<Leader>sj", ":SplitjoinJoin<CR>", { desc = "Join line" })
+nnoremap("<Leader>sk", ":SplitjoinSplit<CR>", { desc = "Split line" })
+
+-- center search results after / or ?
+noremap("n", "nzz")
+noremap("N", "Nzz")
+
+-- stay in indent mode after indenting
+vnoremap("<", "<gv")
+vnoremap(">", ">gv")
