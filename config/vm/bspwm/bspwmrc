@@ -42,7 +42,7 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Alacritty state=floating
+bspc rule -a Alacritty state=tiled
 bspc rule -a '*:*:Picture in picture' state=floating
 bspc rule -a chromium desktop='^2' follow=on border=off
 
@@ -50,7 +50,7 @@ bspc rule -a TelegramDesktop desktop='^5' follow=on border=off state=tiled
 bspc rule -a Skype desktop='^5' follow=on border=off state=tiled
 bspc rule -a Slack desktop='^5' follow=on border=off state=tiled
 
-bspc rule -a zoom desktop='^6' state=floating center=on follow=on border=off
+bspc rule -a zoom desktop='^6' state=tiled center=on follow=on border=off
 
 
 # border colors

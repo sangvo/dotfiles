@@ -24,3 +24,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # exercism
 export PATH=~/bin:$PATH
+
+. ~/.zsh/z/z.sh

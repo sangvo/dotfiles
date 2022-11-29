@@ -3,6 +3,10 @@
   name = v-sang
   signingkey = 5EAEF6A0E27CC4B6
 
+; Dont type password when denied ssh
+[credential]
+	helper = cache --timeout=6912000
+
 [url "git@github.com-ruby-dev"]
   insteadOf = git@github.com
 
