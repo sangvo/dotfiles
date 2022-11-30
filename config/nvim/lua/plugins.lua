@@ -50,9 +50,12 @@ return require("packer").startup(function(use)
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("RRethy/nvim-treesitter-endwise")
   use("editorconfig/editorconfig-vim")
-  use({ "heavenshell/vim-jsdoc", run = "make install" })
   use({ "dstein64/vim-startuptime" })
   use("bluz71/vim-nightfly-guicolors")
+  use({
+    "kkoomen/vim-doge",
+    run = ":call doge#install()",
+  })
 
   -- Mappings
   use("folke/which-key.nvim")

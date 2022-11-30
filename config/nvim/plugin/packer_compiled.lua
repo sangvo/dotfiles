@@ -240,7 +240,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-rg", "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-path", "cmp_luasnip" },
+    after = { "cmp-rg", "cmp_luasnip", "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-path" },
     load_after = {},
     loaded = false,
     needs_bufread = false,
@@ -324,10 +324,10 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-jsdoc"] = {
+  ["vim-doge"] = {
     loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-jsdoc",
-    url = "https://github.com/heavenshell/vim-jsdoc"
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-doge",
+    url = "https://github.com/kkoomen/vim-doge"
   },
   ["vim-matchup"] = {
     loaded = true,
@@ -364,8 +364,8 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd LuaSnip ]]
 vim.cmd [[ packadd nvim-treesitter ]]
+vim.cmd [[ packadd LuaSnip ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
