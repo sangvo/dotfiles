@@ -240,7 +240,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp_luasnip", "cmp-buffer", "cmp-cmdline", "cmp-path", "cmp-rg", "cmp-calc" },
+    after = { "cmp-buffer", "cmp-cmdline", "cmp-calc", "cmp-path", "cmp_luasnip", "cmp-rg" },
     load_after = {},
     loaded = false,
     needs_bufread = false,
@@ -364,8 +364,8 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-treesitter ]]
 vim.cmd [[ packadd LuaSnip ]]
+vim.cmd [[ packadd nvim-treesitter ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
