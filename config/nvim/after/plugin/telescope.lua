@@ -63,7 +63,7 @@ telescope.setup({
 			horizontal = {
 				width = 0.8,
 				height = 0.8,
-				preview_width = 0.6,
+				preview_width = 0.4,
 			},
 			vertical = {
 				height = 0.8,
@@ -134,13 +134,13 @@ end
 
 local function workspace_symbols()
 	require("telescope.builtin").lsp_workspace_symbols({
-		path_display = { "absolute" },
+		path_display = { "smart" },
 	})
 end
 
 local function grep_prompt()
 	require("telescope.builtin").grep_string({
-		path_display = { "absolute" },
+		path_display = { "smart" },
 		search = vim.fn.input("Grep String > "),
 		only_sort_text = true,
 		use_regex = true,
