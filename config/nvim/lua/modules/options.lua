@@ -60,7 +60,7 @@ o.smartcase = true -- Enable smart-case search
 o.ignorecase = true -- Always case-insensitive
 o.incsearch = true -- Searches for strings incrementally
 o.so = 7 -- Set 7 lines to the cursor
-o.laststatus = 2
+o.laststatus = 3
 o.ruler = true
 o.wildmenu = true
 o.spell = false -- turn off vim spell same work
@@ -69,10 +69,16 @@ o.spell = false -- turn off vim spell same work
 
 o.list = true
 o.fillchars = {
-	vert = "│",
+	vert = "┃",
+  horiz = "━",
+  horizup = "┻",
+  horizdown = "┳",
+  vertleft = "┫",
+  vertright = "┣",
+  verthoriz = "╋",
 	eob = " ",
 	fold = " ",
-	diff = " ",
+	diff = "╱",
 } -- make vertical split sign better
 
 o.listchars = {
