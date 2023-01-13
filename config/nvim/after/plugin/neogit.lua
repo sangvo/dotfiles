@@ -5,5 +5,6 @@ if not present then
 end
 
 require('neogit').setup {
+   kind = "split",
   integrations = { diffview = true },
 }

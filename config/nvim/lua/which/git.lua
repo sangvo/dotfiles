@@ -11,7 +11,7 @@ require("which-key").register({
     D = { "<cmd>DiffviewClose<cr>", "Close DiffView" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-    n = { "<cmd>Neogit kind=split<cr>", "Open Neogit" },
+    n = { "<cmd>Neogit<cr>", "Open Neogit" },
     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
