@@ -110,15 +110,6 @@ EOF
         updated_apt_repo=yes
     fi
 
-    # To get chrome, later.
-    if [ ! -s /etc/apt/sources.list.d/google-chrome.list ]; then
-        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" \
-            | sudo tee /etc/apt/sources.list.d/google-chrome.list
-        wget -O- https://dl-ssl.google.com/linux/linux_signing_key.pub \
-            | sudo apt-key add -
-        updated_apt_repo=yes
-    fi
-
     # Register all that stuff we just did.
     if [ -n "$updated_apt_repo" ]; then
         sudo apt-get update -qq -y || true
@@ -290,6 +281,17 @@ install_docker_compose() {
   fi
 }
 
+install_latest_chrome() {
+    info "Installing Google Chrome"
+    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" \
+        | sudo tee /etc/apt/sources.list.d/google-chrome.list
+    wget -O- https://dl-ssl.google.com/linux/linux_signing_key.pub \
+        | sudo apt-key add -
+    sudo apt update -y
+    sudo apt install google-chrome-stable
+    success "Installed Google Chrome"
+}
+
 echo
 info "🚀 Running bootstrap Ubuntu 🚀"
 
@@ -308,5 +310,6 @@ install_nvim
 install_docker
 install_docker_compose
 # install_postgresql
+install_latest_chrome
 
 trap - EXIT

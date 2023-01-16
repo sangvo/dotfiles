@@ -92,7 +92,7 @@ cmp.setup {
   -- styling
   formatting = {
     format = lspkind.cmp_format {
-      mode = 'symbol', -- show only symbol annotations
+      mode = 'symbol_text', -- show only symbol annotations
       maxwidth = 50, -- the popup will only show a max of 50 chars
       with_text = false, -- idk
 

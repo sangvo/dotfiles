@@ -1,14 +1,18 @@
-require("bufferline").setup {
+require("bufferline").setup({
   options = {
     show_buffer_close_icons = true,
     show_close_icon = false,
     close_command = function(bufnum)
-        require('bufdelete').bufdelete(bufnum, true)
+      require("bufdelete").bufdelete(bufnum, true)
     end,
-    separator_style = "thick",
+    separator_style = { "", "" },
     diagnostics = "nvim_lsp",
     buffer_close_icon = "",
     numbers = "ordinal",
+    indicator = {
+      icon = "┃",
+      style = "icon",
+    },
     offsets = {
       {
         filetype = "NvimTree",
@@ -44,4 +48,4 @@ require("bufferline").setup {
       end,
     },
   },
-}
+})
