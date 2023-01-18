@@ -33,7 +33,7 @@ return require("packer").startup(function(use)
   use("kamykn/spelunker.vim")
   use({ "glepnir/galaxyline.nvim", branch = "main" })
   use("kyazdani42/nvim-tree.lua")
-  use({ "akinsho/bufferline.nvim", tag = "v2.*" })
+  use({ "akinsho/bufferline.nvim", tag = "v3.*" })
   use("norcalli/nvim-colorizer.lua")
   use("onsails/lspkind-nvim")
   use({ "rafamadriz/friendly-snippets", branch = "main" })
@@ -52,10 +52,10 @@ return require("packer").startup(function(use)
   use("editorconfig/editorconfig-vim")
   use({ "dstein64/vim-startuptime" })
   use("bluz71/vim-nightfly-guicolors")
-  use({
-    "kkoomen/vim-doge",
-    run = ":call doge#install()",
-  })
+  -- use({
+  --   "kkoomen/vim-doge",
+  --   run = ":call doge#install()",
+  -- })
 
   -- Mappings
   use("folke/which-key.nvim")

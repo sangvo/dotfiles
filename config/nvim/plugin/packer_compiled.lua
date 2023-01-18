@@ -240,7 +240,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-cmdline", "cmp-calc", "cmp-buffer", "cmp-path", "cmp_luasnip", "cmp-rg" },
+    after = { "cmp-rg", "cmp-cmdline", "cmp-calc", "cmp-buffer", "cmp-path", "cmp_luasnip" },
     load_after = {},
     loaded = false,
     needs_bufread = false,
@@ -324,11 +324,6 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-doge"] = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-doge",
-    url = "https://github.com/kkoomen/vim-doge"
-  },
   ["vim-matchup"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-matchup",
@@ -371,9 +366,9 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'nvim-cmp'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-cmp'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'nvim-cmp'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
