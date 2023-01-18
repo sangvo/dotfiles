@@ -28,7 +28,6 @@ require ('mason-null-ls').setup({
 		"stylua",
 		"prettierd",
 		"eslint_d",
-		"golangci_lint",
 		"gofmt",
 		"rubocop",
 	},
