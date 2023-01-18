@@ -71,7 +71,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git rails sudo docker-compose
+  sudo docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -123,6 +123,12 @@ alias co="cd ~/company"
 alias cls="clear"
 alias kill3000="fuser -k 3000/tcp"
 alias joke='curl -H "Accept: text/plain" https://icanhazdadjoke.com'
+
+# Git
+alias gco='git checkout'
+alias gb='git branch'
+alias gpf='git push --force-with-lease'
+alias gst='git status'
 
 # Awesome ls
 alias ls="lsd -F"

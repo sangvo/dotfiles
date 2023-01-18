@@ -5,13 +5,6 @@ if not present then
 end
 
 require("gitsigns").setup({
-	signs = {
-		add = { hl = "SignAdd", text = "▎" },
-		change = { hl = "SignChange", text = "▎" },
-		delete = { hl = "SignDelete", text = "🭻" },
-		topdelete = { hl = "SignDelete", text = "🭶" },
-		changedelete = { hl = "SignChange", text = "▎" },
-	},
 	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
 	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
