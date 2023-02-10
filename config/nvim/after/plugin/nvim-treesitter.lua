@@ -6,6 +6,7 @@ end
 
 local ts_config = require "nvim-treesitter.configs"
 
+-- Just one folder: :echo nvim_get_runtime_file('parser', v:true)
 -- Defines a rw for treesitter in the cache dir
 local parser_install_dir = vim.fn.stdpath('data') .. '/treesitter_parser'
 vim.opt.runtimepath:append(parser_install_dir)
