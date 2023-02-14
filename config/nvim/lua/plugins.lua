@@ -24,6 +24,9 @@ return require("packer").startup(function(use)
   -- Navigation
   use("christoomey/vim-tmux-navigator")
 
+  -- Wakatime
+  use("wakatime/vim-wakatime")
+
   -- Plugins
   use("kylechui/nvim-surround")
   use("Yggdroot/indentLine")

@@ -18,7 +18,7 @@ require("mason-lspconfig").setup({
 		"gopls",
 		"rust_analyzer",
 		"tailwindcss",
-		"sumneko_lua",
+		"lua_ls",
 	},
 })
 
@@ -30,6 +30,7 @@ require ('mason-null-ls').setup({
 		"eslint_d",
 		"gofmt",
 		"rubocop",
+    "golangci_lint",
 	},
 })
 
@@ -95,7 +96,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   capabilities = default_capabilities,
   settings = {
     Lua = {
