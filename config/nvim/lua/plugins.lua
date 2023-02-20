@@ -25,7 +25,7 @@ return require("packer").startup(function(use)
   use("christoomey/vim-tmux-navigator")
 
   -- Wakatime
-  use("wakatime/vim-wakatime")
+  -- use("wakatime/vim-wakatime")
 
   -- Plugins
   use("kylechui/nvim-surround")
@@ -55,10 +55,7 @@ return require("packer").startup(function(use)
   use("editorconfig/editorconfig-vim")
   use({ "dstein64/vim-startuptime" })
   use("bluz71/vim-nightfly-guicolors")
-  -- use({
-  --   "kkoomen/vim-doge",
-  --   run = ":call doge#install()",
-  -- })
+  use("danymat/neogen")
 
   -- Mappings
   use("folke/which-key.nvim")
@@ -99,6 +96,7 @@ return require("packer").startup(function(use)
       { "lukas-reineke/cmp-rg", after = "nvim-cmp" },
       { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
       { "hrsh7th/cmp_luasnip", after = "nvim-cmp" },
+      { "hrsh7th/cmp-emoji", after = "nvim-cmp" },
     },
     after = { "LuaSnip", "nvim-treesitter" },
     wants = { "LuaSnip" },

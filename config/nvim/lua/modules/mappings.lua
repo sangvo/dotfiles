@@ -86,6 +86,9 @@ noremap(
 nnoremap("<Leader>sj", ":SplitjoinJoin<CR>", { desc = "Join line" })
 nnoremap("<Leader>sk", ":SplitjoinSplit<CR>", { desc = "Split line" })
 
+-- Neogen
+nnoremap("<Leader>nf", ":lua require('neogen').generate({ type = 'func' })<CR>", { desc = "Generate func document" })
+
 -- center search results after / or ?
 noremap("n", "nzz")
 noremap("N", "Nzz")
