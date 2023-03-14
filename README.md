@@ -1,5 +1,7 @@
 # dotfiles
 
+[screenshot terminal](./screenshots/image.png)
+
 My config for Vim(Neovim) Zsh Alacritty Tmux
 
 ## usage
