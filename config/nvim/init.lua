@@ -1,6 +1,6 @@
-require("bootstrap")
+require("sang.bootstrap")
 require("impatient")
-require("plugins")
+require("sang.plugins")
 -- enable filetype.lua
 vim.g.do_filetype_lua = 1
 
@@ -19,11 +19,11 @@ cnoreabbrev <expr> Qa ((getcmdtype() is# ':' && getcmdline() is# 'Qa')?('qa'):('
 
 -- order matters
 vim.cmd([[
-runtime! lua/modules/options.lua
-runtime! lua/modules/mappings.lua
+runtime! lua/sang/options.lua
+runtime! lua/sang/mappings.lua
 ]])
 
-require("nvim-lsp-conf")
-require("nvim-cmp")
-require("theme")
-require("which.init")
+require("sang.nvim-lsp-conf")
+require("sang.nvim-cmp")
+require("sang.theme")
+require("sang.which.init")

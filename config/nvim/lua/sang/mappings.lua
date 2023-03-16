@@ -1,4 +1,4 @@
-local u = require("modules.util")
+local u = require("sang.util")
 local noremap = u.noremap
 local nnoremap = u.nnoremap
 local inoremap = u.inoremap

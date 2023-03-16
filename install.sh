@@ -1,27 +1,15 @@
 # Tiling window manager
 ln -s -f ~/workspace/dotfiles/config/vm/* ~/.config
 
-mkdir -p ~/.zsh
-ln -s -f ~/workspace/dotfiles/config/zsh/* ~/.zsh
-ln -s -f ~/workspace/dotfiles/.zshrc ~/.zshrc
+# ZSH
+stow zsh -t ~
 
-ln -s -f ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf
-
-# Git
+# Git & SSH
 ln -s -f ~/workspace/dotfiles/multi_ssh_git_config ~/.ssh/config
-ln -s -f ~/workspace/dotfiles/git-host-config ~/.ssh/config
-ln -s -f ~/workspace/dotfiles/gitconfig ~/.gitconfig
-ln -s -f ~/workspace/dotfiles/gitignore_global ~/.gitignore_global
-ln -s -f ~/workspace/dotfiles/gitconfig_personal ~/.gitconfig_personal
-ln -s -f ~/workspace/dotfiles/.gitmessage ~/.gitmessage
-
+stow gitconfig sshconfig -t ~
 
 rm -r -f ~/.config/nvim
 ln -s -f ~/workspace/dotfiles/config/nvim ~/.config/nvim
 
 rm -r -f ~/.fonts
 ln -s -f ~/workspace/dotfiles/fonts ~/.fonts
-
-ln -s -f ~/workspace/dotfiles/config/alacritty/.alacritty.yml $HOME/.alacritty.yml
-
-nvim +PlugInstall +qall

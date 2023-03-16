@@ -149,12 +149,10 @@ alias js="bundle exec jekyll serve --drafts"
 
 # Zsh Defer
 
-zsh-defer source ~/.zsh/zsh-fzf.zsh
-source ~/.zsh/zsh-export-path.zsh
-zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zsh-defer source ~/.zsh/zsh-completions/zsh-completions.plugin.zsh
-eval "$(rbenv init - zsh)"
+zsh-defer source ~/.config/zsh/zsh-fzf.zsh
+zsh-defer source ~/.config/zsh/zsh-export-path.zsh
+zsh-defer source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

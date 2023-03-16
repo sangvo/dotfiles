@@ -165,6 +165,21 @@ EOF
     install_mkcert
 }
 
+install_zsh() {
+  read -r -p "Do you want to install Zsh? [y|N] " response
+  if [[ $response =~ (y|yes|Y) ]];then
+    info "Installing Zsh"
+    sudo apt install zsh -y
+    sudo chsh -s $(which zsh)
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/romkatv/zsh-defer.git ~/.config/zsh/zsh-defer
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/zsh-syntax-highlighting
+    git clone https://github.com/rupa/z.git ~/.config/zsh/z
+    success "Installed Zsh"
+  fi
+}
+
 install_postgresql() {
     # Instructions taken from
     # https://pgdash.io/blog/postgres-11-getting-started.html
@@ -231,7 +246,11 @@ install_nvim() {
       git clone https://github.com/neovim/neovim.git
       cd neovim
       git checkout stable
-      make
+
+      sudo rm /usr/local/bin/nvim
+      sudo rm -r /usr/local/share/nvim/
+
+      make CMAKE_BUILD_TYPE=RelWithDebInfo
       sudo make install
       success "Installed nvim"
     )

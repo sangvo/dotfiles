@@ -42,8 +42,6 @@ bspc config focus_follows_pointer true
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
-bspc config border_radius        10 # Use folk rounded
-
 
 bspc rule -a Alacritty state=tiled
 bspc rule -a '*:*:Picture in picture' state=floating
