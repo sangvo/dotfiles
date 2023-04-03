@@ -29,7 +29,7 @@ elif [ "$(xrandr | grep -sw 'connected' | wc -l)" = "2" ]; then
   #Set Monitors Side and output
   xrandr --output $SECOND_MONITOR --$SECOND_MONITOR_SIDE-of $THIRD_MONITOR
 else
-  bspc monitor -d I II III IV V VI VII VIII IX X
+  bspc monitor -d I II III IV V
 fi
 
 # bspc monitor -d I II III IV

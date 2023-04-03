@@ -1,4 +1,4 @@
-source ~/.zsh/zsh-defer/zsh-defer.plugin.zsh
+source ~/.config/zsh/zsh-defer/zsh-defer.plugin.zsh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:$PATH
