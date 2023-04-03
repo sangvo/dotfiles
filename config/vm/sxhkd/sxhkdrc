@@ -155,11 +155,15 @@ XF86AudioPrev
 XF86AudioStop
 	mpc stop
 
+# OCR a screen selection.
+super + shift + t
+    convert x: -modulate 100,0 -resize 400% -set density 300 png:- | tesseract stdin stdout | xclip -selection clipboard
+
 #Print screen
 Print
-	scrot -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
+	flameshot screen
 shift + @Print
-	scrot -s -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
+	flameshot gui
 alt + Print
 	scrot -u -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
 ctrl + Print

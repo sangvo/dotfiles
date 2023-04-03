@@ -2,6 +2,7 @@
 
 killall mpd &
 killall picom &
+killall flameshot &
 
 #Configs side of monitors BSPWM
 SECOND_MONITOR_SIDE="left"
@@ -60,6 +61,7 @@ bspc config normal_border_color "#011627"
 picom -b --config ~/.config/picom.conf &
 dunst &
 mpd &
+flameshot &
 setxkbmap -option caps:escape &
 feh --bg-fill $HOME/workspace/dotfiles/wallpapers/asta.jpg &
 $HOME/.config/polybar/launch.sh &
