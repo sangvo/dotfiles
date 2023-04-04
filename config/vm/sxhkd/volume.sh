@@ -12,7 +12,7 @@ function is_mute {
 function send_notification {
   volume=`get_volume`
   bar=$(seq -s "─" $(($((${volume: :-1}+5))/5)) | sed 's/[0-9]//g')
-  dunstify -r 2593 -u normal "$bar"
+  notify-send -r 2593 -u normal "$bar"
 }
 
 case $1 in
@@ -29,7 +29,7 @@ case $1 in
   toggle)
     amixer -D pulse set Master 1+ toggle > /dev/null
     if is_mute ; then
-      dunstify -r 2593 -u normal " Muted"
+      notify-send -r 2593 -u normal " Muted"
     else
       send_notification
     fi
