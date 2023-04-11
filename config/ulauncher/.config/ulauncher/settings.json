@@ -8,5 +8,5 @@
     "show-indicator-icon": false,
     "show-recent-apps": "5",
     "terminal-command": "alacritty",
-    "theme-name": "WhiteSur-dark"
+    "theme-name": "light"
 }

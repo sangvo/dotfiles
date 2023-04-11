@@ -161,12 +161,11 @@ super + shift + t
 
 #Print screen
 Print
-	flameshot screen
+	flameshot screen --path /home/sangvo/Pictures/screenshots/
 shift + @Print
 	flameshot gui
 alt + Print
-	scrot -u -e 'mv $f ~/Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
-ctrl + Print
-	scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
+	flameshot screen --clipboard
 ctrl + shift + @Print
-	scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
+	flameshot full  --path /home/sangvo/Pictures/screenshots/
+

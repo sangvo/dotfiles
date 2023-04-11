@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# notification
+dunst &
+
+# Music player deamon
+mpd &
+
+# faster keyboard
+setxkbmap -option caps:escape
+
+# Set background
+export WALLPAPERS="$HOME/workspace/dotfiles/wallpapers/"
+
+feh --bg-fill $HOME/workspace/dotfiles/wallpapers/asta.jpg &
+sleep 0.1
+
+# Compositor
+picom --experimental-backends -b
+
+# ===================== TRAY SYSTEM ===================
+ibus-daemon &

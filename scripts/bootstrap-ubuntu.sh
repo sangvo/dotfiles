@@ -76,7 +76,7 @@ install_packages() {
     # This is needed to get the add-apt-repository command.
     # apt-transport-https may not be strictly necessary, but can help
     # for future updates.
-    sudo apt-get install build-essential zsh vim tmux curl scrot mpd software-properties-common apt-transport-https -y
+    sudo apt-get install build-essential zsh vim tmux curl mpd software-properties-common apt-transport-https -y
 
     # To get the most recent nodejs, later.
     if ls /etc/apt/sources.list.d/ 2>&1 | grep -q chris-lea-node_js; then

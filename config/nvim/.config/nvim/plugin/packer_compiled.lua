@@ -214,6 +214,11 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -239,11 +244,6 @@ _G.packer_plugins = {
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/neogit",
     url = "https://github.com/TimUntersberger/neogit"
   },
-  nightfly = {
-    loaded = true,
-    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/nightfly",
-    url = "https://github.com/bluz71/vim-nightfly-colors"
-  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -255,7 +255,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-path", "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-rg", "cmp_luasnip", "cmp-emoji" },
+    after = { "cmp-rg", "cmp-path", "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-emoji", "cmp_luasnip" },
     load_after = {},
     loaded = false,
     needs_bufread = false,
@@ -338,6 +338,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-go"] = {
+    loaded = true,
+    path = "/home/sangvo/.local/share/nvim/site/pack/packer/start/vim-go",
+    url = "https://github.com/fatih/vim-go"
   },
   ["vim-matchup"] = {
     loaded = true,

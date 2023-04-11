@@ -56,6 +56,7 @@ return require("packer").startup(function(use)
   use({ "dstein64/vim-startuptime" })
   use("bluz71/vim-nightfly-guicolors")
   use("danymat/neogen")
+  use("fatih/vim-go")
 
   -- Mappings
   use("folke/which-key.nvim")
