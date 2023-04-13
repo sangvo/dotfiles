@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -18,7 +18,7 @@ vim.g.do_filetype_lua = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require('lazy').setup("sang.plugins")
+require("lazy").setup("sang.plugins")
 
 -- prevent typo when pressing `wq` or `q`
 vim.cmd([[
@@ -35,7 +35,7 @@ runtime! lua/sang/options.lua
 runtime! lua/sang/mappings.lua
 ]])
 
-require("sang.nvim-lsp-conf")
+-- require("sang.nvim-lsp-conf")
 require("sang.nvim-cmp")
 require("sang.theme")
-require("sang.which.init")
+require("sang.which")

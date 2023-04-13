@@ -21,15 +21,15 @@ return {
   "phaazon/hop.nvim",
 
   -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lua" },
-  },
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "jayp0521/mason-null-ls.nvim",
-  "ray-x/lsp_signature.nvim",
-  "jose-elias-alvarez/null-ls.nvim",
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   dependencies = { "hrsh7th/cmp-nvim-lua" },
+  -- },
+  -- "williamboman/mason.nvim",
+  -- "williamboman/mason-lspconfig.nvim",
+  -- "jayp0521/mason-null-ls.nvim",
+  -- "ray-x/lsp_signature.nvim",
+  -- "jose-elias-alvarez/null-ls.nvim",
   { "L3MON4D3/LuaSnip", version = "v<CurrentMajor>.*" },
 
   -- Telescope
