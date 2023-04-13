@@ -69,7 +69,7 @@ o.spell = false -- turn off vim spell same work
 
 o.list = true
 o.fillchars = {
-	vert = "┃",
+	vert = "│",
   horiz = "━",
   horizup = "┻",
   horizdown = "┳",

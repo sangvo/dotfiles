@@ -1,26 +1,16 @@
 return {
-    -- Dependencies
-  "nvim-lua/plenary.nvim",
-  "nvim-tree/nvim-web-devicons",
-
-  -- Navigation
-  "christoomey/vim-tmux-navigator",
-
   -- Wakatime
   -- "wakatime/vim-wakatime",
 
   -- Plugins
   "kylechui/nvim-surround",
-  "numToStr/Comment.nvim",
   "AndrewRadev/splitjoin.vim",
   "vim-test/vim-test",
   "kamykn/spelunker.vim",
   "onsails/lspkind-nvim",
   { "rafamadriz/friendly-snippets", branch = "main" },
   "andymass/vim-matchup",
-  "famiu/bufdelete.nvim",
   "editorconfig/editorconfig-vim",
-  { "dstein64/vim-startuptime" },
   "danymat/neogen",
   "fatih/vim-go",
 
@@ -48,8 +38,8 @@ return {
   -- "nvim-telescope/telescope-ui-select.nvim",
 
   -- Git
-  "TimUntersberger/neogit",
-  "sindrets/diffview.nvim",
+  -- "TimUntersberger/neogit",
+  -- "sindrets/diffview.nvim",
 
   -- CMP
   {

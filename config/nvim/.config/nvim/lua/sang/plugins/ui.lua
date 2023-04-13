@@ -1,4 +1,5 @@
 return {
+  { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",

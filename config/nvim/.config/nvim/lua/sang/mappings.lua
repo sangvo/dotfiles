@@ -1,8 +1,8 @@
-local u = require("sang.util")
-local noremap = u.noremap
-local nnoremap = u.nnoremap
-local inoremap = u.inoremap
-local vnoremap = u.vnoremap
+local Util = require("sang.util")
+local noremap = Util.noremap
+local nnoremap = Util.nnoremap
+local inoremap = Util.inoremap
+local vnoremap = Util.vnoremap
 
 inoremap("jk", "<Esc>", { desc = "Esc" })
 noremap("0", "^", { desc = "Beginning of line" })

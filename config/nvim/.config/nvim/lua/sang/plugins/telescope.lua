@@ -1,109 +1,79 @@
+local Util = require("sang.util")
+
 return {
-  {
-  "nvim-telescope/telescope.nvim",
-  dependencies = {
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-    "nvim-telescope/telescope-ui-select.nvim",
-    }
-  },
-  keys = {
-    {
-      "<C-p>",
-      require("telescope.builtin").find_files,
-      desc = "Fuzzy find files using Telescope",
-    },
-    {
-      "<C-f>",
-      	require("telescope.builtin").grep_string({
-          path_display = { "smart" },
-          search = vim.fn.input("Grep String > "),
-          only_sort_text = true,
-          use_regex = true,
-        }),
-      desc = "Fuzzy grep files using Telescope",
-    }
-  },
-  opts = {
-    defaults = {
-      scroll_strategy = "cycle",
-      selection_strategy = "reset",
-      layout_strategy = "flex",
-      borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-      layout_config = {
-        horizontal = {
-          width = 0.8,
-          height = 0.8,
-          preview_width = 0.4,
-        },
-        vertical = {
-          height = 0.8,
-          preview_height = 0.5,
-        },
-      },
-      mappings = {
-        i = {
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-x>"] = actions.select_horizontal,
-          ["<C-t>"] = actions.select_tab,
-
-          ["<C-c>"] = actions.close,
-          -- ["<Esc>"] = actions.close,
-
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
-          ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-          ["<Tab>"] = actions.toggle_selection,
-          -- ["<C-r>"] = actions.refine_result,
-        },
-        n = {
-          ["<CR>"] = actions.select_default + actions.center,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-x>"] = actions.select_horizontal,
-          ["<C-t>"] = actions.select_tab,
-          ["<Esc>"] = actions.close,
-
-          ["j"] = actions.move_selection_next,
-          ["k"] = actions.move_selection_previous,
-
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
-          ["<C-q>"] = actions.send_to_qflist,
-          ["<Tab>"] = actions.toggle_selection,
-        },
-      }
+	{
+		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
+		version = false, -- telescope did only one release, so use HEAD for now
+		keys = {
+			{ "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
+			{ "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
+			{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			{ "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
+			-- find
+			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+			{ "<leader>ff", Util.telescope("files"), desc = "Find Files (root dir)" },
+			{ "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+			-- git
+			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+			{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
+			-- search
+			{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+			{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+			{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+			{ "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+			{ "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
+			{ "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
+			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+			{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+			{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+			{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
+			{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+			{ "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
+			{ "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
 		},
-    pickers = {
-      grep_string = dropdown({
-        file_ignore_patterns = ignored_list,
-      }),
-      find_files = {
-        file_ignore_patterns = ignored_list,
-      },
-      lsp_references = dropdown(),
-      lsp_document_symbols = dropdown(),
-      current_buffer_fuzzy_find = no_preview(),
-    },
-    extensions = {
-		["ui-select"] = no_preview(),
-		fzf = {
-			override_generic_sorter = true,
-			override_file_sorter = true,
+		opts = {
+			defaults = {
+				prompt_prefix = " ",
+				selection_caret = " ",
+				mappings = {
+					i = {
+            ["<C-j>"] = function(...)
+              return require("telescope.actions").move_selection_next
+            end,
+            ["<C-k>"] = function(...)
+              return require("telescope.actions").move_selection_previous
+            end,
+						["<a-i>"] = function()
+							Util.telescope("find_files", { no_ignore = true })()
+						end,
+						["<a-h>"] = function()
+							Util.telescope("find_files", { hidden = true })()
+						end,
+						["<C-Down>"] = function(...)
+							return require("telescope.actions").cycle_history_next(...)
+						end,
+						["<C-Up>"] = function(...)
+							return require("telescope.actions").cycle_history_prev(...)
+						end,
+						["<C-f>"] = function(...)
+							return require("telescope.actions").preview_scrolling_down(...)
+						end,
+						["<C-b>"] = function(...)
+							return require("telescope.actions").preview_scrolling_up(...)
+						end,
+					},
+					n = {
+						["q"] = function(...)
+							return require("telescope.actions").close(...)
+						end,
+					},
+				},
+			},
 		},
-    }
-  },
-  config = function(_, opts)
-    local telescope = require("telescope")
-    telescope.setup(opts)
-    telescope.load_extension("fzf")
-    telescope.load_extension("ui-select")
-  end,
+	},
 }

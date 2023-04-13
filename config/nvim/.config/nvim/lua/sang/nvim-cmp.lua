@@ -3,7 +3,6 @@ local present, cmp = pcall(require, "cmp")
 if not present then
   return
 end
-local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local neogen = require("neogen")
