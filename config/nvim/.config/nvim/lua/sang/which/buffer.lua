@@ -1,0 +1,16 @@
+require("which-key").register({
+  name = "Buffers",
+  ["<leader>1"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "Go to buffer 1" },
+  ["<leader>2"] = { "<Cmd>BufferLineGoToBuffer 2<CR>", "Go to buffer 2" },
+  ["<leader>3"] = { "<Cmd>BufferLineGoToBuffer 3<CR>", "Go to buffer 3" },
+  ["<leader>4"] = { "<Cmd>BufferLineGoToBuffer 4<CR>", "Go to buffer 4" },
+  ["<leader>5"] = { "<Cmd>BufferLineGoToBuffer 5<CR>", "Go to buffer 5" },
+  ["<leader>6"] = { "<Cmd>BufferLineGoToBuffer 6<CR>", "Go to buffer 6" },
+  ["<leader>7"] = { "<Cmd>BufferLineGoToBuffer 7<CR>", "Go to buffer 7" },
+  ["<leader>8"] = { "<Cmd>BufferLineGoToBuffer 8<CR>", "Go to buffer 8" },
+  ["<leader>9"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "Go to buffer 9" },
+  ["<leader>l"] = { "<Cmd>BufferLineCycleNext<CR>", "Next buffer" },
+  ["<leader>h"] = { "<Cmd>BufferLineCyclePrev<CR>", "Previous buffer" },
+  ["<leader>xx"] = { "<Cmd>:Bdelete!<CR>", "Delete buffer" },
+  ["<leader>xa"] = { "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>", "Close except current buffer" },
+})
