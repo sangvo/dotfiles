@@ -1,13 +1,11 @@
-local u = require("sang.util")
-local noremap = u.noremap
-local nnoremap = u.nnoremap
-local inoremap = u.inoremap
-local tnoremap = u.tnoremap
-local vnoremap = u.vnoremap
+local Util = require("sang.util")
+local noremap = Util.noremap
+local nnoremap = Util.nnoremap
+local inoremap = Util.inoremap
+local vnoremap = Util.vnoremap
 
 inoremap("jk", "<Esc>", { desc = "Esc" })
 noremap("0", "^", { desc = "Beginning of line" })
-noremap("q", "<Nop>", { desc = "Don't use macro" })
 
 -- Don't move with arrow key
 
@@ -59,30 +57,10 @@ noremap("<Leader>ss", "<C-W>s", { desc = "Split horizontal" })
 nnoremap("<C-w>[", ":vertical resize -6<CR>")
 nnoremap("<C-w>]", ":vertical resize +6<CR>")
 
--- buffer-line
-nnoremap("<Leader>1", '<cmd>lua require("bufferline").go_to_buffer(1, true)<CR>', { desc = "Go Buffer 1" })
-nnoremap("<Leader>2", '<cmd>lua require("bufferline").go_to_buffer(2, true)<CR>', { desc = "Go Buffer 2" })
-nnoremap("<Leader>3", '<cmd>lua require("bufferline").go_to_buffer(3, true)<CR>', { desc = "Go Buffer 3" })
-nnoremap("<Leader>4", '<cmd>lua require("bufferline").go_to_buffer(4, true)<CR>', { desc = "Go Buffer 4" })
-nnoremap("<Leader>5", '<cmd>lua require("bufferline").go_to_buffer(5, true)<CR>', { desc = "Go Buffer 5" })
-nnoremap("<Leader>6", '<cmd>lua require("bufferline").go_to_buffer(6, true)<CR>', { desc = "Go Buffer 6" })
-nnoremap("<Leader>7", '<cmd>lua require("bufferline").go_to_buffer(7, true)<CR>', { desc = "Go Buffer 7" })
-nnoremap("<Leader>8", '<cmd>lua require("bufferline").go_to_buffer(8, true)<CR>', { desc = "Go Buffer 8" })
-nnoremap("<Leader>9", ':<cmd>lua require("bufferline").go_to_buffer(9, true)<CR>', { desc = "Go Buffer 9" })
-
-noremap("<Leader>l", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next Buffer" })
-noremap("<Leader>h", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev Buffer" })
-
--- Buffer
-noremap("<Leader>xx", ":Bdelete!<CR>", { desc = "Delete Buffers" })
--- Close all but except current
-noremap(
-  "<Leader>xa",
-  "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
-  { desc = "Close all buffer but except current" }
-)
-
 -- SplitJoin
+vim.g.splitjoin_join_mapping = ''
+vim.g.splitjoin_split_mapping = ''
+
 nnoremap("<Leader>sj", ":SplitjoinJoin<CR>", { desc = "Join line" })
 nnoremap("<Leader>sk", ":SplitjoinSplit<CR>", { desc = "Split line" })
 

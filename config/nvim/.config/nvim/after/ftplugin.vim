@@ -8,12 +8,6 @@ augroup Whitespace
   au BufWritePre * if g:strip_whitespace | %s/\s\+$//e
 augroup END
 
-" highlight yanked text for 250ms
-augroup Yank
-  au!
-  au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
-augroup END
-
 " Detect  Go HTML
 function DetectGoHtmlTmpl()
     if expand('%:e') == "html" && search("{{") != 0

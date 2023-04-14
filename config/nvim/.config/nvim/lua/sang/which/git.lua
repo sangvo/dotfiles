@@ -1,12 +1,6 @@
 require("which-key").register({
   g = {
     name = "Git",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    B = {
-      "<cmd>Telescope git_bcommits<cr>",
-      "Checkout commits (for the current file)",
-    },
-    C = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = { "<cmd>DiffviewOpen<cr>", "Open DiffView" },
     D = { "<cmd>DiffviewClose<cr>", "Close DiffView" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },

@@ -1,12 +1,40 @@
-require("sang.bootstrap")
-require("impatient")
-require("sang.plugins")
--- enable filetype.lua
-vim.g.do_filetype_lua = 1
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("lazy").setup("sang.plugins", {
+  defaults = { version = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
 
 -- prevent typo when pressing `wq` or `q`
 vim.cmd([[
@@ -19,11 +47,5 @@ cnoreabbrev <expr> Qa ((getcmdtype() is# ':' && getcmdline() is# 'Qa')?('qa'):('
 
 -- order matters
 vim.cmd([[
-runtime! lua/sang/options.lua
-runtime! lua/sang/mappings.lua
+  runtime! lua/sang/config/init.lua
 ]])
-
-require("sang.nvim-lsp-conf")
-require("sang.nvim-cmp")
-require("sang.theme")
-require("sang.which.init")
