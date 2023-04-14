@@ -4,7 +4,29 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
-		version = false, -- telescope did only one release, so use HEAD for now
+		dependencies = {
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				config = function()
+					require("telescope").load_extension("fzf")
+				end,
+			},
+			{
+				"nvim-telescope/telescope-ui-select.nvim",
+				opts = function()
+					require("telescope.themes").get_dropdown({
+						layout_config = {
+							width = 0.6,
+						},
+						previewer = false,
+					})
+				end,
+				config = function()
+					require("telescope").load_extension("ui-select")
+				end,
+			},
+		},
 		keys = {
 			{ "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
 			{ "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
@@ -42,12 +64,12 @@ return {
 				selection_caret = " ",
 				mappings = {
 					i = {
-            ["<C-j>"] = function(...)
-              return require("telescope.actions").move_selection_next
-            end,
-            ["<C-k>"] = function(...)
-              return require("telescope.actions").move_selection_previous
-            end,
+						["<C-j>"] = function(...)
+							return require("telescope.actions").move_selection_next(...)
+						end,
+						["<C-k>"] = function(...)
+							return require("telescope.actions").move_selection_previous(...)
+						end,
 						["<a-i>"] = function()
 							Util.telescope("find_files", { no_ignore = true })()
 						end,
@@ -70,6 +92,12 @@ return {
 					n = {
 						["q"] = function(...)
 							return require("telescope.actions").close(...)
+						end,
+						["j"] = function(...)
+							return require("telescope.actions").move_selection_next(...)
+						end,
+						["k"] = function(...)
+							return require("telescope.actions").move_selection_previous(...)
 						end,
 					},
 				},

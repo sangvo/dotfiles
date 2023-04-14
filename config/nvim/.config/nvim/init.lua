@@ -11,14 +11,26 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- enable filetype.lua
-vim.g.do_filetype_lua = 1
-
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("lazy").setup("sang.plugins")
+require("lazy").setup("sang.plugins", {
+  defaults = { version = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
 
 -- prevent typo when pressing `wq` or `q`
 vim.cmd([[
@@ -31,11 +43,5 @@ cnoreabbrev <expr> Qa ((getcmdtype() is# ':' && getcmdline() is# 'Qa')?('qa'):('
 
 -- order matters
 vim.cmd([[
-runtime! lua/sang/options.lua
-runtime! lua/sang/mappings.lua
+  runtime! lua/sang/config/init.lua
 ]])
-
--- require("sang.nvim-lsp-conf")
-require("sang.nvim-cmp")
-require("sang.theme")
-require("sang.which")
