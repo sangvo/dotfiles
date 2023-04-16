@@ -143,7 +143,21 @@ return {
 			end
 		end,
 	},
-
+  {
+    "smjonas/inc-rename.nvim",
+    keys = {
+      {
+        "<leader>rn",
+        function()
+          return ":IncRename " .. vim.fn.expand("<cword>")
+        end,
+        expr = true, mode = ""
+      }
+    },
+    config = function()
+      require("inc_rename").setup()
+    end,
+  },
 	-- formatters
 	{
 		"jose-elias-alvarez/null-ls.nvim",
