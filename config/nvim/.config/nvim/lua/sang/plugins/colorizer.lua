@@ -6,6 +6,7 @@ return {
       filetypes = { "*", "!lazy" },
       buftype = { "*", "!prompt", "!nofile" },
       user_default_options = {
+        tailwind = true,
         RGB = true, -- #RGB hex codes
         RRGGBB = true, -- #RRGGBB hex codes
         names = false, -- "Name" codes like Blue

@@ -15,8 +15,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

@@ -37,6 +37,10 @@ return {
 				jsonls = {},
 				lua_ls = {
 					-- mason = false, -- set to false if you don't want this server to be installed with mason
+					diagnostics = {
+						-- Get the language server to recognize the `vim` global
+						globals = { "vim" },
+					},
 					settings = {
 						Lua = {
 							workspace = {
@@ -143,21 +147,22 @@ return {
 			end
 		end,
 	},
-  {
-    "smjonas/inc-rename.nvim",
-    keys = {
-      {
-        "<leader>rn",
-        function()
-          return ":IncRename " .. vim.fn.expand("<cword>")
-        end,
-        expr = true, mode = ""
-      }
-    },
-    config = function()
-      require("inc_rename").setup()
-    end,
-  },
+	{
+		"smjonas/inc-rename.nvim",
+		keys = {
+			{
+				"<leader>rn",
+				function()
+					return ":IncRename " .. vim.fn.expand("<cword>")
+				end,
+				expr = true,
+				mode = "",
+			},
+		},
+		config = function()
+			require("inc_rename").setup()
+		end,
+	},
 	-- formatters
 	{
 		"jose-elias-alvarez/null-ls.nvim",

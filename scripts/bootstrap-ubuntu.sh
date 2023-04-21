@@ -12,7 +12,7 @@ info() {
 set -e
 
 DESIRED_GO_MAJOR_VERISON=1
-DESIRED_GO_MINOR_VERISON=16
+DESIRED_GO_MINOR_VERISON=19
 DESIRED_GO_VERSION="$DESIRED_GO_MAJOR_VERISON.$DESIRED_GO_MINOR_VERISON"
 
 # Evaluates to truthy if go is installed and
@@ -78,32 +78,6 @@ install_packages() {
     # for future updates.
     sudo apt-get install build-essential zsh vim tmux curl mpd software-properties-common apt-transport-https -y
 
-    # To get the most recent nodejs, later.
-    if ls /etc/apt/sources.list.d/ 2>&1 | grep -q chris-lea-node_js; then
-        # We used to use the (obsolete) chris-lea repo, remove that if needed
-        sudo add-apt-repository -y -r ppa:chris-lea/node.js
-        sudo rm -f /etc/apt/sources.list.d/chris-lea-node_js*
-        updated_apt_repo=yes
-    fi
-    if ! ls /etc/apt/sources.list.d/ 2>&1 | grep -q nodesource || \
-       ! grep -q node_16.x /etc/apt/sources.list.d/nodesource.list; then
-        # This is a simplified version of https://deb.nodesource.com/setup_16.x
-        wget -O- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-        cat <<EOF | sudo tee /etc/apt/sources.list.d/nodesource.list
-deb https://deb.nodesource.com/node_16.x `lsb_release -c -s` main
-deb-src https://deb.nodesource.com/node_16.x `lsb_release -c -s` main
-EOF
-        sudo chmod a+rX /etc/apt/sources.list.d/nodesource.list
-
-        # Pin nodejs to 16.x, otherwise apt might update it in newer Ubuntu versions
-        cat <<EOF | sudo tee /etc/apt/preferences.d/nodejs
-Package: nodejs
-Pin: version 16.*
-Pin-Priority: 999
-EOF
-        updated_apt_repo=yes
-    fi
-
     # To get the most recent git, later.
     if ! ls /etc/apt/sources.list.d/ 2>&1 | grep -q git-core-ppa; then
         sudo add-apt-repository -y ppa:git-core/ppa
@@ -129,34 +103,6 @@ EOF
         libnss3-tools \
         python3-pip
 
-
-    # We need npm 8 or greater to support node16.  That's the default
-    # for nodejs, but we may have overridden it before in a way that
-    # makes it impossible to upgrade, so we reinstall nodejs if our
-    # npm version is 5.x.x, 6.x.x, or 7.x.x.
-    if expr "`npm --version`" : '5\|6\|7' >/dev/null 2>&1; then
-        sudo apt-get purge -y nodejs
-        sudo apt-get install -y "nodejs"
-    fi
-
-    # Ubuntu installs as /usr/bin/nodejs but the rest of the world expects
-    # it to be `node`.
-    if ! [ -f /usr/bin/node ] && [ -f /usr/bin/nodejs ]; then
-        sudo ln -s /usr/bin/nodejs /usr/bin/node
-    fi
-
-    # Ubuntu's nodejs doesn't install npm, but if you get it from the PPA,
-    # it does (and conflicts with the separate npm package).  So install it
-    # if and only if it hasn't been installed already.
-    if ! which npm >/dev/null 2>&1 ; then
-        sudo apt-get install -y npm
-    fi
-
-    # We need npm 8 or greater to support node16. This is a particular npm8
-    # version known to work.
-    sudo npm install -g npm@8.11.0
-
-
     # We use go for our code, going forward
     install_go
 
@@ -167,7 +113,7 @@ EOF
 
 install_zsh() {
   read -r -p "Do you want to install Zsh? [y|N] " response
-  if [[ $response =~ (y|yes|Y) ]];then
+  if [[ $response =~ y|yes|Y ]];then
     info "Installing Zsh"
     sudo apt install zsh -y
     sudo chsh -s $(which zsh)
@@ -181,11 +127,6 @@ install_zsh() {
 }
 
 install_postgresql() {
-    # Instructions taken from
-    # https://pgdash.io/blog/postgres-11-getting-started.html
-    # and
-    # https://wiki.postgresql.org/wiki/Apt
-    # Postgres 11 is not available in 18.04, so we need to add the pg apt repository.
     curl https://www.postgresql.org/media/keys/ACCC4CF8.asc \
         | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
 
@@ -203,7 +144,8 @@ install_postgresql() {
 }
 
 install_rust() {
-    if ! which rustc >/dev/null; then
+    read -r -p "Do you want to install Rust? [y|N] " response
+    if [[ $response =~ y|yes|Y ]];then
       builddir=$(mktemp -d -t rustup.XXXXX)
 
       (
@@ -214,13 +156,12 @@ install_rust() {
 
       # cleanup temporary build directory
       sudo rm -rf "$builddir"
-    else
-      info "rust already installed"
     fi
 }
 
 install_ruby() {
-  if ! which rbenv >/dev/null; then
+  read -r -p "Do you want to install Ruby? [y|N] " response
+  if [[ $response =~ y|yes|Y ]];then
     info "Installing ruby"
     sudo apt-get install -y libssl-dev zlib1g-dev
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -229,13 +170,12 @@ install_ruby() {
     mkdir -p "$(rbenv root)"/plugins
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
     success "Installed Ruby"
-  else
-    info "ruby already installed"
   fi
 }
 
 install_nvim() {
-  if ! which nvim >/dev/null; then
+  read -r -p "Do you want to install/update Nvim? [y|N] " response
+  if [[ $response =~ y|yes|Y ]];then
     builddir=$(mktemp -d -t nvim.XXXXX)
     (
       info "Installing nvim"
@@ -257,13 +197,12 @@ install_nvim() {
 
     # cleanup temporary build directory
     sudo rm -rf "$builddir"
-  else
-    info "nvim already installed"
   fi
 }
 
 install_docker() {
-  if ! which docker >/dev/null; then
+  read -r -p "Do you want to install Docker? [y|N] " response
+  if [[ $response =~ y|yes|Y ]];then
     info "Installing Docker..."
     sudo apt-get remove docker docker-engine docker.io containerd runc
     sudo apt-get update -y
@@ -285,18 +224,15 @@ install_docker() {
     sudo usermod -aG docker $USER
     newgrp docker
     success "Installed Docker"
-  else
-    info "docker already installed"
   fi
 }
 
 install_docker_compose() {
-  if ! which docker-compose >/dev/null; then
+  read -r -p "Do you want to install docker-compose? [y|N] " response
+  if [[ $response =~ y|yes|Y ]];then
     sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     success "Docker Compose Installed"
-  else
-    info "docker-compose already installed"
   fi
 }
 
@@ -323,12 +259,12 @@ sudo sh -c 'echo OK'
 echo
 
 # install_packages
-install_rust
-install_ruby
-install_nvim
-install_docker
-install_docker_compose
+# install_rust
+# install_ruby
+# install_nvim
+# install_docker
+# install_docker_compose
 # install_postgresql
-install_latest_chrome
+# install_latest_chrome
 
 trap - EXIT
