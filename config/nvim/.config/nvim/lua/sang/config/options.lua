@@ -72,7 +72,7 @@ o.spell = false -- turn off vim spell same work
 
 o.list = true
 o.fillchars = {
-	vert = "│",
+	vert = "┃",
   horiz = "━",
   horizup = "┻",
   horizdown = "┳",
@@ -81,7 +81,11 @@ o.fillchars = {
   verthoriz = "╋",
 	eob = " ",
 	fold = " ",
-	diff = "╱",
+  msgsep = "━",
+  foldopen = "",
+  foldsep = "│",
+  foldclose = "",
+	diff = "░",
 } -- make vertical split sign better
 
 o.listchars = {

@@ -33,7 +33,7 @@ return {
             text = "EXPLORER",
             filetype = "NvimTree",
             text_align = "center",
-            separator = true,
+            separator = "┃",
           },
           {
             text = " DIFF VIEW",
@@ -58,10 +58,52 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    opts = {
-      icons_enabled = true,
-      theme = 'auto',
-      disabled_filetypes = { 'NvimTree' },
-    }
+    opts = function ()
+      return {
+        options = {
+          icons_enabled = true,
+          theme = 'auto',
+          disabled_filetypes = { 'NvimTree' },
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = {
+            {
+              function() return "  " .. require("dap").status() end,
+              cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+              color = { fg = "#fc514e" },
+              separator = ""
+            },
+            {
+              -- Lsp server name .
+              function()
+                local msg = 'No LSP'
+                local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                local clients = vim.lsp.get_active_clients()
+                if next(clients) == nil then
+                  return msg
+                end
+                for _, client in ipairs(clients) do
+                  local filetypes = client.config.filetypes
+                  if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                    return client.name
+                  end
+                end
+                return msg
+              end,
+              icon = ' ',
+              color = { fg = '#82aaff', gui = 'bold' },
+              separator = ""
+            },
+            'encoding',
+            'filetype'
+          },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
+        }
+      }
+    end
   }
 }
