@@ -63,7 +63,7 @@ return {
         options = {
           icons_enabled = true,
           theme = 'auto',
-          disabled_filetypes = { 'NvimTree' },
+          disabled_filetypes = { },
         },
         sections = {
           lualine_a = { 'mode' },
@@ -95,6 +95,13 @@ return {
               end,
               icon = ' ',
               color = { fg = '#82aaff', gui = 'bold' },
+              separator = ""
+            },
+            {
+              function()
+                return " " .. "%3{codeium#GetStatusString()}"
+              end,
+              color = { fg = '#e3d18a' },
               separator = ""
             },
             'encoding',

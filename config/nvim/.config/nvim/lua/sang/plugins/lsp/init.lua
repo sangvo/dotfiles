@@ -34,6 +34,7 @@ return {
 			},
 			-- LSP Server Settings
 			servers = {
+        eslint = {},
 				jsonls = {},
 				lua_ls = {
 					-- mason = false, -- set to false if you don't want this server to be installed with mason
@@ -63,6 +64,15 @@ return {
 				-- end,
 				-- Specify * to use this function as a fallback for any server
 				-- ["*"] = function(server, opts) end,
+        eslint = function()
+          require("sang.util").on_attach(function(client)
+            if client.name == "eslint" then
+              client.server_capabilities.documentFormattingProvider = true
+            elseif client.name == "tsserver" then
+              client.server_capabilities.documentFormattingProvider = false
+            end
+          end)
+        end,
 			},
 		},
 		---@param opts PluginLspOpts
@@ -171,17 +181,17 @@ return {
 		opts = function()
 			local nls = require("null-ls")
 			return {
+        diagnostics_format = "#{m}",
 				root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
 				sources = {
 					nls.builtins.formatting.stylua,
-					nls.builtins.formatting.prettierd,
-					nls.builtins.code_actions.eslint_d,
-					nls.builtins.diagnostics.eslint_d,
-					nls.builtins.diagnostics.golangci_lint,
-					nls.builtins.formatting.eslint_d,
 					nls.builtins.formatting.gofmt,
-					nls.builtins.diagnostics.rubocop,
-					nls.builtins.formatting.rubocop,
+          nls.builtins.formatting.prettierd,
+          nls.builtins.diagnostics.rubocop.with({
+            condition = function(utils)
+                return utils.root_has_file({ ".rubocop.yml" })
+            end,
+          }),
 				},
 			}
 		end,
@@ -197,7 +207,7 @@ return {
 			ensure_installed = {
 				"stylua",
 				"prettierd",
-				"eslint_d",
+				"eslint-lsp",
 				"rubocop",
 				"gofumpt",
 				-- "flake8",

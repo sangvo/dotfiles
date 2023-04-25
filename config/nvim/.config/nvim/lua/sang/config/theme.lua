@@ -14,6 +14,7 @@ hi CursorLine	guibg=#1d3b53
 hi ColorColumn ctermbg=235 guibg=#1d3b53
 
 hi NvimTreeNormal guibg=NONE
+
 ]])
 
 -- Change color folder nvim-tree

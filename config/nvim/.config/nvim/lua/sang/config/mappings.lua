@@ -6,6 +6,7 @@ local vnoremap = Util.vnoremap
 
 inoremap("jk", "<Esc>", { desc = "Esc" })
 noremap("0", "^", { desc = "Beginning of line" })
+noremap("q", "<Nop>", { desc = "Don't use macro" })
 
 -- Don't move with arrow key
 
