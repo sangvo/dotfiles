@@ -7,6 +7,7 @@ return {
 			{ "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+      {"j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
 			{
 				"hrsh7th/cmp-nvim-lsp",
 				cond = function()
