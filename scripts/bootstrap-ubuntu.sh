@@ -271,6 +271,17 @@ install_ruby() {
   fi
 }
 
+install_pyenv() {
+  if ask "Do you want to install/update Pyenv? [y|N]"; then
+    info "Installing pyenv"
+    sudo apt install build-essential libsqlite3-dev sqlite3 bzip2 libbz2-dev libffi-dev
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    success "Installed Pyenv"
+  else
+    info "Skipped Pyenv"
+  fi
+}
+
 install_nvim() {
   if ask "Do you want to install/update Nvim? [y|N]"; then
     builddir=$(mktemp -d -t nvim.XXXXX)
@@ -371,6 +382,7 @@ install_postgresql
 install_node
 install_rust
 install_ruby
+install_pyenv
 install_go
 install_mkcert
 install_nvim
