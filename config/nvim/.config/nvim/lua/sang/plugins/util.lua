@@ -32,6 +32,6 @@ return {
 
   -- makes some plugins dot-repeatable like leap
   { "tpope/vim-repeat", event = "VeryLazy" },
-  "christoomey/vim-tmux-navigator",
-  "famiu/bufdelete.nvim",
+  {"christoomey/vim-tmux-navigator", event = "VeryLazy"},
+  {"famiu/bufdelete.nvim", event = "VeryLazy"},
 }
