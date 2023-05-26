@@ -7,6 +7,7 @@ vim.g.do_filetype_lua = 1
 o.encoding = "UTF-8" -- set encoding
 o.history = 500
 o.mouse = "nvi" -- enable mouse support in normal, insert, and visual mode
+o.mousemodel = "extend"
 o.swapfile = false -- Disable vim create swap file
 o.whichwrap = "b,s,<,>,[,]"
 o.autoread = true -- Set to auto read when a file is changed
