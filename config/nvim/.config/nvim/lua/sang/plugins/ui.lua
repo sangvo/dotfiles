@@ -82,6 +82,7 @@ return {
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = { 'filename' },
           lualine_x = {
+            { 'overseer' },
             {
               function() return "  " .. require("dap").status() end,
               cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,

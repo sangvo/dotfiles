@@ -37,6 +37,13 @@ return {
 			servers = {
         eslint = {},
 				jsonls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              semanticTokens = true,
+            },
+          },
+        },
 				lua_ls = {
 					-- mason = false, -- set to false if you don't want this server to be installed with mason
 					diagnostics = {
@@ -74,6 +81,23 @@ return {
             end
           end)
         end,
+        gopls = function()
+          require("sang.util").on_attach(function(client, _)
+            if client.name == "gopls" then
+              if not client.server_capabilities.semanticTokensProvider then
+                local semantic = client.config.capabilities.textDocument.semanticTokens
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  legend = {
+                    tokenTypes = semantic.tokenTypes,
+                    tokenModifiers = semantic.tokenModifiers,
+                  },
+                  range = true,
+                }
+              end
+            end
+          end)
+        end
 			},
 		},
 		---@param opts PluginLspOpts
