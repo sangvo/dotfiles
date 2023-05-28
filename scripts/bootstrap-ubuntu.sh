@@ -211,29 +211,29 @@ install_go() {
 
 # NOTE: This depends on `go` being installed.
 install_mkcert() {
-    if ! which mkcert >/dev/null; then
-        info "Installing mkcert..."
-        builddir=$(mktemp -d -t mkcert.XXXXX)
-        git clone https://github.com/FiloSottile/mkcert "$builddir"
+    if ask "Do you want to install/update mkcert? [y|N]"; then
+      info "Installing mkcert..."
+      builddir=$(mktemp -d -t mkcert.XXXXX)
+      git clone https://github.com/FiloSottile/mkcert "$builddir"
 
-        (
-            cd "$builddir"
-            go mod download
-            go build -ldflags "-X main.Version=$(git describe --tags)"
-            sudo install -m 755 mkcert /usr/local/bin
-        )
+      (
+          cd "$builddir"
+          go mod download
+          go build -ldflags "-X main.Version=$(git describe --tags)"
+          sudo install -m 755 mkcert /usr/local/bin
+      )
 
-        # cleanup temporary build directory
-        rm -rf "$builddir"
+      # cleanup temporary build directory
+      rm -rf "$builddir"
 
-        mkcert -install
+      mkcert -install
 
-        echo "A CA has been added to your system and browser certificate "
-        echo "trust stores."
-        echo ""
-        echo "You must RESTART your browser in order for it to recognize "
-        echo "the new CA and in some situations you may need REBOOT your "
-        echo "machine."
+      echo "A CA has been added to your system and browser certificate "
+      echo "trust stores."
+      echo ""
+      echo "You must RESTART your browser in order for it to recognize "
+      echo "the new CA and in some situations you may need REBOOT your "
+      echo "machine."
     else
         info "mkcert already installed"
     fi
