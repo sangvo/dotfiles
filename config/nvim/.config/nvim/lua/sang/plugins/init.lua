@@ -1,6 +1,5 @@
 return {
 	-- Plugins
-	"AndrewRadev/splitjoin.vim",
 	"kamykn/spelunker.vim",
 	"andymass/vim-matchup",
 	"editorconfig/editorconfig-vim",

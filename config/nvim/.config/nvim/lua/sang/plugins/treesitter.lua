@@ -22,9 +22,7 @@ return {
               end
             end
           end
-          if not enabled then
-            require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-          end
+          if not enabled then require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects") end
         end,
       },
       "RRethy/nvim-treesitter-endwise",
@@ -54,6 +52,7 @@ return {
         "vue",
         "ruby",
         "scss",
+        "prisma",
       },
       autopairs = { enable = true },
       autotag = { enable = true },

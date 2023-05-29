@@ -58,13 +58,6 @@ noremap("<Leader>ss", "<C-W>s", { desc = "Split horizontal" })
 nnoremap("<C-w>[", ":vertical resize -6<CR>")
 nnoremap("<C-w>]", ":vertical resize +6<CR>")
 
--- SplitJoin
-vim.g.splitjoin_join_mapping = ''
-vim.g.splitjoin_split_mapping = ''
-
-nnoremap("<Leader>sj", ":SplitjoinJoin<CR>", { desc = "Join line" })
-nnoremap("<Leader>sk", ":SplitjoinSplit<CR>", { desc = "Split line" })
-
 -- Neogen
 nnoremap("<Leader>nf", ":lua require('neogen').generate({ type = 'func' })<CR>", { desc = "Generate func document" })
 
