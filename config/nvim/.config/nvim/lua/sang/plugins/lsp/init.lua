@@ -236,6 +236,7 @@ return {
 				"eslint-lsp",
 				"rubocop",
 				"gofumpt",
+        "js-debug-adapter"
 				-- "flake8",
 			},
 		},

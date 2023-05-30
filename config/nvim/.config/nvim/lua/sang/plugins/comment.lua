@@ -11,15 +11,15 @@ return {
     },
 	},
 	{
-		"numToStr/Comment.nvim",
+		"echasnovski/mini.comment",
 		event = "VeryLazy",
 		opts = {
-			pre_hook = function()
-				require("ts_context_commentstring.internal").update_commentstring({})
-			end,
+			options = {
+				custom_commentstring = function()
+         ---@diagnostic disable-next-line: missing-parameter
+					return require("ts_context_commentstring.internal").calculate_commentstring()
+				end,
+			},
 		},
-		config = function(_, opts)
-			require("Comment").setup(opts)
-		end,
 	},
 }
