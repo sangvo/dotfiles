@@ -33,4 +33,8 @@ export NVM_DIR="$HOME/.nvm"
 # exercism
 export PATH=~/bin:$PATH
 
+# Fly
+export FLYCTL_INSTALL="/home/sangvo/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
 . ~/.zsh/z/z.sh

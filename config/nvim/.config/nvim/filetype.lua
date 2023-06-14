@@ -9,7 +9,7 @@ vim.filetype.add({
 		norg = "norg", -- TreeSitter
 		patch = "patch",
 		tsx = "typescriptreact",
-		jsx = "typescriptreact",
+		jsx = "javascriptreact",
     slim = "ruby",
 	},
 	filename = {

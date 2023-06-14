@@ -164,6 +164,7 @@ return {
 				"tailwindcss",
 				"lua_ls",
         "pyright",
+        "intelephense",
 			} ---@type string[]
 			for server, server_opts in pairs(servers) do
 				if server_opts then
