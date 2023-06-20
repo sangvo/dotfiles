@@ -363,6 +363,18 @@ install_latest_chrome() {
     fi
 }
 
+install_latest_vivaldi() {
+    if ask "Do you want to install/update Vivaldi? [y|N]"; then
+      info "Installing Vivaldi"
+      wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo apt-key add -
+      echo "deb https://repo.vivaldi.com/archive/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list
+      sudo apt install vivaldi-stable -y
+      success "Installed Vivaldi"
+    else
+      info "Skipped Vivaldi"
+    fi
+}
+
 echo
 info "🚀 Running bootstrap Ubuntu 🚀"
 
@@ -390,5 +402,6 @@ install_docker
 install_docker_compose
 install_postgresql
 install_latest_chrome
+install_latest_vivaldi
 
 trap - EXIT
