@@ -6,7 +6,7 @@
 
 [commit]
 	gpgsign = true
-	template = /home/sangvo/.gitmessage
+	template = ~/.gitmessage
 
 [include]
   path = ~/.gitconfig_personal
