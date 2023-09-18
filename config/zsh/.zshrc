@@ -165,3 +165,7 @@ zsh-defer source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 export PNPM_HOME="/home/sangvo/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/sangvo/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

@@ -53,4 +53,6 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+
 . ~/.zsh/z/z.sh
