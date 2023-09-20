@@ -2,7 +2,9 @@
 
 ![screenshot terminal](./screenshots/image.png)
 
-My config for Vim(Neovim) Zsh Alacritty Tmux
+My config for Vim(Neovim) Zsh ~~Alacritty~~ Wezterm Tmux
+
+For Mac: checkout: [mac branch](https://github.com/sangvo/dotfiles/tree/mac)
 
 ## usage
 

@@ -34,6 +34,7 @@ return {
 				timeout_ms = nil,
 			},
 			-- LSP Server Settings
+      capabilities = {},
 			servers = {
         eslint = {},
 				jsonls = {},
@@ -134,22 +135,22 @@ return {
         opts.capabilities or {}
       )
 
-			local function setup(server)
-				local server_opts = vim.tbl_deep_extend("force", {
-					capabilities = vim.deepcopy(capabilities),
-				}, servers[server] or {})
+      local function setup(server)
+        local server_opts = vim.tbl_deep_extend("force", {
+          capabilities = vim.deepcopy(capabilities),
+        }, servers[server] or {})
 
-				if opts.setup[server] then
-					if opts.setup[server](server, server_opts) then
-						return
-					end
-				elseif opts.setup["*"] then
-					if opts.setup["*"](server, server_opts) then
-						return
-					end
-				end
-				require("lspconfig")[server].setup(server_opts)
-			end
+        if opts.setup[server] then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup["*"] then
+          if opts.setup["*"](server, server_opts) then
+            return
+          end
+        end
+        require("lspconfig")[server].setup(server_opts)
+      end
 
 			-- get all the servers that are available thourgh mason-lspconfig
 			local have_mason, mlsp = pcall(require, "mason-lspconfig")
@@ -243,7 +244,7 @@ return {
 				"eslint-lsp",
 				"rubocop",
 				"gofumpt",
-        "js-debug-adapter"
+        -- "js-debug-adapter"
 				-- "flake8",
 			},
 		},
