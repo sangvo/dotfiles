@@ -68,3 +68,11 @@ noremap("N", "Nzz")
 -- stay in indent mode after indenting
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
+nnoremap("<F2>", function()
+  vim.cmd [[
+    let g:strip_whitespace = !g:strip_whitespace
+    echo "Strip whitespace mode is now " . (g:strip_whitespace ? "on" : "off")
+  ]]
+end, {
+  desc = "Toggle whitespace stripping",
+})

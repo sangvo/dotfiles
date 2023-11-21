@@ -11,6 +11,7 @@ vim.filetype.add({
 		tsx = "typescriptreact",
 		jsx = "javascriptreact",
     slim = "ruby",
+    rabl = "ruby",
 	},
 	filename = {
 		[".prettierrc"] = "jsonc",

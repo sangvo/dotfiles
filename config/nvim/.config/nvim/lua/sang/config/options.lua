@@ -69,6 +69,8 @@ o.ruler = true
 o.wildmenu = true
 o.spell = false -- turn off vim spell same work
 
+o.shortmess:append({ W = true, I = true, c = true })
+
 -- better experience
 
 o.list = true
@@ -92,7 +94,7 @@ o.fillchars = {
 o.listchars = {
 	-- eol = "↲",
 	tab = "» ",
-	space = ".",
+	space = " ",
 	trail = "·",
 	extends = "→",
 	precedes = "←",
