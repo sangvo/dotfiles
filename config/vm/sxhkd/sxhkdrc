@@ -161,11 +161,10 @@ super + shift + t
 
 #Print screen
 Print
-	flameshot screen --path /home/sangvo/Pictures/screenshots/
+	flameshot screen --path ~/Pictures/screenshots/
 shift + @Print
 	flameshot gui
 alt + Print
 	flameshot screen --clipboard
 ctrl + shift + @Print
-	flameshot full  --path /home/sangvo/Pictures/screenshots/
-
+	flameshot full  --path ~/Pictures/screenshots/

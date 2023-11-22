@@ -117,7 +117,7 @@ install_interface_app() {
 install_node() {
   if ask "Do you want to install/update Node? [y|N]"; then
     info "Installing Node"
-    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt-get install -y nodejs
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -145,10 +145,10 @@ install_zsh() {
 }
 
 install_postgresql() {
-  if ask "Do you want to install/update Rust? [y|N]"; then
+  if ask "Do you want to install/update Postgresq? [y|N]"; then
    # Add PostgreSQL 14 repository
-    sudo sh -c 'echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main 14" > /etc/apt/sources.list.d/pgdg.list'
-    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
 
     # Update package list and install PostgreSQL 14
     sudo apt update
@@ -295,8 +295,8 @@ install_nvim() {
       cd neovim
       git checkout stable
 
-      sudo rm /usr/local/bin/nvim
-      sudo rm -r /usr/local/share/nvim/
+      sudo rm -rf /usr/local/bin/nvim
+      sudo rm -rf /usr/local/share/nvim/
 
       make CMAKE_BUILD_TYPE=RelWithDebInfo
       sudo make install
@@ -400,7 +400,6 @@ install_mkcert
 install_nvim
 install_docker
 install_docker_compose
-install_postgresql
 install_latest_chrome
 install_latest_vivaldi
 

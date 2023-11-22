@@ -1,2 +1,3 @@
 config/nvim/bundle/*
 tags
+config/zsh/.config/zsh/**/*
