@@ -1,7 +1,6 @@
 #! /bin/sh
 killall mpd &
 killall picom &
-killall ulauncher &
 
 #Configs side of monitors BSPWM
 SECOND_MONITOR_SIDE="left"
@@ -52,16 +51,15 @@ bspc config pointer_motion_interval 0
 bspc config honor_size_hints true
 # bspc config ignore_ewh_struts polybar-msg
 
-bspc rule -a Alacritty state=tiled
 bspc rule -a '*:*:Picture in picture' state=floating
 
-bspc rule -a TelegramDesktop desktop='^5' follow=on border=off state=tiled
-bspc rule -a Skype desktop='^5' follow=on border=off state=tiled
+# bspc rule -a TelegramDesktop desktop='^5' follow=on border=off state=tiled
+# bspc rule -a Skype desktop='^5' follow=on border=off state=tiled
 bspc rule -a Slack desktop='^5' follow=on border=off state=tiled
 bspc rule -a zoom desktop='^6' state=tiled center=on follow=on border=off
 
 bspc rule -a flameshot state=floating
-bspc rule -a Ulauncher state=floating
+# bspc rule -a Ulauncher state=floating
 
 # border colors
 bspc config normal_border_color "#3b3f4c"
