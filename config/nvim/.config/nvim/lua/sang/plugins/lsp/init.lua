@@ -108,7 +108,7 @@ return {
 			-- setup formatting and keymaps
 			require("sang.util").on_attach(function(client, buffer)
 				require("sang.plugins.lsp.format").on_attach(client, buffer)
-				require("sang.plugins.lsp.keymaps").on_attach(client, buffer)
+				-- require("sang.plugins.lsp.keymaps").on_attach(client, buffer)
 			end)
 
 			-- diagnostics

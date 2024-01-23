@@ -72,6 +72,7 @@ bspc config presel_feedback_color "#6272a4"
 picom -b --config ~/.config/picom.conf &
 dunst &
 mpd &
+cmst --minimized --wait-time 5 &
 setxkbmap -option caps:escape &
 feh --bg-fill $HOME/workspace/dotfiles/wallpapers/asta.jpg &
 $HOME/.config/polybar/launch.sh &

@@ -162,3 +162,6 @@ zsh-defer source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 export PNPM_HOME="/home/sangvo/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
