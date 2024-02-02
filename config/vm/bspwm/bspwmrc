@@ -57,6 +57,7 @@ bspc rule -a '*:*:Picture in picture' state=floating
 # bspc rule -a Skype desktop='^5' follow=on border=off state=tiled
 bspc rule -a Slack desktop='^5' follow=on border=off state=tiled
 bspc rule -a zoom desktop='^6' state=tiled center=on follow=on border=off
+bspc rule -a '*:libreofficedev' state=tiled
 
 bspc rule -a flameshot state=floating
 # bspc rule -a Ulauncher state=floating
