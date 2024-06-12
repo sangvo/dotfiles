@@ -1,5 +1,0 @@
-require("sang.config.mappings")
-require("sang.config.options")
-require("sang.config.theme")
-require("sang.config.autocmds")
-require("sang.which")

@@ -386,21 +386,21 @@ echo
 sudo sh -c 'echo OK'
 echo
 
-install_packages
-install_interface_app
-install_command_line_tools
-install_mysql
-install_postgresql
-install_node
-install_rust
-install_ruby
-install_pyenv
-install_go
-install_mkcert
-install_nvim
-install_docker
-install_docker_compose
+# install_packages
+# install_interface_app
+# install_command_line_tools
+# install_mysql
+# install_postgresql
+# install_node
+# install_rust
+# install_ruby
+# install_pyenv
+# install_go
+# install_mkcert
+# install_nvim
+# install_docker
+# install_docker_compose
 install_latest_chrome
-install_latest_vivaldi
+# install_latest_vivaldi
 
 trap - EXIT

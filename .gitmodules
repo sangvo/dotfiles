@@ -1,0 +1,4 @@
+[submodule "config/nvim/.config/nvim"]
+	path = config/nvim/.config/nvim
+	url = git@github.com:sangvo/nvim.git
+	branch = master
