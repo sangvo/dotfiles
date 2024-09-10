@@ -157,6 +157,7 @@ zsh-defer source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+export PATH="$PATH:$HOME/idea-IU-241.18034.62/bin"
 
 # pnpm
 export PNPM_HOME="/home/sangvo/.local/share/pnpm"
@@ -165,3 +166,7 @@ export PATH="$PNPM_HOME:$PATH"
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
