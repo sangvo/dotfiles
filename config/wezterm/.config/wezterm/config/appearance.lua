@@ -5,6 +5,7 @@ return {
 
 	window_decorations = "RESIZE",
 	use_fancy_tab_bar = false,
+	enable_scroll_bar = true,
 
 	show_tab_index_in_tab_bar = false,
 	switch_to_last_active_tab_when_closing_tab = true,

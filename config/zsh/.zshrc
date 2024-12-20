@@ -142,6 +142,9 @@ alias recent-branch="git for-each-ref --sort=-committerdate --format='%(refname:
 # Jekyll
 alias js="bundle exec jekyll serve --drafts"
 
+# Flameshot 24.04
+alias fshot="sh -c -- 'QT_QPA_PLATFORM=wayland flameshot gui'"
+
 # Auto add bundle exec rails command
 # for cmd in rspec ruby rubocop rails; do
 #   alias $cmd="bundle exec $cmd"
@@ -166,6 +169,8 @@ export PATH="$PNPM_HOME:$PATH"
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
+
+. "$HOME/.asdf/asdf.sh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

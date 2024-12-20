@@ -1,5 +1,5 @@
 # Tiling window manager
-ln -s -f ~/workspace/dotfiles/config/vm/* ~/.config
+# ln -s -f ~/workspace/dotfiles/config/vm/* ~/.config
 
 # ZSH
 stow zsh -t ~

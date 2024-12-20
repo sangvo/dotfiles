@@ -1,0 +1,12 @@
+gui:
+  returnImmediately: true
+customCommands:
+  containers:
+    - name: bash console
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} bin/rails c'
+      serviceNames: []
+    - name: bash
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} bash'
+      serviceNames: []

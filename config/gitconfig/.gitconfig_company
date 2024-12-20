@@ -1,12 +1,8 @@
 [user]
-  email = v-sang@ruby-dev.vn
-  name = v-sang
-  signingkey = 5EAEF6A0E27CC4B6
+  email = sangvv@runsystem.net
+  name = sangvv
+[commit]
+  gpgsign = false
 
-; Dont type password when denied ssh
-[credential]
-	helper = cache --timeout=6912000
-
-[url "git@github.com-ruby-dev"]
+[url "git@github.com-runsystem"]
   insteadOf = git@github.com
-
