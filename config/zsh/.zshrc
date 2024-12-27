@@ -145,6 +145,8 @@ alias recent-branch="git for-each-ref --sort=-committerdate --format='%(refname:
 # Jekyll
 alias js="bundle exec jekyll serve --drafts"
 
+# Kamal deploy Macos
+alias kamal='docker run -it --rm -v "${PWD}:/workdir" -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" -e SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/basecamp/kamal:latest'
 # Auto add bundle exec rails command
 # for cmd in rspec ruby rubocop rails; do
 #   alias $cmd="bundle exec $cmd"
@@ -160,6 +162,8 @@ zsh-defer source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
 
 # pnpm
 export PNPM_HOME="/home/sangvo/.local/share/pnpm"
