@@ -74,7 +74,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  sudo docker-compose
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -106,7 +106,7 @@ stty -ixon
 
 # vi mode
 bindkey -v
-bindkey "^a" beginning-of-line
+bindkey "^A" beginning-of-line
 bindkey "^e" end-of-line
 bindkey "^b" backward-char
 bindkey "^f" forward-char
@@ -169,6 +169,12 @@ gpgconf --launch gpg-agent
 export PNPM_HOME="/home/sangvo/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# export ASDF_DATA_DIR="$HOME/.asdf"
+# export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
+# mise
+eval "$(mise activate zsh)"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/sangvo/.rd/bin:$PATH"

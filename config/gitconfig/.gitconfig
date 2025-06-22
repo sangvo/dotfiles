@@ -5,11 +5,11 @@
   useConfigOnly = true
 
 [commit]
-	gpgsign = true
+	gpgsign = false
 	template = ~/.gitmessage
 
-[include]
-  path = ~/.gitconfig_personal
+# [include]
+#  path = ~/.gitconfig_personal
 
 [includeIf "gitdir/i:~/company/"]
     path = ~/.gitconfig_company
