@@ -101,6 +101,72 @@ test_setup_local_files_creates_without_overwriting() {
   assert_mode "$HOME/.ssh/sockets" 700
 }
 
+test_stow_packages_fresh_home() {
+  stow_packages
+  assert_link_to "$HOME/.zshrc" "$DOTFILES_DIR/config/zsh/.zshrc"
+  assert_dir "$HOME/.ssh"
+  assert_link_to "$HOME/.ssh/config" "$DOTFILES_DIR/config/ssh/.ssh/config"
+  assert_dir "$HOME/.config/git"
+  assert_dir "$HOME/.config/mise"
+  assert_dir "$HOME/.config/zsh"
+  assert_link_to "$HOME/.config/nvim" "$DOTFILES_DIR/config/nvim/.config/nvim"
+  assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
+  assert_missing "$BACKUP_DIR"
+}
+
+test_stow_packages_backs_up_conflicts() {
+  echo old >"$HOME/.zshrc"
+  mkdir -p "$HOME/.config/nvim/lua" "$HOME/.config/mise"
+  echo old >"$HOME/.config/nvim/init.lua"
+  echo old >"$HOME/.config/mise/config.toml"
+  stow_packages
+  assert_link_to "$HOME/.zshrc" "$DOTFILES_DIR/config/zsh/.zshrc"
+  assert_link_to "$HOME/.config/nvim" "$DOTFILES_DIR/config/nvim/.config/nvim"
+  assert_link_to "$HOME/.config/mise/config.toml" "$DOTFILES_DIR/config/mise/.config/mise/config.toml"
+  assert_eq "$(cat "$BACKUP_DIR/.zshrc")" old
+  assert_eq "$(cat "$BACKUP_DIR/.config/nvim/init.lua")" old
+  assert_eq "$(cat "$BACKUP_DIR/.config/mise/config.toml")" old
+}
+
+test_stow_packages_unfolds_existing_repo_link() {
+  mkdir -p "$HOME/.config"
+  ln -s ../workspace/dotfiles/config/zsh/.config/zsh "$HOME/.config/zsh"
+  stow_packages
+  assert_dir "$HOME/.config/zsh"
+  assert_link_to "$HOME/.config/zsh/zsh-core.zsh" "$DOTFILES_DIR/config/zsh/.config/zsh/zsh-core.zsh"
+  assert_missing "$BACKUP_DIR"
+}
+
+test_stow_packages_is_idempotent() {
+  local before after
+  stow_packages
+  before=$(cd "$HOME" && find . -type l | sort)
+  stow_packages
+  after=$(cd "$HOME" && find . -type l | sort)
+  assert_eq "$after" "$before"
+  assert_missing "$BACKUP_DIR"
+}
+
+make_plugin_repo() {
+  local dir=$1
+  mkdir -p "$dir"
+  git -C "$dir" init --quiet
+  echo '# plugin' >"$dir/plugin.zsh"
+  git -C "$dir" add plugin.zsh
+  git -C "$dir" -c user.name=test -c user.email=test@example.com commit --quiet -m init
+}
+
+test_install_zsh_plugins_clones_once() {
+  make_plugin_repo "$TEST_TMP/src/alpha"
+  # shellcheck disable=SC2034 # read by install_zsh_plugins
+  ZSH_PLUGINS=("alpha file://$TEST_TMP/src/alpha")
+  install_zsh_plugins
+  assert_file "$ZSH_PLUGIN_DIR/alpha/plugin.zsh"
+  echo keep >"$ZSH_PLUGIN_DIR/alpha/marker"
+  install_zsh_plugins
+  assert_file "$ZSH_PLUGIN_DIR/alpha/marker"
+}
+
 if [[ ${1:-} == --run ]]; then
   set -euo pipefail
   setup_fixture
