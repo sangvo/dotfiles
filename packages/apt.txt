@@ -1,0 +1,17 @@
+# Base packages for Ubuntu 24.04. CLI tools come from mise (packages/mise-linux.toml).
+zsh
+git
+curl
+ca-certificates
+gnupg
+unzip
+build-essential
+stow
+xclip
+fontconfig
+# Ruby build dependencies for mise
+libssl-dev
+libyaml-dev
+zlib1g-dev
+libffi-dev
+libreadline-dev

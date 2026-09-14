@@ -183,3 +183,51 @@ install_zsh_plugins() {
     log "installed zsh plugin $name"
   done
 }
+
+install_mise_tools() {
+  local cfg
+  if ! command -v mise >/dev/null 2>&1; then
+    warn "mise not found; skipping tool install"
+    return 0
+  fi
+  for cfg in "$DOTFILES_DIR/config/mise/.config/mise/config.toml" "$DOTFILES_DIR/packages/mise-linux.toml"; do
+    if [[ -f $cfg ]]; then
+      mise trust --quiet "$cfg"
+    fi
+  done
+  # Use precompiled Ruby when this mise version supports it; otherwise Ruby is compiled.
+  if mise settings get ruby.compile >/dev/null 2>&1; then
+    export MISE_RUBY_COMPILE=false
+  fi
+  MISE_YES=1 mise install
+  eval "$(mise env -s bash)"
+}
+
+# vim.pack installs missing plugins while init.lua runs, so a headless start is enough.
+sync_nvim() {
+  if ! command -v nvim >/dev/null 2>&1; then
+    warn "nvim not found; skipping plugin install"
+    return 0
+  fi
+  nvim --headless +qa
+}
+
+set_default_shell() {
+  local zsh_path
+  zsh_path=$(command -v zsh || true)
+  if [[ -z $zsh_path ]]; then
+    warn "zsh is not installed; login shell unchanged"
+    return 0
+  fi
+  if [[ ${SHELL:-} == */zsh ]]; then
+    return 0
+  fi
+  if [[ ! -t 0 ]]; then
+    warn "no terminal; run 'chsh -s $zsh_path' to make zsh the login shell"
+    return 0
+  fi
+  if ! grep -qx "$zsh_path" /etc/shells; then
+    echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+  fi
+  chsh -s "$zsh_path"
+}

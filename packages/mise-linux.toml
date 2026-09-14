@@ -1,0 +1,15 @@
+# CLI tools that come from Homebrew on macOS (see Brewfile); mise installs them on Ubuntu.
+# Linked to ~/.config/mise/conf.d/linux.toml by lib/ubuntu.sh.
+[tools]
+bat = "latest"
+btop = "latest"
+delta = "latest"
+direnv = "latest"
+fd = "latest"
+fzf = "latest"
+jq = "latest"
+lazydocker = "latest"
+lazygit = "latest"
+lsd = "latest"
+neovim = "latest"
+ripgrep = "latest"

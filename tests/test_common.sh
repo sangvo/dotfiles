@@ -167,6 +167,30 @@ test_install_zsh_plugins_clones_once() {
   assert_file "$ZSH_PLUGIN_DIR/alpha/marker"
 }
 
+test_set_default_shell_skips_without_terminal() {
+  local out
+  out=$(SHELL=/bin/bash set_default_shell 2>&1 </dev/null)
+  if [[ $out != *"chsh -s"* ]]; then
+    fail "expected a hint to run chsh, got: $out"
+  fi
+}
+
+test_install_mise_tools_skips_without_mise() {
+  local out
+  out=$(PATH=/usr/bin:/bin install_mise_tools 2>&1)
+  if [[ $out != *"mise not found"* ]]; then
+    fail "expected a warning, got: $out"
+  fi
+}
+
+test_sync_nvim_skips_without_nvim() {
+  local out
+  out=$(PATH=/usr/bin:/bin sync_nvim 2>&1)
+  if [[ $out != *"nvim not found"* ]]; then
+    fail "expected a warning, got: $out"
+  fi
+}
+
 if [[ ${1:-} == --run ]]; then
   set -euo pipefail
   setup_fixture
