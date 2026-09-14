@@ -1,6 +1,9 @@
 return {
 	color_scheme = "rose-pine-moon",
 
+	window_background_opacity = 0.85,
+	macos_window_background_blur = 10,
+
 	window_decorations = "RESIZE|INTEGRATED_BUTTONS",
 	use_fancy_tab_bar = true,
 	enable_scroll_bar = true,

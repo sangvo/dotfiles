@@ -2,12 +2,12 @@ local wezterm = require("wezterm")
 
 local M = {}
 
-function prefix_tab_title(tab_title, tab_info)
+local function prefix_tab_title(tab_title, tab_info)
   local tab_index = tab_info.tab_index + 1
   return '[' .. tab_index .. '] ' .. tab_title
 end
 
-function tab_title(tab_info)
+local function tab_title(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that
   if title and #title > 0 then

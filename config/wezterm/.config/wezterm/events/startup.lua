@@ -5,8 +5,7 @@ local M = {}
 
 M.setup = function()
 	wezterm.on("gui-startup", function(cmd)
-		local tab, pane, window = mux.spawn_window(cmd or {})
-		local project_dir = wezterm.home_dir .. "/workspace"
+		local _, pane = mux.spawn_window(cmd or {})
 		pane:split({ direction = "Bottom", size = 0.3 })
 	end)
 end

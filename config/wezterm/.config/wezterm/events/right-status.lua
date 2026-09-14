@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local M = {}
 
 M.setup = function()
-	wezterm.on("update-right-status", function(window, pane)
+	wezterm.on("update-status", function(window, pane)
 		local status = wezterm.format({
 			{ Foreground = { Color = "#797593" } },
 			{ Background = { Color = "#3c3836" } },
@@ -17,7 +17,7 @@ M.setup = function()
 			{ Text = "" },
 			{ Foreground = { Color = "#dfdad9" } },
 			{ Background = { Color = "#d7827e" } },
-			{ Text = "  SANG-VO   " },
+			{ Text = " 󰱯  from  with   " },
 		})
 		window:set_right_status(status)
 	end)
