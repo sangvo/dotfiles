@@ -24,9 +24,9 @@ export LS_COLORS=${LS_COLORS:-'di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43
 # --- Completion ---------------------------------------------------------------
 zmodload -i zsh/complist
 WORDCHARS=''
-# :A resolves the symlink to match the path the plugin adds itself, typeset -U drops duplicates
+# :A normalizes the path to match the one the plugin adds itself; typeset -U drops duplicates
 typeset -U fpath
-fpath=(~/.config/zsh/zsh-z(:A) $fpath)
+fpath=(~/.local/share/zsh/plugins/zsh-z(:A) $fpath)
 
 autoload -Uz compinit
 # dump newer than 20h: load it directly (-C); otherwise re-check fpath and rebuild if needed
@@ -205,4 +205,4 @@ add-zsh-hook preexec _zc_title_preexec
 add-zsh-hook chpwd _zc_git_chpwd
 
 # --- Plugin z (jump to frecent directories) ------------------------------------
-source ~/.config/zsh/zsh-z/zsh-z.plugin.zsh
+source ~/.local/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh

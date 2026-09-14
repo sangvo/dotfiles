@@ -1,16 +1,30 @@
-source ~/.config/zsh/zsh-defer/zsh-defer.plugin.zsh
+source ~/.local/share/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
 
 export PATH=$HOME/.local/bin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
+if [[ -d /opt/homebrew/bin ]]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
 
 # replacement for oh-my-zsh
 source ~/.config/zsh/zsh-core.zsh
 
 export LANG=en_US.UTF-8
-export EDITOR="vim"
+export EDITOR="nvim"
+
+# Tools ------------------------------------------------------------------------
+# Activated before the aliases so tools installed by mise are already on PATH.
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+  eval "$(mise hook-env -s zsh)"
+fi
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
 
 # Key bindings -----------------------------------------------------------------
-stty -ixon
+if [[ -t 0 ]]; then
+  stty -ixon
+fi
 
 # vi mode
 bindkey -v
@@ -38,23 +52,27 @@ alias gst='git status'
 alias recent-branch="git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ |  fzf | sed 's/\* //g' | xargs -I '{}' git checkout {}"
 
 # Awesome ls
-alias ls="lsd -F"
-alias la="lsd -Fah"
-alias l="lsd -Flah"
+if (( $+commands[lsd] )); then
+  alias ls="lsd -F"
+  alias la="lsd -Fah"
+  alias l="lsd -Flah"
+fi
 
 # Deferred (run after the first prompt) ----------------------------------------
 zsh-defer source ~/.config/zsh/zsh-fzf.zsh
 zsh-defer source ~/.config/zsh/zsh-export-path.zsh
-zsh-defer source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-defer source ~/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export GPG_TTY=$TTY
-zsh-defer gpgconf --launch gpg-agent
-zsh-defer -c 'eval "$(thefuck --alias)"'
-
-# Tools ------------------------------------------------------------------------
-eval "$(mise activate zsh)"
-eval "$(direnv hook zsh)"
+if (( $+commands[gpgconf] )); then
+  zsh-defer gpgconf --launch gpg-agent
+fi
+if (( $+commands[thefuck] )); then
+  zsh-defer -c 'eval "$(thefuck --alias)"'
+fi
 
 # Added by Antigravity
-export PATH="/Users/sangvo/.antigravity/antigravity/bin:$PATH"
+if [[ -d $HOME/.antigravity/antigravity/bin ]]; then
+  export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+fi

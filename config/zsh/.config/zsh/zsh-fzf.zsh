@@ -2,4 +2,8 @@ export FZF_DEFAULT_COMMAND="fd --type file --follow --no-ignore --hidden --exclu
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--inline-info"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+elif (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
