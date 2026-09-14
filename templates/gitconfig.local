@@ -1,0 +1,4 @@
+# Machine-local git config (not tracked). Included last by ~/.gitconfig.
+# Repositories under ~/company/ use the company identity.
+[includeIf "gitdir/i:~/company/"]
+	path = ~/.config/git/company

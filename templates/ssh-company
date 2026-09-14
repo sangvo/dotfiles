@@ -1,0 +1,6 @@
+# Machine-local SSH hosts (not tracked). Included by ~/.ssh/config.
+#
+# Host github.com-work
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/work_ed25519

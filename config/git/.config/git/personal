@@ -1,0 +1,5 @@
+# Personal identity for repositories under ~/workspace/.
+[user]
+	name = sangvo
+	email = sangvo111@gmail.com
+	signingkey = F92731A32AFD526E

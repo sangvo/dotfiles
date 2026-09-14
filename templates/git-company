@@ -1,0 +1,12 @@
+# Company identity for repositories under ~/company/ (not tracked).
+[user]
+	name = your-company-username
+	email = you@company.example
+
+# Cache HTTPS credentials for 80 days.
+[credential]
+	helper = cache --timeout=6912000
+
+# Use the company SSH key for GitHub; the alias must match a Host in ~/.ssh/config.d/company.
+[url "git@github.com-work:"]
+	insteadOf = git@github.com:

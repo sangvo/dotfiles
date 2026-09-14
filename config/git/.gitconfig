@@ -1,0 +1,35 @@
+# Shared git config. Machine-specific settings (company identity, credentials)
+# go in ~/.gitconfig.local, which is included last.
+
+[user]
+	useConfigOnly = true
+
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore_global
+	pager = delta
+
+[commit]
+	template = ~/.gitmessage
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	line-numbers = true
+	syntax-theme = base16
+	side-by-side = false
+	file-modified-label = modified:
+
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[includeIf "gitdir/i:~/workspace/"]
+	path = ~/.config/git/personal
+
+[include]
+	path = ~/.gitconfig.local
