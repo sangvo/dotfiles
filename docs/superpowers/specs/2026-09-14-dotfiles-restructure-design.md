@@ -255,3 +255,38 @@ CLI is not on `PATH`).
    `zsh -i -c exit` clean; `git config user.email` inside `~/workspace/dotfiles` is the personal
    email; `ssh -G` resolves a host from `config.d/legacy`; `wezterm show-keys` loads.
 4. First real run on the company Ubuntu machine is manual.
+
+## Amendments (made while planning, 2026-09-14)
+
+These override the sections above.
+
+1. **Neovim config.** The config in use on this Mac is kickstart.nvim in `~/.config/nvim` (a real
+   directory, not linked to the repo). It replaces the old `config/nvim` content. Upstream-only
+   files (`.git`, `.github`, `doc`, `LICENSE.md`, `README.md`, `.gitignore`) and `.claude` are not
+   copied; `nvim-pack-lock.json` is tracked. The old config's uncommitted theme changes are dropped.
+2. **Plugin manager.** kickstart.nvim uses Neovim's built-in `vim.pack` (Neovim ≥ 0.12), not
+   lazy.nvim. Plugin install is `nvim --headless +qa`: `vim.pack.add` installs missing plugins on
+   startup (verified: 23 plugins in 14 s).
+3. **Bootstrap order.** Configs are linked before mise tools are installed, because `mise install`
+   reads the linked `~/.config/mise/config.toml`:
+   packages → zsh plugins → migrate `~/.ssh/config` → local files → remove stale links → stow →
+   mise tools → nvim plugins → login shell. `--links-only` runs everything except packages, mise
+   tools and nvim plugins. Installing the Xcode Command Line Tools moves from `lib/macos.sh` into
+   `bootstrap.sh`, since git is needed to clone the repo.
+4. **Stow conflicts.** Instead of parsing `stow -n` output (its wording differs between stow 2.4 on
+   macOS and 2.3 on Ubuntu 24.04), the bootstrap lists each package's target paths itself and backs
+   up any target that does not resolve into the package.
+5. **zsh plugin clones** are removed from `config/zsh/.config/zsh/` before any stow run; stow ignores
+   `.gitignore` and would otherwise link them into `$HOME`.
+6. **zsh startup.** `.zshrc` activates mise (followed by `mise hook-env`) before defining aliases so
+   the `lsd` guard sees mise-installed tools; `stty -ixon` only runs on a TTY; `zsh-fzf.zsh` falls
+   back to `fzf --zsh` when `~/.fzf.zsh` is absent.
+7. **mise trust.** The bootstrap runs `mise trust` on the repo's mise config files, because the
+   linked global config resolves to a path inside the repo.
+8. **Tests.** A `tests/` directory is added: `tests/test_common.sh` (unit tests for
+   `lib/common.sh`), `tests/ubuntu-container.sh` + `tests/ubuntu-checks.sh` (end to end). The
+   container test disables Ruby (`MISE_DISABLE_TOOLS=ruby`) to avoid a long compile, and runs in a
+   separate colima profile so the existing Docker VM is untouched.
+9. **Commit identity during the migration.** Renaming `config/gitconfig` breaks this Mac's
+   `~/.gitconfig` link until it is relinked, so commits in between use a repo-local
+   `user.name`/`user.email`, removed at the end.
