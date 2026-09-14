@@ -109,6 +109,7 @@ main() {
   run_step "Creating local config files" setup_local_files
   run_step "Removing stale links" clean_stale_links
   run_step "Linking configs" stow_packages
+  run_step "Installing Neovim config" install_nvim_config
   if [[ $links_only == false ]]; then
     run_step "Installing mise tools" install_mise_tools
     run_step "Installing nvim plugins" sync_nvim

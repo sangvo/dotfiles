@@ -99,7 +99,7 @@ setup_local_files() {
 # config, mise conf.d) are never created inside the repository.
 NO_FOLD_PACKAGES=(zsh git ssh mise)
 # Packages that may be linked as a whole directory.
-FOLD_PACKAGES=(nvim wezterm)
+FOLD_PACKAGES=(wezterm)
 
 # "<name> <clone url>" per plugin
 ZSH_PLUGINS=(
@@ -182,6 +182,31 @@ install_zsh_plugins() {
     git clone --quiet --depth 1 "$url" "$ZSH_PLUGIN_DIR/$name"
     log "installed zsh plugin $name"
   done
+}
+
+# Neovim config lives in its own repository (a kickstart.nvim fork).
+NVIM_REPO_URL="${NVIM_REPO_URL:-https://github.com/sangvo/nvim.git}"
+
+# repo_slug URL: "owner/name" of an https, ssh or file git URL, used to compare remotes.
+repo_slug() {
+  local url=${1%.git}
+  url=${url//://}
+  printf '%s\n' "$url" | awk -F/ '{ print $(NF - 1) "/" $NF }'
+}
+
+# Clone the Neovim config into ~/.config/nvim; anything else found there is backed up first.
+install_nvim_config() {
+  local dest="$HOME/.config/nvim" origin
+  if [[ -d $dest/.git ]]; then
+    origin=$(git -C "$dest" remote get-url origin 2>/dev/null || true)
+    if [[ -n $origin && "$(repo_slug "$origin")" == "$(repo_slug "$NVIM_REPO_URL")" ]]; then
+      return 0
+    fi
+  fi
+  backup_path "$dest"
+  mkdir -p "$HOME/.config"
+  git clone --quiet "$NVIM_REPO_URL" "$dest"
+  log "cloned $NVIM_REPO_URL to ~/.config/nvim"
 }
 
 install_mise_tools() {

@@ -33,7 +33,7 @@ check "home .ssh is a real directory" assert_dir "$HOME/.ssh"
 check "ssh config linked" assert_link_to "$HOME/.ssh/config" "$DOTFILES_DIR/config/ssh/.ssh/config"
 check "home .config/git is a real directory" assert_dir "$HOME/.config/git"
 check "home .config/mise is a real directory" assert_dir "$HOME/.config/mise"
-check "nvim config linked" assert_link_to "$HOME/.config/nvim" "$DOTFILES_DIR/config/nvim/.config/nvim"
+check "nvim config cloned" assert_eq "$(git -C "$HOME/.config/nvim" remote get-url origin)" https://github.com/sangvo/nvim.git
 check "wezterm config linked" assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
 check "local git config created" assert_file "$HOME/.gitconfig.local"
 check "wezterm installed" command -v wezterm

@@ -290,3 +290,10 @@ These override the sections above.
 9. **Commit identity during the migration.** Renaming `config/gitconfig` breaks this Mac's
    `~/.gitconfig` link until it is relinked, so commits in between use a repo-local
    `user.name`/`user.email`, removed at the end.
+10. **Neovim config moved to its own repository** (after the initial rollout). `config/nvim` is
+    removed. `bootstrap.sh` runs `install_nvim_config` after stowing: it clones
+    `https://github.com/sangvo/nvim.git` (a kickstart.nvim fork whose `master` is kickstart
+    `f0a2108` plus the customizations, with `nvim-pack-lock.json` tracked) into `~/.config/nvim`,
+    backs up any other directory found there, and leaves an existing clone of that repository
+    alone. The fork's previous lazy.nvim-based `master` is kept on its `lazy-legacy` branch.
+    Upstream kickstart changes are merged with `git merge` in that repository.

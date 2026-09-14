@@ -18,15 +18,13 @@ setup_fixture() {
   export ZSH_PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
   local d=$DOTFILES_DIR
   mkdir -p "$d/config/zsh/.config/zsh" "$d/config/git/.config/git" "$d/config/ssh/.ssh" \
-    "$d/config/mise/.config/mise" "$d/config/nvim/.config/nvim/lua" \
-    "$d/config/wezterm/.config/wezterm" "$d/templates"
+    "$d/config/mise/.config/mise" "$d/config/wezterm/.config/wezterm" "$d/templates"
   echo '# zshrc' >"$d/config/zsh/.zshrc"
   echo '# core' >"$d/config/zsh/.config/zsh/zsh-core.zsh"
   echo '[core]' >"$d/config/git/.gitconfig"
   echo '[user]' >"$d/config/git/.config/git/personal"
   echo 'Include ~/.ssh/config.d/*' >"$d/config/ssh/.ssh/config"
   echo '[tools]' >"$d/config/mise/.config/mise/config.toml"
-  echo '-- init' >"$d/config/nvim/.config/nvim/init.lua"
   echo '-- wezterm' >"$d/config/wezterm/.config/wezterm/wezterm.lua"
   echo '# local' >"$d/templates/gitconfig.local"
   echo '# company' >"$d/templates/git-company"
@@ -109,22 +107,22 @@ test_stow_packages_fresh_home() {
   assert_dir "$HOME/.config/git"
   assert_dir "$HOME/.config/mise"
   assert_dir "$HOME/.config/zsh"
-  assert_link_to "$HOME/.config/nvim" "$DOTFILES_DIR/config/nvim/.config/nvim"
   assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
+  assert_missing "$HOME/.config/nvim"
   assert_missing "$BACKUP_DIR"
 }
 
 test_stow_packages_backs_up_conflicts() {
   echo old >"$HOME/.zshrc"
-  mkdir -p "$HOME/.config/nvim/lua" "$HOME/.config/mise"
-  echo old >"$HOME/.config/nvim/init.lua"
+  mkdir -p "$HOME/.config/wezterm" "$HOME/.config/mise"
+  echo old >"$HOME/.config/wezterm/wezterm.lua"
   echo old >"$HOME/.config/mise/config.toml"
   stow_packages
   assert_link_to "$HOME/.zshrc" "$DOTFILES_DIR/config/zsh/.zshrc"
-  assert_link_to "$HOME/.config/nvim" "$DOTFILES_DIR/config/nvim/.config/nvim"
+  assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
   assert_link_to "$HOME/.config/mise/config.toml" "$DOTFILES_DIR/config/mise/.config/mise/config.toml"
   assert_eq "$(cat "$BACKUP_DIR/.zshrc")" old
-  assert_eq "$(cat "$BACKUP_DIR/.config/nvim/init.lua")" old
+  assert_eq "$(cat "$BACKUP_DIR/.config/wezterm/wezterm.lua")" old
   assert_eq "$(cat "$BACKUP_DIR/.config/mise/config.toml")" old
 }
 
@@ -165,6 +163,43 @@ test_install_zsh_plugins_clones_once() {
   echo keep >"$ZSH_PLUGIN_DIR/alpha/marker"
   install_zsh_plugins
   assert_file "$ZSH_PLUGIN_DIR/alpha/marker"
+}
+
+test_install_nvim_config_clones_when_missing() {
+  make_plugin_repo "$TEST_TMP/src/nvim"
+  # shellcheck disable=SC2034 # read by install_nvim_config
+  NVIM_REPO_URL="file://$TEST_TMP/src/nvim"
+  install_nvim_config
+  assert_file "$HOME/.config/nvim/plugin.zsh"
+  assert_eq "$(git -C "$HOME/.config/nvim" remote get-url origin)" "file://$TEST_TMP/src/nvim"
+}
+
+test_install_nvim_config_backs_up_existing_dir() {
+  make_plugin_repo "$TEST_TMP/src/nvim"
+  # shellcheck disable=SC2034 # read by install_nvim_config
+  NVIM_REPO_URL="file://$TEST_TMP/src/nvim"
+  mkdir -p "$HOME/.config/nvim"
+  echo old >"$HOME/.config/nvim/init.lua"
+  install_nvim_config
+  assert_eq "$(cat "$BACKUP_DIR/.config/nvim/init.lua")" old
+  assert_file "$HOME/.config/nvim/plugin.zsh"
+}
+
+test_install_nvim_config_keeps_existing_clone() {
+  make_plugin_repo "$TEST_TMP/src/nvim"
+  # shellcheck disable=SC2034 # read by install_nvim_config
+  NVIM_REPO_URL="file://$TEST_TMP/src/nvim"
+  install_nvim_config
+  echo keep >"$HOME/.config/nvim/local-change"
+  install_nvim_config
+  assert_file "$HOME/.config/nvim/local-change"
+  assert_missing "$BACKUP_DIR"
+}
+
+test_repo_slug_matches_https_and_ssh_urls() {
+  assert_eq "$(repo_slug https://github.com/sangvo/nvim.git)" sangvo/nvim
+  assert_eq "$(repo_slug git@github.com:sangvo/nvim.git)" sangvo/nvim
+  assert_eq "$(repo_slug https://github.com/sangvo/nvim)" sangvo/nvim
 }
 
 test_set_default_shell_skips_without_terminal() {
