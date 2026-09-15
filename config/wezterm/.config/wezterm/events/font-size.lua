@@ -2,14 +2,26 @@ local wezterm = require("wezterm")
 
 local M = {}
 
+local is_mac = wezterm.target_triple:find("darwin") ~= nil
+
+-- dpi of one logical pixel: macOS renders points at 72 dpi, Linux (X11/Wayland) at 96 dpi,
+-- so the same font_size is ~1.33x larger on Linux
+local BASE_DPI = is_mac and 72 or 96
+
 -- base font size (window near full width) by the screen's logical width
--- (System Settings > Displays > "Looks like")
-local screen_sizes = {
-	{ max_width = 1800, size = 13.5 }, -- MacBook
-	{ max_width = 2200, size = 12 }, -- 4K scaled 1920x1080 (text already large)
-	{ max_width = 2600, size = 13.5 }, -- 5K / 4K scaled 2560x1440
-	{ max_width = math.huge, size = 15 }, -- 4K native 3008/3840 (text small)
-}
+-- (macOS: System Settings > Displays > "Looks like"; Linux: resolution / display scale)
+local screen_sizes = is_mac
+		and {
+			{ max_width = 1800, size = 13.5 }, -- MacBook
+			{ max_width = 2200, size = 12 }, -- 4K scaled 1920x1080 (text already large)
+			{ max_width = 2600, size = 13.5 }, -- 5K / 4K scaled 2560x1440
+			{ max_width = math.huge, size = 15 }, -- 4K native 3008/3840 (text small)
+		}
+	or {
+		{ max_width = 2200, size = 11 }, -- 1920x1080 (24")
+		{ max_width = 2600, size = 12 }, -- 2560x1440
+		{ max_width = math.huge, size = 13 }, -- 4K unscaled
+	}
 
 -- the narrower the window relative to the screen, the smaller the font
 -- min_ratio = window width / screen width
@@ -57,7 +69,7 @@ local function apply(window)
 	local screen = wezterm.gui.screens().active
 	local dim = window:get_dimensions()
 	local dpi = screen.effective_dpi or dim.dpi
-	local base = base_size_for(screen.width / (dpi / 72))
+	local base = base_size_for(screen.width / (dpi / BASE_DPI))
 
 	-- GLOBAL survives config reloads (set_config_overrides triggers a reload)
 	local key = "font_step_" .. window:window_id()
