@@ -54,8 +54,12 @@ alias gco='git checkout'
 alias gst='git status'
 alias recent-branch="git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ |  fzf | sed 's/\* //g' | xargs -I '{}' git checkout {}"
 
-# Awesome ls
-if (( $+commands[lsd] )); then
+# Directory listings
+if (( $+commands[eza] )); then
+  alias ls='eza --color=auto --classify=always'
+  alias la='ls -a'
+  alias l='ls -la'
+elif (( $+commands[lsd] )); then
   alias ls="lsd -F"
   alias la="lsd -Fah"
   alias l="lsd -Flah"

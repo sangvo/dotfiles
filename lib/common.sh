@@ -102,8 +102,6 @@ setup_local_files() {
 # config, mise conf.d, fontconfig's fonts.conf, TPM plugins) are never created inside the
 # repository.
 NO_FOLD_PACKAGES=(zsh git ssh mise tmux fontconfig)
-# Packages that may be linked as a whole directory.
-FOLD_PACKAGES=(wezterm alacritty)
 
 # "<name> <clone url>" per plugin
 ZSH_PLUGINS=(
@@ -171,14 +169,15 @@ prepare_package() {
 
 stow_packages() {
   local pkg
+  local -a fold_packages=(wezterm "${ALACRITTY_PACKAGE:-alacritty}")
   for pkg in "${NO_FOLD_PACKAGES[@]}"; do
     prepare_package "$pkg" no-fold
   done
-  for pkg in "${FOLD_PACKAGES[@]}"; do
+  for pkg in "${fold_packages[@]}"; do
     prepare_package "$pkg" fold
   done
   stow --dir "$DOTFILES_DIR/config" --target "$HOME" --no-folding --restow "${NO_FOLD_PACKAGES[@]}"
-  stow --dir "$DOTFILES_DIR/config" --target "$HOME" --restow "${FOLD_PACKAGES[@]}"
+  stow --dir "$DOTFILES_DIR/config" --target "$HOME" --restow "${fold_packages[@]}"
 }
 
 # clone_plugins KIND DIR ENTRY...: clone each "<name> <url>" ENTRY not yet in DIR.

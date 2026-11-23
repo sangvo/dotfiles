@@ -1,0 +1,6 @@
+# Ubuntu 24.04's Alacritty 0.13 uses top-level import and shell keys.
+import = ["~/.config/alacritty/appearance.toml"]
+
+[shell]
+program = "tmux"
+args = ["new-session", "-A", "-s", "main"]

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Ubuntu 24.04 package installation. Sourced by bootstrap.sh after lib/common.sh.
 
+# Ubuntu 24.04 ships Alacritty 0.13, which uses a top-level shell table.
+ALACRITTY_PACKAGE=alacritty-0.13
 FONT_DIR="$HOME/.local/share/fonts"
 JETBRAINS_MONO_URL="https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip"
 NERD_SYMBOLS_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip"
