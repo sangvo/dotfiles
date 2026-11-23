@@ -4,6 +4,7 @@
 FONT_DIR="$HOME/.local/share/fonts"
 JETBRAINS_MONO_URL="https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip"
 NERD_SYMBOLS_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip"
+CASCADIA_CODE_URL="https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
 
 apt_install() {
   sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq "$@"
@@ -37,6 +38,10 @@ install_fonts() {
   fi
   if ! compgen -G "$FONT_DIR/SymbolsNerdFont*.ttf" >/dev/null; then
     install_font_zip "$NERD_SYMBOLS_URL" '*.ttf'
+  fi
+  # Alacritty's font: the variable Cascadia Code NF and its italic
+  if ! compgen -G "$FONT_DIR/CascadiaCodeNF*.ttf" >/dev/null; then
+    install_font_zip "$CASCADIA_CODE_URL" 'ttf/CascadiaCodeNF*.ttf'
   fi
   fc-cache -f "$FONT_DIR" >/dev/null
 }

@@ -105,14 +105,17 @@ main() {
     run_step "Installing packages" install_packages
   fi
   run_step "Installing zsh plugins" install_zsh_plugins
+  run_step "Installing tmux plugins" install_tmux_plugins
   run_step "Migrating ~/.ssh/config" migrate_ssh_config
   run_step "Creating local config files" setup_local_files
   run_step "Removing stale links" clean_stale_links
   run_step "Linking configs" stow_packages
+  run_step "Linking VS Code config" link_vscode_config
   run_step "Installing Neovim config" install_nvim_config
   if [[ $links_only == false ]]; then
     run_step "Installing mise tools" install_mise_tools
     run_step "Installing nvim plugins" sync_nvim
+    run_step "Installing VS Code extensions" install_vscode_extensions
   fi
   run_step "Setting login shell" set_default_shell
   log "Done. Open a new terminal to load the shell config."

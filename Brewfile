@@ -27,6 +27,7 @@ brew "lsd"
 brew "ripgrep"
 brew "sshs"
 brew "thefuck"
+brew "tmux"
 
 # Containers
 brew "colima"
@@ -45,6 +46,7 @@ brew "openssl@3"
 # Apps and fonts
 cask "appcleaner"
 cask "betterdisplay"
+cask "font-cascadia-code-nf"
 cask "font-jetbrains-mono"
 cask "font-symbols-only-nerd-font"
 cask "gonhanh"

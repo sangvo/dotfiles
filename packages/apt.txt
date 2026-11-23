@@ -9,6 +9,9 @@ build-essential
 stow
 xclip
 fontconfig
+# Terminal: Alacritty starts tmux (config/alacritty, config/tmux)
+alacritty
+tmux
 # Ruby build dependencies for mise
 libssl-dev
 libyaml-dev

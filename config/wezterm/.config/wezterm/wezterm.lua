@@ -8,4 +8,5 @@ require("events.font-size").setup()
 return Config:init()
 	:append(require("config.font"))
 	:append(require("config.keymaps"))
-	:append(require("config.appearance")).options
+	:append(require("config.appearance"))
+	:append(require("config.domains")).options

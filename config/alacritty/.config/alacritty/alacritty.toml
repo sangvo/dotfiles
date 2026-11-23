@@ -1,0 +1,82 @@
+# Alacritty 0.13 (Ubuntu 24.04 apt). Alacritty only draws; tmux owns panes, scrollback,
+# copy mode and the status bar. The font follows kitty, colors follow config/wezterm.
+# Anti-aliasing and hinting come from fontconfig (config/fontconfig turns subpixel AA off
+# for this font): fc-match -v 'Cascadia Code NF'
+
+# Start in tmux, attaching to "main" if it already exists. Plain shell: alacritty -e zsh
+[shell]
+program = "tmux"
+args = ["new-session", "-A", "-s", "main"]
+
+[window]
+startup_mode = "Maximized"
+# no GNOME title bar, like wezterm
+decorations = "None"
+padding = { x = 4, y = 2 }
+dynamic_padding = true
+# Opaque, unlike wezterm's 0.85: subpixel-AA text is drawn on a solid background
+opacity = 1.0
+
+[font]
+# Cascadia Code NF 11 as in kitty, Nerd Font icons built in (installed by lib/ubuntu.sh).
+# SemiBold: Alacritty draws thinner strokes than kitty, this matches kitty's Regular.
+normal = { family = "CaskaydiaCove Nerd Font", style = "SemiBold" }
+italic = { style = "SemiBold Italic" }
+size = 11.0
+# Box drawing and powerline glyphs are drawn to fill the cell, so tmux borders and
+# status separators join up
+builtin_box_drawing = true
+
+[cursor]
+# Never: apps (nvim, tmux) can't turn blinking on, so an idle window doesn't redraw
+style = { shape = "Block", blinking = "Never" }
+
+[mouse]
+hide_when_typing = true
+
+[terminal]
+# tmux copies to the system clipboard with OSC 52; apps can't read it back
+osc52 = "OnlyCopy"
+
+# rose-pine-moon (github.com/rose-pine/alacritty)
+[colors.primary]
+foreground = "#e0def4"
+background = "#232136"
+dim_foreground = "#908caa"
+bright_foreground = "#e0def4"
+
+[colors.cursor]
+text = "#e0def4"
+cursor = "#56526e"
+
+[colors.selection]
+text = "#e0def4"
+background = "#44415a"
+
+[colors.search.matches]
+foreground = "#908caa"
+background = "#393552"
+
+[colors.search.focused_match]
+foreground = "#232136"
+background = "#ea9a97"
+
+[colors.normal]
+black = "#393552"
+red = "#eb6f92"
+green = "#3e8fb0"
+yellow = "#f6c177"
+blue = "#9ccfd8"
+magenta = "#c4a7e7"
+cyan = "#ea9a97"
+white = "#e0def4"
+
+[colors.bright]
+black = "#6e6a86"
+red = "#eb6f92"
+green = "#3e8fb0"
+yellow = "#f6c177"
+blue = "#9ccfd8"
+magenta = "#c4a7e7"
+cyan = "#ea9a97"
+white = "#e0def4"

@@ -1,7 +1,7 @@
 # dotfiles
 
-zsh, Neovim ([sangvo/nvim](https://github.com/sangvo/nvim)), WezTerm, git and ssh
-config for macOS (Apple Silicon) and Ubuntu 24.04.
+zsh, Neovim ([sangvo/nvim](https://github.com/sangvo/nvim)), WezTerm, Alacritty + tmux, VS Code,
+git and ssh config for macOS (Apple Silicon) and Ubuntu 24.04.
 
 ## Install
 
@@ -11,7 +11,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/sangvo/dotfiles/mac/boot
 
 The script clones this repo to `~/workspace/dotfiles` (override with `DOTFILES_DIR`), installs
 packages (Homebrew + `Brewfile` on macOS; apt + mise on Ubuntu), links configs with GNU stow and
-installs zsh and Neovim plugins. Re-running it is safe; files it replaces are moved to
+installs zsh, tmux and Neovim plugins. Re-running it is safe; files it replaces are moved to
 `~/.dotfiles-backup/<timestamp>/`.
 
 Relink configs only:
@@ -34,11 +34,26 @@ They are created from `templates/` on first run.
 
 | Path | Contents |
 |---|---|
-| `config/<package>` | stow packages mirroring `$HOME`: `zsh`, `wezterm`, `git`, `ssh`, `mise` |
+| `config/<package>` | stow packages mirroring `$HOME`: `zsh`, `wezterm`, `alacritty`, `tmux`, `fontconfig`, `git`, `ssh`, `mise` |
+| `vscode/` | VS Code settings, keybindings and extension list; linked into the OS's VS Code user dir |
 | `Brewfile` | macOS packages |
 | `packages/` | Ubuntu apt packages and mise tools |
 | `lib/` | bootstrap helpers |
+| `scripts/` | standalone scripts, not run by `bootstrap.sh` |
 | `tests/` | `bash tests/test_common.sh`; `bash tests/ubuntu-container.sh` (needs Docker) |
+
+## Yaak (Ubuntu)
+
+[Yaak](https://github.com/mountain-loop/yaak)'s prebuilt binaries need a paid license for work
+use; its MIT source, built yourself, does not. `scripts/build-yaak.sh` installs the build
+dependencies, builds a release without the license check and auto-updater, and installs the
+resulting `.deb` (replacing a prebuilt Yaak, keeping its data). The build takes a while and keeps
+~5 GB of cache in `~/.cache/yaak-src`. Run it again to update:
+
+```sh
+~/workspace/dotfiles/scripts/build-yaak.sh             # latest release
+~/workspace/dotfiles/scripts/build-yaak.sh v2026.9.1   # a specific tag
+```
 
 ## Neovim config
 

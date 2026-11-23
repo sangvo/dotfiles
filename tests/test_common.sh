@@ -18,7 +18,8 @@ setup_fixture() {
   export ZSH_PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
   local d=$DOTFILES_DIR
   mkdir -p "$d/config/zsh/.config/zsh" "$d/config/git/.config/git" "$d/config/ssh/.ssh" \
-    "$d/config/mise/.config/mise" "$d/config/wezterm/.config/wezterm" "$d/templates"
+    "$d/config/mise/.config/mise" "$d/config/wezterm/.config/wezterm" "$d/config/tmux/.config/tmux" \
+    "$d/config/fontconfig/.config/fontconfig/conf.d" "$d/config/alacritty/.config/alacritty" "$d/templates"
   echo '# zshrc' >"$d/config/zsh/.zshrc"
   echo '# core' >"$d/config/zsh/.config/zsh/zsh-core.zsh"
   echo '[core]' >"$d/config/git/.gitconfig"
@@ -26,6 +27,13 @@ setup_fixture() {
   echo 'Include ~/.ssh/config.d/*' >"$d/config/ssh/.ssh/config"
   echo '[tools]' >"$d/config/mise/.config/mise/config.toml"
   echo '-- wezterm' >"$d/config/wezterm/.config/wezterm/wezterm.lua"
+  echo '# tmux' >"$d/config/tmux/.config/tmux/tmux.conf"
+  echo '<fontconfig/>' >"$d/config/fontconfig/.config/fontconfig/conf.d/50-test.conf"
+  echo '# alacritty' >"$d/config/alacritty/.config/alacritty/alacritty.toml"
+  mkdir -p "$d/vscode"
+  echo '{}' >"$d/vscode/settings.json"
+  echo '[]' >"$d/vscode/keybindings.json"
+  export VSCODE_USER_DIR="$HOME/.config/Code/User"
   echo '# local' >"$d/templates/gitconfig.local"
   echo '# company' >"$d/templates/git-company"
   echo '# ssh company' >"$d/templates/ssh-company"
@@ -108,22 +116,29 @@ test_stow_packages_fresh_home() {
   assert_dir "$HOME/.config/mise"
   assert_dir "$HOME/.config/zsh"
   assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
+  assert_link_to "$HOME/.config/alacritty" "$DOTFILES_DIR/config/alacritty/.config/alacritty"
+  assert_dir "$HOME/.config/tmux"
+  assert_link_to "$HOME/.config/tmux/tmux.conf" "$DOTFILES_DIR/config/tmux/.config/tmux/tmux.conf"
+  assert_dir "$HOME/.config/fontconfig"
   assert_missing "$HOME/.config/nvim"
   assert_missing "$BACKUP_DIR"
 }
 
 test_stow_packages_backs_up_conflicts() {
   echo old >"$HOME/.zshrc"
-  mkdir -p "$HOME/.config/wezterm" "$HOME/.config/mise"
+  mkdir -p "$HOME/.config/wezterm" "$HOME/.config/mise" "$HOME/.config/tmux"
   echo old >"$HOME/.config/wezterm/wezterm.lua"
   echo old >"$HOME/.config/mise/config.toml"
+  echo old >"$HOME/.config/tmux/tmux.conf"
   stow_packages
   assert_link_to "$HOME/.zshrc" "$DOTFILES_DIR/config/zsh/.zshrc"
   assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
   assert_link_to "$HOME/.config/mise/config.toml" "$DOTFILES_DIR/config/mise/.config/mise/config.toml"
+  assert_link_to "$HOME/.config/tmux/tmux.conf" "$DOTFILES_DIR/config/tmux/.config/tmux/tmux.conf"
   assert_eq "$(cat "$BACKUP_DIR/.zshrc")" old
   assert_eq "$(cat "$BACKUP_DIR/.config/wezterm/wezterm.lua")" old
   assert_eq "$(cat "$BACKUP_DIR/.config/mise/config.toml")" old
+  assert_eq "$(cat "$BACKUP_DIR/.config/tmux/tmux.conf")" old
 }
 
 test_stow_packages_unfolds_existing_repo_link() {
@@ -145,6 +160,53 @@ test_stow_packages_is_idempotent() {
   assert_missing "$BACKUP_DIR"
 }
 
+test_link_vscode_config_backs_up_and_links() {
+  mkdir -p "$VSCODE_USER_DIR"
+  echo old >"$VSCODE_USER_DIR/settings.json"
+  link_vscode_config
+  assert_link_to "$VSCODE_USER_DIR/settings.json" "$DOTFILES_DIR/vscode/settings.json"
+  assert_link_to "$VSCODE_USER_DIR/keybindings.json" "$DOTFILES_DIR/vscode/keybindings.json"
+  assert_eq "$(cat "$BACKUP_DIR/.config/Code/User/settings.json")" old
+}
+
+test_link_vscode_config_is_idempotent() {
+  link_vscode_config
+  link_vscode_config
+  assert_link_to "$VSCODE_USER_DIR/settings.json" "$DOTFILES_DIR/vscode/settings.json"
+  assert_missing "$BACKUP_DIR"
+}
+
+# A fake `code` that already has Foo.Bar and records every install.
+fake_code() {
+  mkdir -p "$TEST_TMP/bin"
+  cat >"$TEST_TMP/bin/code" <<'EOS'
+#!/usr/bin/env bash
+case $1 in
+  --list-extensions) echo Foo.Bar ;;
+  --install-extension) echo "$2" >>"$TEST_TMP/installed" ;;
+esac
+EOS
+  chmod +x "$TEST_TMP/bin/code"
+  PATH="$TEST_TMP/bin:$PATH"
+}
+
+test_install_vscode_extensions_installs_only_missing() {
+  fake_code
+  printf '# comment\nfoo.bar\n\nbaz.qux\n' >"$DOTFILES_DIR/vscode/extensions.txt"
+  install_vscode_extensions
+  assert_eq "$(cat "$TEST_TMP/installed")" baz.qux
+}
+
+test_install_vscode_extensions_skips_without_code() {
+  local out
+  mkdir -p "$TEST_TMP/empty"
+  # an empty PATH: /usr/bin has code on machines with VS Code installed
+  out=$(PATH="$TEST_TMP/empty" install_vscode_extensions 2>&1)
+  if [[ $out != *"code not found"* ]]; then
+    fail "expected a warning, got: $out"
+  fi
+}
+
 make_plugin_repo() {
   local dir=$1
   mkdir -p "$dir"
@@ -163,6 +225,15 @@ test_install_zsh_plugins_clones_once() {
   echo keep >"$ZSH_PLUGIN_DIR/alpha/marker"
   install_zsh_plugins
   assert_file "$ZSH_PLUGIN_DIR/alpha/marker"
+}
+
+test_install_tmux_plugins_clones_into_tmux_plugin_dir() {
+  make_plugin_repo "$TEST_TMP/src/tpm"
+  # shellcheck disable=SC2034 # read by install_tmux_plugins
+  TMUX_PLUGINS=("tpm file://$TEST_TMP/src/tpm")
+  TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
+  install_tmux_plugins
+  assert_file "$HOME/.tmux/plugins/tpm/plugin.zsh"
 }
 
 test_install_nvim_config_clones_when_missing() {

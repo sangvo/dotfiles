@@ -4,6 +4,9 @@
 : "${DOTFILES_DIR:?DOTFILES_DIR must point at the dotfiles checkout}"
 BACKUP_DIR="${BACKUP_DIR:-$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)}"
 ZSH_PLUGIN_DIR="${ZSH_PLUGIN_DIR:-$HOME/.local/share/zsh/plugins}"
+TMUX_PLUGIN_DIR="${TMUX_PLUGIN_DIR:-$HOME/.tmux/plugins}"
+# lib/macos.sh points this at ~/Library/Application Support/Code/User
+VSCODE_USER_DIR="${VSCODE_USER_DIR:-$HOME/.config/Code/User}"
 CURRENT_STEP=""
 
 log() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
@@ -96,10 +99,11 @@ setup_local_files() {
 }
 
 # Packages whose directories must stay real, so machine-local files (ssh keys, company git
-# config, mise conf.d) are never created inside the repository.
-NO_FOLD_PACKAGES=(zsh git ssh mise)
+# config, mise conf.d, fontconfig's fonts.conf, TPM plugins) are never created inside the
+# repository.
+NO_FOLD_PACKAGES=(zsh git ssh mise tmux fontconfig)
 # Packages that may be linked as a whole directory.
-FOLD_PACKAGES=(wezterm)
+FOLD_PACKAGES=(wezterm alacritty)
 
 # "<name> <clone url>" per plugin
 ZSH_PLUGINS=(
@@ -107,6 +111,12 @@ ZSH_PLUGINS=(
   "zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git"
   "zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git"
   "zsh-z https://github.com/agkozak/zsh-z.git"
+)
+
+# "<name> <clone url>" per plugin; keep in sync with the @plugin lines in tmux.conf
+TMUX_PLUGINS=(
+  "tpm https://github.com/tmux-plugins/tpm.git"
+  "tmux-resurrect https://github.com/tmux-plugins/tmux-resurrect.git"
 )
 
 # is_repo_owned PATH PKG: PATH resolves to something inside config/PKG.
@@ -171,17 +181,63 @@ stow_packages() {
   stow --dir "$DOTFILES_DIR/config" --target "$HOME" --restow "${FOLD_PACKAGES[@]}"
 }
 
-install_zsh_plugins() {
-  local entry name url
-  mkdir -p "$ZSH_PLUGIN_DIR"
-  for entry in "${ZSH_PLUGINS[@]}"; do
+# clone_plugins KIND DIR ENTRY...: clone each "<name> <url>" ENTRY not yet in DIR.
+clone_plugins() {
+  local kind=$1 dir=$2 entry name url
+  shift 2
+  mkdir -p "$dir"
+  for entry in "$@"; do
     read -r name url <<<"$entry"
-    if [[ -d $ZSH_PLUGIN_DIR/$name/.git ]]; then
+    if [[ -d $dir/$name/.git ]]; then
       continue
     fi
-    git clone --quiet --depth 1 "$url" "$ZSH_PLUGIN_DIR/$name"
-    log "installed zsh plugin $name"
+    git clone --quiet --depth 1 "$url" "$dir/$name"
+    log "installed $kind plugin $name"
   done
+}
+
+install_zsh_plugins() {
+  clone_plugins zsh "$ZSH_PLUGIN_DIR" "${ZSH_PLUGINS[@]}"
+}
+
+# TPM loads these from TMUX_PLUGIN_MANAGER_PATH (set in tmux.conf); prefix + U updates them.
+install_tmux_plugins() {
+  clone_plugins tmux "$TMUX_PLUGIN_DIR" "${TMUX_PLUGINS[@]}"
+}
+
+# VS Code reads its user config from a different directory on each OS, so these files are
+# linked here rather than by stow. Anything else already there is backed up first.
+link_vscode_config() {
+  local file src dest
+  mkdir -p "$VSCODE_USER_DIR"
+  for file in settings.json keybindings.json; do
+    src="$DOTFILES_DIR/vscode/$file"
+    dest="$VSCODE_USER_DIR/$file"
+    if [[ -L $dest && "$(realpath "$dest" 2>/dev/null)" == "$(realpath "$src")" ]]; then
+      continue
+    fi
+    backup_path "$dest"
+    ln -s "$src" "$dest"
+    log "linked ${dest#"$HOME"/}"
+  done
+}
+
+# Install the extensions in vscode/extensions.txt that are missing; never removes any.
+install_vscode_extensions() {
+  local installed id
+  if ! command -v code >/dev/null 2>&1; then
+    warn "code not found; skipping VS Code extensions"
+    return 0
+  fi
+  # NODE_NO_WARNINGS: the code CLI prints Node deprecation warnings on every call
+  installed=$(NODE_NO_WARNINGS=1 code --list-extensions)
+  while IFS= read -r id; do
+    if grep -qixF "$id" <<<"$installed"; then
+      continue
+    fi
+    NODE_NO_WARNINGS=1 code --install-extension "$id" >/dev/null
+    log "installed VS Code extension $id"
+  done < <(grep -vE '^[[:space:]]*(#|$)' "$DOTFILES_DIR/vscode/extensions.txt")
 }
 
 # Neovim config lives in its own repository (a kickstart.nvim fork).

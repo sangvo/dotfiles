@@ -1,0 +1,25 @@
+# VS Code extensions for the default profile. bootstrap.sh installs any that are missing
+# and never removes extensions. Language extensions start only when a matching file or
+# project is opened, so one profile covering Ruby, PHP and React stays fast.
+
+# Theme (same palette as the terminal) and icons
+mvllow.rose-pine
+catppuccin.catppuccin-vsc-icons
+
+# Ruby / Rails: Ruby syntax is built in. No Ruby LSP (too heavy), and so no Herb, which
+# requires it; erb only adds the ERB grammar and runs no code.
+craigmaslowski.erb
+
+# PHP / Laravel
+bmewburn.vscode-intelephense-client
+onecentlin.laravel-blade
+xdebug.php-debug
+
+# React / TypeScript (TypeScript itself is built in)
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+
+# General
+anthropic.claude-code
+editorconfig.editorconfig
+streetsidesoftware.code-spell-checker

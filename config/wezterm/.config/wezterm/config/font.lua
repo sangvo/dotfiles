@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
--- initial size before events/font-size.lua picks one for the screen; Linux renders at 96 dpi
-local font_size = wezterm.target_triple:find("darwin") and 13.5 or 11
+-- same size events/font-size.lua picks for the screen, so a new window doesn't jump in size
+local font_size = require("events.font-size").initial_size()
 
 return {
 	font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),

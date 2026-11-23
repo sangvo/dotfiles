@@ -12,6 +12,15 @@ link_snapshot() {
   find "$HOME" -maxdepth 4 -type l -not -path "$HOME/.local/share/*" -printf '%p -> %l\n' | sort
 }
 
+# Run every line of tmux.conf on a throwaway server; tmux exits 1 on the first bad line.
+tmux_config_loads() {
+  local rc=0
+  tmux -L check -f /dev/null new-session -d
+  tmux -L check source-file "$HOME/.config/tmux/tmux.conf" || rc=$?
+  tmux -L check kill-server
+  return "$rc"
+}
+
 interactive_zsh_clean() {
   local out
   out=$( (sleep 5; echo exit) | script -qfec "zsh -i" /dev/null 2>&1 || true)
@@ -35,9 +44,18 @@ check "home .config/git is a real directory" assert_dir "$HOME/.config/git"
 check "home .config/mise is a real directory" assert_dir "$HOME/.config/mise"
 check "nvim config cloned" assert_eq "$(git -C "$HOME/.config/nvim" remote get-url origin)" https://github.com/sangvo/nvim.git
 check "wezterm config linked" assert_link_to "$HOME/.config/wezterm" "$DOTFILES_DIR/config/wezterm/.config/wezterm"
+check "alacritty config linked" assert_link_to "$HOME/.config/alacritty" "$DOTFILES_DIR/config/alacritty/.config/alacritty"
+check "tmux config linked" assert_link_to "$HOME/.config/tmux/tmux.conf" "$DOTFILES_DIR/config/tmux/.config/tmux/tmux.conf"
+check "vscode settings linked" assert_link_to "$HOME/.config/Code/User/settings.json" "$DOTFILES_DIR/vscode/settings.json"
+check "fontconfig rule linked" assert_link_to "$HOME/.config/fontconfig/conf.d/50-cascadia-code-nf.conf" "$DOTFILES_DIR/config/fontconfig/.config/fontconfig/conf.d/50-cascadia-code-nf.conf"
 check "local git config created" assert_file "$HOME/.gitconfig.local"
 check "wezterm installed" command -v wezterm
+check "alacritty installed" command -v alacritty
+check "tmux plugins installed" test -f "$HOME/.tmux/plugins/tmux-resurrect/resurrect.tmux"
+check "tmux config loads" tmux_config_loads
 check "fonts installed" test -f "$HOME/.local/share/fonts/SymbolsNerdFont-Regular.ttf"
+check "Cascadia Code NF installed" test -f "$HOME/.local/share/fonts/CascadiaCodeNF.ttf"
+check "Cascadia Code NF uses grayscale AA" assert_eq "$(fc-match -f '%{rgba}' 'Cascadia Code NF')" 5
 check "push.default is simple" assert_eq "$(git config --global push.default)" simple
 check "zsh -i starts without output" assert_eq "$(zsh -i -c exit 2>&1)" ""
 # shellcheck disable=SC2016 # zsh code, expanded by zsh

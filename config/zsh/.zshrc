@@ -46,6 +46,9 @@ alias cls="clear"
 alias joke='curl -H "Accept: text/plain" https://icanhazdadjoke.com'
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+# mc — shell function so `mc cd` can change directory, plus completion
+[[ -f ~/company/.workflow/mc.zsh ]] && source ~/company/.workflow/mc.zsh
+
 # Git
 alias gco='git checkout'
 alias gst='git status'

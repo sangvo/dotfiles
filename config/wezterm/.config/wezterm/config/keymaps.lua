@@ -115,6 +115,8 @@ config.keys = {
 
   -- ===== Workspace (tmux session) =====
   { key = 'w', mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
+  -- SSH domains (config/domains.lua): LEADER S opens a fuzzy picker
+  { key = 's', mods = 'LEADER|SHIFT', action = act.ShowLauncherArgs { flags = 'FUZZY|DOMAINS' } },
   {
     key = 'c',
     mods = 'LEADER|SHIFT',
